@@ -181,9 +181,9 @@ double-escaping the output.</p>
 <h2 id="1-8-2-1">1.8.2.1. anchor</h2>
 <p>Helper for <code>&lt;a&gt;</code> tags.</p>
 <pre><code class="language-qiq">{{= anchor (
-    'http://qiqphp.com',        // (string) href
-    'Qiq Project',              // (string) text
-    [                           // (array) optional attributes
+    'http://qiqphp.com',            // (string) href
+    'Qiq Project',                  // (string) text
+    [                               // (array) optional attributes
         'id' =&gt; 'qiq-link'
     ]
 }}
@@ -266,7 +266,7 @@ double-escaping the output.</p>
 </code></pre>
 <h2 id="1-8-2-6">1.8.2.6. link</h2>
 <p>Helper for a <code>&lt;link&gt;</code> tag.</p>
-<pre><code class="language-qiq">{{= link ([                     // (array) attributes
+<pre><code class="language-qiq">{{= link ([                         // (array) attributes
     'rel' =&gt; 'prev',
     'href' =&gt; '/path/to/prev',
 ] }}
@@ -276,8 +276,8 @@ double-escaping the output.</p>
 <h2 id="1-8-2-7">1.8.2.7. linkStylesheet</h2>
 <p>Helper for a <code>&lt;link&gt;</code> stylesheet tag.</p>
 <pre><code class="language-qiq">{{= linkStylesheet (
-    '/css/print.css',           // (string) the stylesheet href
-    [                           // (array) optional attributes
+    '/css/print.css',               // (string) the stylesheet href
+    [                               // (array) optional attributes
         'media' =&gt; 'print',
     ]
 ) }}
@@ -286,7 +286,7 @@ double-escaping the output.</p>
 </code></pre>
 <h2 id="1-8-2-8">1.8.2.8. meta</h2>
 <p>Helper for a <code>&lt;meta&gt;</code> tag.</p>
-<pre><code class="language-qiq">{{= meta ([                     // (array) attributes
+<pre><code class="language-qiq">{{= meta ([                         // (array) attributes
     'charset' =&gt; 'utf-8'
 ]) }}
 </code></pre>
@@ -295,8 +295,8 @@ double-escaping the output.</p>
 <h2 id="1-8-2-9">1.8.2.9. metaHttp</h2>
 <p>Helper for a <code>&lt;meta http-equiv&gt;</code> tag.</p>
 <pre><code class="language-qiq">{{= metaHttp (
-    'Location',                 // (string) http-equiv attribute
-    '/redirect/to/here'         // (string) content attribute
+    'Location',                     // (string) http-equiv attribute
+    '/redirect/to/here'             // (string) content attribute
 ) }}
 </code></pre>
 <pre><code class="language-html">&lt;meta http-equiv="Location" content="/redirect/to/here"&gt;
@@ -304,8 +304,8 @@ double-escaping the output.</p>
 <h2 id="1-8-2-10">1.8.2.10. metaName</h2>
 <p>Helper for a <code>&lt;meta name&gt;</code> tag.</p>
 <pre><code class="language-qiq">{{= metaHttp (
-    'author',                   // (string) name attribute
-    'Qiq for PHP'               // (string) content attribute
+    'author',                       // (string) name attribute
+    'Qiq for PHP'                   // (string) content attribute
 ) }}
 </code></pre>
 <pre><code class="language-html">&lt;meta name="author" content="Qiq for PHP"&gt;
@@ -313,12 +313,12 @@ double-escaping the output.</p>
 <h2 id="1-8-2-11">1.8.2.11. ol</h2>
 <p>Helper for <code>&lt;ol&gt;</code> tags with <code>&lt;li&gt;</code> items.</p>
 <pre><code class="language-qiq">{{= ol (
-    [                           // (array) list items
+    [                               // (array) list items
         'foo',
         'bar',
         'baz'
     ],
-    [                           // (array) optional attributes
+    [                               // (array) optional attributes
         'id' =&gt; 'foo-list'
     ]
 ) }}
@@ -332,8 +332,8 @@ double-escaping the output.</p>
 <h2 id="1-8-2-12">1.8.2.12. script</h2>
 <p>Helper for a <code>&lt;script&gt;</code> tag.</p>
 <pre><code class="language-qiq">{{= script (
-    '/js/functions.js',         // (string) src attribute
-    [                           // (array) other attributes
+    '/js/functions.js',             // (string) src attribute
+    [                               // (array) other attributes
         'async' =&gt; true
     ]
 ) }}
@@ -343,12 +343,12 @@ double-escaping the output.</p>
 <h2 id="1-8-2-13">1.8.2.13. ul</h2>
 <p>Helper for <code>&lt;ul&gt;</code> tags with <code>&lt;li&gt;</code> items.</p>
 <pre><code class="language-qiq">{{= ul (
-    [                           // (array) list items
+    [                               // (array) list items
         'foo',
         'bar',
         'baz'
     ],
-    [                           // (array) optional attributes
+    [                               // (array) optional attributes
         'id' =&gt; 'foo-list'
     ]
 ) }}

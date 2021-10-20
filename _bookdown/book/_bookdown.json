@@ -1,7 +1,7 @@
 {
     "title": "Qiq",
     "content": [
-        {"1.x": "../../../qiq/docs/_bookdown.json"}
+        {"1.x": "https://raw.githubusercontent.com/qiqphp/qiq/1.x/docs/_bookdown.json"}
     ],
     "target": "../../",
     "template": "../templates/main.php"
