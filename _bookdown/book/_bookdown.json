@@ -1,0 +1,8 @@
+{
+    "title": "Qiq",
+    "content": [
+        {"1.x": "../../../qiq/docs/_bookdown.json"}
+    ],
+    "target": "../../",
+    "template": "../templates/main.php"
+}
