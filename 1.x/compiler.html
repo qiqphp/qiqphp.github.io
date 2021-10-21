@@ -140,7 +140,7 @@
         </div>
                 <div class="col-md-9">
 <div id="section-main"><h1 id="1-9">1.9. Compiler</h1>
-<p>Although Qiq templates use native PHP, the <code>{{...}}</code> syntax sugar does require
+<p>Although Qiq templates use native PHP, the <code>{{ ... }}</code> syntax sugar does require
 a compiling process. That process is very simple, even naive, but it does
 exist:</p>
 <ul>
@@ -150,12 +150,12 @@ than the source template file, the <em>QiqCompiler</em> returns the already-exis
 compiled template. Otherwise ...</p>
 </li>
 <li>
-<p>The <em>QiqCompiler</em> reads the source template file, splits out the <code>{{...}}</code>
+<p>The <em>QiqCompiler</em> reads the source template file, splits out the <code>{{ ... }}</code>
 tags using a regular expression, and retains them as <em>QiqToken</em> objects .</p>
 </li>
 <li>
 <p>The <em>QiqCompiler</em> then invokes each <em>QiqToken</em> to get back the PHP code
-replacement for the <code>{{...}}</code> tag, and reassembles all the parts in order.</p>
+replacement for the <code>{{ ... }}</code> tag, and reassembles all the parts in order.</p>
 </li>
 <li>
 <p>The compiled template is saved to the compiler cache directory. The same
@@ -174,7 +174,7 @@ with <code>/qiq</code>, but you can specify any path with Template::new():</p>
 </code></pre>
 <p>The <em>QiqCompiler</em> saves the compiled templates in the cache using the full path
 of the source template file. For example, the cache path is <code>/private/tmp</code> and
-the source template file is at '/www/site/resources/templates/foo.php'. That
+the source template file is at <code>/www/site/resources/templates/foo.php</code>. That
 means the compiled template file will be cached at:</p>
 <pre><code>/private/tmp/www/site/resources/templates/foo.php
 </code></pre>

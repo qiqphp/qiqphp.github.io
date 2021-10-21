@@ -150,7 +150,7 @@ or <a href="https://twig.symfony.com/">Twig</a>.</p>
 <p>For example, escaping in plain old PHP looks like this:</p>
 <pre><code>&lt;?php echo htmlspecialchars(
     $var,
-    ENT_QUOTES|ENT_DISABLE,
+    ENT_QUOTES|ENT_DISALLOWED,
     'utf-8'
 ) ?&gt;
 </code></pre>
@@ -175,6 +175,17 @@ Qiq code ...</p>
 </code></pre>
 <p>This makes it easy to use Qiq with existing PHP templates, and allows for a
 smooth transition from PHP syntax to <a href="/1.x/syntax.html">Qiq syntax</a> as desired.</p>
+<h2>Why Explicit Escaping?</h2>
+<p>Qiq does not offer automatic escaping. By design, the <code>{{ ... }}</code> tags <strong>do
+not</strong> generate output. All output must be explicitly escaped for a specific
+context, noted by the first character after the opening tag.</p>
+<p>For example, <code>{{h ... }}</code> outputs escaped for HTML, whereas <code>{{j ... }}</code> outputs
+escaped for JavaScript. The <code>{{= ... }}</code> notation indicates raw output with no
+escaping at all.</p>
+<p>This is an intentional design choice for Qiq. Auto-escaping makes it easy to
+forget what context you should be escaping for; explicitly marking the context
+means you always have to think about what you are doing, and when it comes to
+security, that's a good thing.</p>
 
         </div>
         <div class="col-md-2"></div>

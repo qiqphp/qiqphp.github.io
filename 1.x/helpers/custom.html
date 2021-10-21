@@ -144,7 +144,7 @@
         </div>
                 <div class="col-md-9">
 <div id="section-main"><h1 id="1-8-4">1.8.4. Custom Helpers</h1>
-<p>Writing custom helpers is straightforward: write a class for it, register
+<p>Developing a custom helper is straightforward: write a class for it, register
 it with the <em>HelperLocator</em>, then use it in a template.</p>
 <h2 id="1-8-4-1">1.8.4.1. The Helper Class</h2>
 <p>To write a helper, extend the <em>Helper</em> class, and implement the <code>__invoke ()</code> method with whatever parameters you like. Have it return a string that has
@@ -163,10 +163,11 @@ class Rot13 extends Helper
 }
 </code></pre>
 <h2 id="1-8-4-2">1.8.4.2. The Helper Locator</h2>
-<p>Now that you have the helper class, you will need to register a factory for it
-in the <em>HelperLocator</em>. (Registering a factory allows the <em>HelperLocator</em> to
-lazy-load the helper only when it is called.)  The registration key will be the
-Qiq code word, or <code>$this</code> helper method, you use for that helper in a template.</p>
+<p>Now that you have the helper class, you will need to register a callable factory
+for it in the <em>HelperLocator</em>. (Registering a callable factory allows
+the <em>HelperLocator</em> to lazy-load the helper only when it is called.)  The
+registration key will be the Qiq helper name, or the PHP <code>$this</code> helper method,
+you use for that helper in a template.</p>
 <pre><code class="language-php">$tpl = Template::new(...);
 
 $helperLocator = $tpl-&gt;getHelperLocator();
@@ -181,14 +182,14 @@ $helperLocator-&gt;set(
 <p>Note that you need to construct <em>Helper</em> classes with the <em>Escape</em> instance
 already in the <em>HelperLocator</em>.</p>
 <h2 id="1-8-4-3">1.8.4.3. Use The Helper</h2>
-<p>Now you can use the helper in template code.</p>
-<pre><code>Qiq:
-
-{{= rotOneThree ('Uryyb Jbeyq!') }}
-
-PHP:
-
-&lt;?= $this-&gt;rotOneThree('Uryyb Jbeyq!'); ?&gt;
+<p>Now you can use the helper in template, either as Qiq code ...</p>
+<pre><code>&lt;p&gt;{{= rotOneThree ('Uryyb Jbeyq!') }}&lt;/p&gt;
+</code></pre>
+<p>... or as PHP:</p>
+<pre><code class="language-html+php">&lt;p&gt;&lt;?= $this-&gt;rotOneThree('Uryyb Jbeyq!') ?&gt;&lt;/p&gt;
+</code></pre>
+<p>Either way, the output will be the same:</p>
+<pre><code class="language-html">&lt;p&gt;Hello World!&lt;/p&gt;
 </code></pre>
 </div>        </div>
     </div>

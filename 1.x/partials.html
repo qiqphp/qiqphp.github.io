@@ -144,6 +144,7 @@ always be available regardless.)</p>
 <pre><code class="language-html+php">&lt;ul&gt;
     {{ foreach ($items as $item): }}
     &lt;li&gt;{{h $item}}&lt;/li&gt;
+    {{ endforeach }}
 &lt;/ul&gt;
 </code></pre>
 <p>Then in a main <code>browse</code> template, you can render the partial <code>list</code>:</p>

@@ -32,7 +32,7 @@ For example, escaping in plain old PHP looks like this:
 ```
 <?php echo htmlspecialchars(
     $var,
-    ENT_QUOTES|ENT_DISABLE,
+    ENT_QUOTES|ENT_DISALLOWED,
     'utf-8'
 ) ?>
 ```
@@ -73,3 +73,18 @@ Qiq code ...
 
 This makes it easy to use Qiq with existing PHP templates, and allows for a
 smooth transition from PHP syntax to [Qiq syntax](/1.x/syntax.html) as desired.
+
+## Why Explicit Escaping?
+
+Qiq does not offer automatic escaping. By design, the `{{ ... }}` tags **do
+not** generate output. All output must be explicitly escaped for a specific
+context, noted by the first character after the opening tag.
+
+For example, `{{h ... }}` outputs escaped for HTML, whereas `{{j ... }}` outputs
+escaped for JavaScript. The `{{= ... }}` notation indicates raw output with no
+escaping at all.
+
+This is an intentional design choice for Qiq. Auto-escaping makes it easy to
+forget what context you should be escaping for; explicitly marking the context
+means you always have to think about what you are doing, and when it comes to
+security, that's a good thing.

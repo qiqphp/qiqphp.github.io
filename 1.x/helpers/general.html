@@ -186,7 +186,7 @@ double-escaping the output.</p>
     [                               // (array) optional attributes
         'id' =&gt; 'qiq-link'
     ]
-}}
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;a href="http://qiqphp.com" id="qiq-link"&gt;Qiq for PHP&lt;/a&gt;
 </code></pre>
@@ -199,7 +199,7 @@ double-escaping the output.</p>
         'id' =&gt; 'qiq-link'
         '_raw' =&gt; true
     ]
-}}
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;a href="http://qiqphp.com" id="qiq-link"&gt;&lt;em&gt;Qiq for PHP&lt;/em&gt;&lt;/a&gt;
 </code></pre>
@@ -208,7 +208,7 @@ double-escaping the output.</p>
 <p>Helper for <code>&lt;base&gt;</code> tags.</p>
 <pre><code class="language-qiq">{{= base (
     '/base'                         // (string) href
-}}
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;base href="/base" /&gt;
 </code></pre>
@@ -247,7 +247,7 @@ double-escaping the output.</p>
     [                               // (array) optional attributes
         'id' =&gt; 'image-id'
     ]
-}}
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;!-- if alt is not specified, uses the basename of the image href --&gt;
 &lt;img src="/images/hello.jpg" alt="hello" id="image-id" /&gt;
@@ -269,7 +269,7 @@ double-escaping the output.</p>
 <pre><code class="language-qiq">{{= link ([                         // (array) attributes
     'rel' =&gt; 'prev',
     'href' =&gt; '/path/to/prev',
-] }}
+]) }}
 </code></pre>
 <pre><code class="language-html">&lt;link rel="prev" href="/path/to/prev" /&gt;
 </code></pre>
