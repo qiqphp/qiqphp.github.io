@@ -52,58 +52,58 @@
     
     <ul class="dropdown-menu">
                         <li>
-    <a href="/1.x/intro.html">Introduction</a>
+    <a href="/1.x/intro.html">入門</a>
 
     </li>
                         <li>
-    <a href="/1.x/syntax.html">Template Syntax</a>
+    <a href="/1.x/syntax.html">テンプレートの構文</a>
 
     </li>
                         <li>
-    <a href="/1.x/data.html">Template Data</a>
+    <a href="/1.x/data.html">テンプレートデータ</a>
 
     </li>
                         <li>
-    <a href="/1.x/locator.html">Template Locator</a>
+    <a href="/1.x/locator.html">テンプレートロケーター</a>
 
     </li>
                         <li>
-    <a href="/1.x/partials.html">Partials</a>
+    <a href="/1.x/partials.html">パーシャル</a>
 
     </li>
                         <li>
-    <a href="/1.x/layouts.html">Layouts</a>
+    <a href="/1.x/layouts.html">レイアウト</a>
 
     </li>
                         <li>
-    <a href="/1.x/sections.html">Sections</a>
+    <a href="/1.x/sections.html">セクション</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/">Helpers</a>
+    <a href="/1.x/helpers/">ヘルパー</a>
     
     <ul class="dropdown-menu">
                         <li>
-    <a href="/1.x/helpers/overview.html">Overview</a>
+    <a href="/1.x/helpers/overview.html">概要</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/general.html">General Helpers</a>
+    <a href="/1.x/helpers/general.html">一般的なヘルパー</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/forms.html">Form Helpers</a>
+    <a href="/1.x/helpers/forms.html">フォームヘルパー</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/custom.html">Custom Helpers</a>
+    <a href="/1.x/helpers/custom.html">カスタムヘルパー</a>
 
     </li>
             </ul>
 
     </li>
                         <li>
-    <a href="/1.x/compiler.html">Compiler</a>
+    <a href="/1.x/compiler.html">コンパイラ</a>
 
     </li>
             </ul>
@@ -130,62 +130,47 @@
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-            <h2>Installation</h2>
-<p>After you install <em>Qiq</em> via <a href="https://getcomposer.org">Composer</a> ...</p>
+            <h2>インストール方法</h2>
+<p><a href="https://getcomposer.org">Composer</a>でQiqをインストールした後に</p>
 <pre><code>composer require qiq/qiq ^1.0
 </code></pre>
-<p>.. you can get started <a href="/1.x/intro.html">here</a>.</p>
-<p>The Github repository is at <a href="https://github.com/qiqphp/qiq">qiqphp/qiq</a>.</p>
-<h2>Why Use Qiq?</h2>
-<p>Qiq is for developers who prefer native PHP templates, but with less verbosity.
-It offers partials, layouts, sections, and a wide range of HTML helpers for
-tags and forms, along with explicit but concise escaping.</p>
-<p>Qiq is <em>not</em> for systems where the templates must be &quot;secured&quot; in some way
-against designers or content creators. For that, use something like
-<a href="https://pecl.php.net/package/handlebars">Handlebars</a>,
-<a href="https://pecl.php.net/package/mustache">Mustache</a>,
-or <a href="https://twig.symfony.com/">Twig</a>.</p>
-<h2>What Are Qiq Templates?</h2>
-<p>Qiq is plain old PHP, with a light dusting of syntax sugar when you want it.</p>
-<p>For example, escaping in plain old PHP looks like this:</p>
+<p><a href="/1.x/intro.html">ここ</a>から始められます。</p>
+<p>Githubのリポジトリは<a href="https://github.com/qiqphp/qiq">qiqphp/qiq</a> にあります。</p>
+<h2>なぜQiqを使うのか？</h2>
+<p>Qiqは、ネイティブなPHPテンプレートを好む開発者のためのものですが、冗長性は低くなっています。パーシャル、レイアウト、セクション、そしてタグやフォームのための幅広いHTMLヘルパーを提供し、明示的かつ簡潔なエスケープが可能です。</p>
+<p>Qiqは、デザイナーやコンテンツ作成者に対してテンプレートを何らかの方法で「保護」しなければならないようなシステムには向いていません。そのような場合は、<a href="https://pecl.php.net/package/handlebars">Handlebars</a> 、<a href="https://pecl.php.net/package/mustache">Mustache</a> 、または<a href="https://twig.symfony.com/">Twig</a> のようなものを使用してください。</p>
+<h2>Qiqテンプレートとは何ですか？</h2>
+<p>Qiqは古きよきPHPであり、必要なときにだけ、軽くシンタックスシュガーをまぶします。</p>
+<p>たとえば、PHPでエスケープを行うには、次のようにします。</p>
 <pre><code>&lt;?php echo htmlspecialchars(
     $var,
     ENT_QUOTES|ENT_DISALLOWED,
     'utf-8'
 ) ?&gt;
 </code></pre>
-<p>This is the same thing, using a Qiq helper for HTML escaping:</p>
+<p>これは、HTMLのエスケープのためのQiqヘルパーを使用するのと同じことです。</p>
 <pre><code>&lt;?= $this-&gt;h($var) ?&gt;
 </code></pre>
-<p>Finally, this is the same thing with the Qiq syntax sugar:</p>
+<p>最後に、Qiqのシンタックスシュガーと同じです。</p>
 <pre><code>{{h $var }}
 </code></pre>
-<p>You can always mix plain PHP and Qiq in the same template. For example:</p>
+<p>同じテンプレートの中で、常にプレーンなPHPとQiqを混在させることができます。例えば</p>
 <pre><code>&lt;?php $var = random_int(1, 99) ?&gt;
 {{h $var }}
 </code></pre>
-<p>Indeed, any unrecognized Qiq code is treated as PHP. For example, the following
-Qiq code ...</p>
+<p>実際、認識されないQiqコードはPHPとして扱われます。例えば、以下のようなQiqコードは</p>
 <pre><code class="language-qiq">{{ $title = &quot;Prefix: &quot; . $this-&gt;title . &quot; (Suffix)&quot; }}
 &lt;title&gt;{{h $title}}&lt;/title&gt;
 </code></pre>
-<p>... is equivalent to this PHP code with Qiq helpers:</p>
+<p>Qiqヘルパーを使った次のPHPコードと同等です。</p>
 <pre><code class="language-html+php">&lt;?php $title = &quot;Prefix: &quot; . $this-&gt;title . &quot; (Suffix)&quot; ?&gt;
 &lt;title&gt;&lt;?= $this-&gt;h($title) ?&gt;&lt;/title&gt;
 </code></pre>
-<p>This makes it easy to use Qiq with existing PHP templates, and allows for a
-smooth transition from PHP syntax to <a href="/1.x/syntax.html">Qiq syntax</a> as desired.</p>
-<h2>Why Explicit Escaping?</h2>
-<p>Qiq does not offer automatic escaping. By design, the <code>{{ ... }}</code> tags <strong>do
-not</strong> generate output. All output must be explicitly escaped for a specific
-context, noted by the first character after the opening tag.</p>
-<p>For example, <code>{{h ... }}</code> outputs escaped for HTML, whereas <code>{{j ... }}</code> outputs
-escaped for JavaScript. The <code>{{= ... }}</code> notation indicates raw output with no
-escaping at all.</p>
-<p>This is an intentional design choice for Qiq. Auto-escaping makes it easy to
-forget what context you should be escaping for; explicitly marking the context
-means you always have to think about what you are doing, and when it comes to
-security, that's a good thing.</p>
+<p>これにより、既存のPHPテンプレートでQiqを簡単に使用でき、必要に応じてPHP構文から<a href="/1.x/syntax.html">Qiq構文</a>にスムーズに移行することができます。</p>
+<h2>なぜ明示的なエスケープを行うのか？</h2>
+<p>Qiqは自動的なエスケープを提供しません。設計上、<code>{{ ... }}</code>タグは出力を生成<strong>しません</strong>。すべての出力は、開始タグの後の最初の文字で示される特定のコンテキストで明示的にエスケープされる必要があります。</p>
+<p>例えば、<code>{{h ... }}</code>は HTML 用にエスケープされたものを出力しますが、<code>{{j ... }}</code>はJavaScript用にエスケープされたものを出力します。一方、<code>{{= ... }}</code>の表記は、エスケープを全くしない生の出力を表します。</p>
+<p>これは、Qiqの意図的な設計上の選択です。自動エスケープは、どのような文脈でエスケープすべきかを忘れやすくします。文脈を明示的にマークすることは、自分が何をしているかを常に考えなければならないことを意味し、セキュリティに関して言えば、それは良いことです。</p>
 
         </div>
         <div class="col-md-2"></div>

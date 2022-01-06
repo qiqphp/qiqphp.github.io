@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <meta name="HandheldFriendly" content="True"/>
-<title>Overview</title>
+<title>概要</title>
     
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/journal/bootstrap.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -48,62 +48,62 @@
     
     <ul class="nav navbar-nav">
                         <li>
-    <a href="/1.x/">1.x</a>
+    <a href="/1.x/">1.x Doc</a>
     
     <ul class="dropdown-menu">
                         <li>
-    <a href="/1.x/intro.html">Introduction</a>
+    <a href="/1.x/intro.html">入門</a>
 
     </li>
                         <li>
-    <a href="/1.x/syntax.html">Template Syntax</a>
+    <a href="/1.x/syntax.html">テンプレートの構文</a>
 
     </li>
                         <li>
-    <a href="/1.x/data.html">Template Data</a>
+    <a href="/1.x/data.html">テンプレートデータ</a>
 
     </li>
                         <li>
-    <a href="/1.x/locator.html">Template Locator</a>
+    <a href="/1.x/locator.html">テンプレートロケーター</a>
 
     </li>
                         <li>
-    <a href="/1.x/partials.html">Partials</a>
+    <a href="/1.x/partials.html">パーシャル</a>
 
     </li>
                         <li>
-    <a href="/1.x/layouts.html">Layouts</a>
+    <a href="/1.x/layouts.html">レイアウト</a>
 
     </li>
                         <li>
-    <a href="/1.x/sections.html">Sections</a>
+    <a href="/1.x/sections.html">セクション</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/">Helpers</a>
+    <a href="/1.x/helpers/">ヘルパー</a>
     
     <ul class="dropdown-menu">
                         <li>
-    <a href="/1.x/helpers/overview.html">Overview</a>
+    <a href="/1.x/helpers/overview.html">概要</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/general.html">General Helpers</a>
+    <a href="/1.x/helpers/general.html">一般的なヘルパー</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/forms.html">Form Helpers</a>
+    <a href="/1.x/helpers/forms.html">フォームヘルパー</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/custom.html">Custom Helpers</a>
+    <a href="/1.x/helpers/custom.html">カスタムヘルパー</a>
 
     </li>
             </ul>
 
     </li>
                         <li>
-    <a href="/1.x/compiler.html">Compiler</a>
+    <a href="/1.x/compiler.html">コンパイラ</a>
 
     </li>
             </ul>
@@ -118,9 +118,9 @@
 <div class="container">
     <ol class="breadcrumb">
                         <li><a href="/">Qiq</a></li>
-                                <li><a href="/1.x/">1.x</a></li>
-                                <li><a href="/1.x/helpers/">Helpers</a></li>
-                                <li class="active">Overview</li>
+                                <li><a href="/1.x/">1.x Doc</a></li>
+                                <li><a href="/1.x/helpers/">ヘルパー</a></li>
+                                <li class="active">概要</li>
             </ol>
     <div class="row">
 
@@ -128,32 +128,25 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#1-8-1" title="Overview">Overview</a>
+                <a href="#1-8-1" title="&#x6982;&#x8981;">概要</a>
             </li>
             </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h1 id="1-8-1">1.8.1. Overview</h1>
-<p>Helpers are invokable objects that generate HTML for you. You can address them
-as methods on <code>$this</code> in PHP template code, or by just the helper name when
-using Qiq syntax.</p>
-<p>PHP syntax:</p>
+<div id="section-main"><h1 id="1-8-1">1.8.1. 概要</h1>
+<p>ヘルパーはHTMLを生成してくれる呼び出し可能なオブジェクトです。PHPのテンプレートコードでは<code>$this</code>のメソッドとして、Qiq構文ではヘルパーの名前として指定することができます。</p>
+<p>PHPの構文</p>
 <pre><code class="language-html+php">&lt;?= $this-&gt;anchor('http://qiqphp.com', 'Qiq for PHP') ?&gt;
 </code></pre>
-<p>Qiq syntax:</p>
+<p>Qiqの構文</p>
 <pre><code class="language-qiq">{{= anchor ('http://qiqphp.com', 'Qiq for PHP') }}
 </code></pre>
-<p>Both generate this HTML:</p>
+<p>どちらもこのようなHTMLが生成されます</p>
 <pre><code class="language-html">&lt;a href="http://qiqphp.com"&gt;Qiq for PHP&lt;/a&gt;
 </code></pre>
-<p>Qiq comes with a comprehensive set of helpers for <a href="./general.html">general use</a>,
-and for <a href="./forms.html">building forms</a>. You can also create your own
-<a href="./custom.html">custom helpers</a>.</p>
-<p>Further, you can call any public or protected <em>Template</em> method from the
-template code. (This is because the template code is executed "inside" the
-<em>Template</em> object.) Among other things, you can set the layout, or render other
-templates, from inside any template:</p>
+<p>Qiqには、<a href="./general.html">一般的な使用</a>や<a href="./forms.html">フォームを作成</a>するための包括的なヘルパーセットが付属しています。また、独自の<a href="./custom.html">カスタムヘルパー</a>を作成することもできます。</p>
+<p>さらに、テンプレートコードから任意のpublicまたはprotectedのTemplateメソッドを呼び出すことができます。(これは、テンプレートコードがTemplateオブジェクトの「内部」で実行されるためです）。特に、レイアウトの設定や他のテンプレートのレンダリングは、テンプレートの内部から行うことができます。</p>
 <pre><code class="language-qiq">{{ setLayout ('seasonal-layout') }}
 
 {{= render ('some/other/template') }}
