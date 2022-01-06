@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <meta name="HandheldFriendly" content="True"/>
-<title>Form Helpers</title>
+<title>フォームヘルパー</title>
     
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/journal/bootstrap.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -48,62 +48,62 @@
     
     <ul class="nav navbar-nav">
                         <li>
-    <a href="/1.x/">1.x</a>
+    <a href="/1.x/">1.x Doc</a>
     
     <ul class="dropdown-menu">
                         <li>
-    <a href="/1.x/intro.html">Introduction</a>
+    <a href="/1.x/intro.html">入門</a>
 
     </li>
                         <li>
-    <a href="/1.x/syntax.html">Template Syntax</a>
+    <a href="/1.x/syntax.html">テンプレートの構文</a>
 
     </li>
                         <li>
-    <a href="/1.x/data.html">Template Data</a>
+    <a href="/1.x/data.html">テンプレートデータ</a>
 
     </li>
                         <li>
-    <a href="/1.x/locator.html">Template Locator</a>
+    <a href="/1.x/locator.html">テンプレートロケーター</a>
 
     </li>
                         <li>
-    <a href="/1.x/partials.html">Partials</a>
+    <a href="/1.x/partials.html">パーシャル</a>
 
     </li>
                         <li>
-    <a href="/1.x/layouts.html">Layouts</a>
+    <a href="/1.x/layouts.html">レイアウト</a>
 
     </li>
                         <li>
-    <a href="/1.x/sections.html">Sections</a>
+    <a href="/1.x/sections.html">セクション</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/">Helpers</a>
+    <a href="/1.x/helpers/">ヘルパー</a>
     
     <ul class="dropdown-menu">
                         <li>
-    <a href="/1.x/helpers/overview.html">Overview</a>
+    <a href="/1.x/helpers/overview.html">概要</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/general.html">General Helpers</a>
+    <a href="/1.x/helpers/general.html">一般的なヘルパー</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/forms.html">Form Helpers</a>
+    <a href="/1.x/helpers/forms.html">フォームヘルパー</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/custom.html">Custom Helpers</a>
+    <a href="/1.x/helpers/custom.html">カスタムヘルパー</a>
 
     </li>
             </ul>
 
     </li>
                         <li>
-    <a href="/1.x/compiler.html">Compiler</a>
+    <a href="/1.x/compiler.html">コンパイラ</a>
 
     </li>
             </ul>
@@ -118,9 +118,9 @@
 <div class="container">
     <ol class="breadcrumb">
                         <li><a href="/">Qiq</a></li>
-                                <li><a href="/1.x/">1.x</a></li>
-                                <li><a href="/1.x/helpers/">Helpers</a></li>
-                                <li class="active">Form Helpers</li>
+                                <li><a href="/1.x/">1.x Doc</a></li>
+                                <li><a href="/1.x/helpers/">ヘルパー</a></li>
+                                <li class="active">フォームヘルパー</li>
             </ol>
     <div class="row">
 
@@ -128,13 +128,13 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#1-8-3" title="Form&#x20;Helpers">Form Helpers</a>
+                <a href="#1-8-3" title="&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x30D8;&#x30EB;&#x30D1;&#x30FC;">フォームヘルパー</a>
             </li>
                                 <li>
-                <a href="#1-8-3-1" title="Form&#x20;Tag">Form Tag</a>
+                <a href="#1-8-3-1" title="&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x30BF;&#x30B0;">フォームタグ</a>
             </li>
                                 <li>
-                <a href="#1-8-3-2" title="Input&#x20;Tags">Input Tags</a>
+                <a href="#1-8-3-2" title="&#x5165;&#x529B;&#x30BF;&#x30B0;">入力タグ</a>
             </li>
                                                                                                                                                                                                                                                                                                         <li>
                 <a href="#1-8-3-3" title="Button&#x20;Tags">Button Tags</a>
@@ -146,13 +146,11 @@
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h1 id="1-8-3">1.8.3. Form Helpers</h1>
-<p>All helpers automatically apply appropriate escaping. This means you can use
-<code>{{= ... }}</code> to output them. If you use <code>{{h ... }}</code> et al., you will end up
-double-escaping the output.</p>
-<p>You can also address the helpers as methods on <code>$this</code> in PHP template code.</p>
-<h2 id="1-8-3-1">1.8.3.1. Form Tag</h2>
-<p>Open a form like so:</p>
+<div id="section-main"><h1 id="1-8-3">1.8.3. フォームヘルパー</h1>
+<p>すべてのヘルパーは自動的に適切なエスケープを適用します。これはつまり、<code>{{= ... }}</code>を使って出力することができます。もし、<code>{{h ... }}</code>などを使うと、二重にエスケープして出力してしまいます。</p>
+<p>PHPのテンプレートコードで、ヘルパーを<code>$this</code>のメソッドとして指定することもできます。</p>
+<h2 id="1-8-3-1">1.8.3.1. フォームタグ</h2>
+<p>このようにフォームを開きます。</p>
 <pre><code class="language-qiq">{{= form ([                         // (array) attributes
     'method' =&gt; 'post',
     'action' =&gt; '/hello',
@@ -160,29 +158,23 @@ double-escaping the output.</p>
 </code></pre>
 <pre><code class="language-html">&lt;form method="post" action="/hello" enctype="multipart/form-data"&gt;
 </code></pre>
-<p>You can close a form just using <code>&lt;/form&gt;</code>.</p>
-<h2 id="1-8-3-2">1.8.3.2. Input Tags</h2>
+<p>フォームを閉じるには、<code>&lt;/form&gt;</code>を使用します。</p>
+<h2 id="1-8-3-2">1.8.3.2. 入力タグ</h2>
 <h3 id="1-8-3-2-1">1.8.3.2.1. checkboxField</h3>
-<p>You can use a <code>checkboxField</code> as a generic input field helper, but you will
-have to set the <code>checked</code> attribute yourself to mark it as checked or not.</p>
-<p>Alternatively, if you specify the pseudo-attribute <code>_options</code>, greater
-functionality becomes available:</p>
+<p><code>checkboxField</code>は汎用の入力フィールドヘルパーとして使用できますが、チェック済みかどうかをマークするために、自分で<code>checked</code>属性を設定する必要があります。</p>
+<p>代わりに、擬似属性<code>_options</code>を指定すると、より高機能なものが利用できるようになります。</p>
 <ul>
 <li>
-<p>The <code>_options</code> specify one or more checkboxes as part of the field,
-with their value when checked, and their corresponding label.</p>
+<p><code>_options</code>は、フィールドの一部として1つ以上のチェックボックスを指定し、チェックされたときの値と、それに対応するラベルを指定します。</p>
 </li>
 <li>
-<p>If the <code>_options</code> have more than one element, then field name will be
-appended automatically with <code>[]</code> to make it an array.</p>
+<p><code>_options</code>が複数の要素を持つ場合、フィールド名には自動的に<code>[]</code>が付加され、配列となります。</p>
 </li>
 <li>
-<p>The <code>value</code> attribute will be matched against the <code>_options</code> and the correct
-checkboxes will be <code>checked</code> for you.</p>
+<p><code>value</code>属性は<code>_options</code>と照合され、正しいチェックボックスが<code>checked</code>されるようになります。</p>
 </li>
 <li>
-<p>The <code>_default</code> pseudo-attribute, when present, will produce a hidden input
-field for the value when no checkboxes are checked.</p>
+<p><code>default</code>疑似属性が存在する場合、チェックボックスがチェックされていないとき、値のための隠された入力フィールドを生成します。</p>
 </li>
 </ul>
 <pre><code class="language-qiq">{{= checkboxField ([                // (array) attributes
@@ -258,7 +250,7 @@ field for the value when no checkboxes are checked.</p>
 <pre><code class="language-html">&lt;input type="hidden" name="foo" value="bar" /&gt;
 </code></pre>
 <h3 id="1-8-3-2-9">1.8.3.2.9. inputField</h3>
-<p>A generic input field; specify the <code>type</code> needed.</p>
+<p>一般的な入力フィールド。必要な<code>type</code>を指定する。</p>
 <pre><code class="language-qiq">{{= inputField ([                  // (array) attributes
     'type' =&gt; 'text',
     'name' =&gt; 'foo',
@@ -294,18 +286,14 @@ field for the value when no checkboxes are checked.</p>
 <pre><code class="language-html">&lt;input type="password" name="foo" value="bar" /&gt;
 </code></pre>
 <h3 id="1-8-3-2-13">1.8.3.2.13. radioField</h3>
-<p>You can use a <code>radioField</code> as a generic input field helper, but you will
-have to set the <code>checked</code> attribute yourself to mark it as checked or not.</p>
-<p>Alternatively, if you specify the pseudo-attribute <code>_options</code>, greater
-functionality becomes available:</p>
+<p><code>radioField</code>を汎用の入力フィールドヘルパーとして使用することができますが、チェック済みかどうかをマークするために、自分で<code>checked</code>属性を設定する必要があります。</p>
+<p>また、擬似属性 <code>_options</code>を指定することで、より高機能なものが利用できます。</p>
 <ul>
 <li>
-<p>The <code>_options</code> specify one or more radio buttons as part of the field,
-with their value when checked, and their corresponding label.</p>
+<p><code>_options</code>は、フィールドの一部として1つまたは複数のラジオボタンを指定し、チェックしたときの値と、それに対応するラベルを指定します。</p>
 </li>
 <li>
-<p>The <code>value</code> attribute will be matched against the <code>_options</code> and the correct
-checkboxes will be <code>checked</code> for you.</p>
+<p><code>value</code>属性が<code>_options</code>とマッチングされ、適切なチェックボックスが<code>checked</code>されるようになります。</p>
 </li>
 </ul>
 <pre><code class="language-qiq">{{= radioField ([                   // (array) attributes
@@ -339,12 +327,9 @@ checkboxes will be <code>checked</code> for you.</p>
 <pre><code class="language-html">&lt;input type="search" name="foo" value="bar" /&gt;
 </code></pre>
 <h3 id="1-8-3-2-16">1.8.3.2.16. select</h3>
-<p>Use the pseudo-attribute <code>_options</code> to describe the <code>&lt;option&gt;</code> tags.</p>
-<p>The attribute <code>placeholder</code> is honored as a placeholder label when no
-option is selected. The pseudo-attribute <code>_default</code> specifies the value of
-the placeholder.</p>
-<p>Using the attribute <code>'multiple' =&gt; true</code> will set up a multiple select, and
-automatically add <code>[]</code> to the name if it is not already there.</p>
+<p><code>&lt;option&gt;</code>タグの記述には、擬似属性<code>_options</code>を使用します。</p>
+<p>属性<code>placeholder</code>は、オプションが選択されていない場合、プレースホルダー・ラベルとして尊重されます。擬似属性<code>_default</code>は、プレースホルダーの値を指定します。</p>
+<p>属性<code>'multiple' =&gt; true</code>を使用すると、複数選択が設定され、名前に<code>[]</code>がない場合は自動的に追加されます。</p>
 <pre><code class="language-qiq">{{= select ([                       // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'dib',
@@ -366,9 +351,7 @@ automatically add <code>[]</code> to the name if it is not already there.</p>
     &lt;option value="zim"&gt;Zim Label&lt;/option&gt;
 &lt;/select&gt;
 </code></pre>
-<p>The helper also supports option groups. If an <code>_options</code> array value is itself
-an array, the key for that element will be used as an <code>&lt;optgroup&gt;</code> label and
-the array of values will be options under that group.</p>
+<p>このヘルパーはオプショングループもサポートしています。もし<code>_options</code>配列の値そのものが配列なら、その要素のキーが <code>&lt;optgroup&gt;</code>ラベルとして使われ、値の配列は、そのグループのオプションとなります。</p>
 <pre><code class="language-qiq">{{= select ([
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -444,7 +427,7 @@ the array of values will be options under that group.</p>
 <pre><code class="language-html">&lt;input type="week" name="foo" value="bar" /&gt;
 </code></pre>
 <h2 id="1-8-3-3">1.8.3.3. Button Tags</h2>
-<p>Helpers for various button tags.</p>
+<p>各種ボタンタグのヘルパーです。</p>
 <h3 id="1-8-3-3-1">1.8.3.3.1. button</h3>
 <pre><code class="language-qiq">{{= button ([                       // (array) atttributes
     'name' =&gt; 'foo',

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <meta name="HandheldFriendly" content="True"/>
-<title>Compiler</title>
+<title>コンパイラ</title>
     
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/journal/bootstrap.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -48,62 +48,62 @@
     
     <ul class="nav navbar-nav">
                         <li>
-    <a href="/1.x/">1.x</a>
+    <a href="/1.x/">1.x Doc</a>
     
     <ul class="dropdown-menu">
                         <li>
-    <a href="/1.x/intro.html">Introduction</a>
+    <a href="/1.x/intro.html">入門</a>
 
     </li>
                         <li>
-    <a href="/1.x/syntax.html">Template Syntax</a>
+    <a href="/1.x/syntax.html">テンプレートの構文</a>
 
     </li>
                         <li>
-    <a href="/1.x/data.html">Template Data</a>
+    <a href="/1.x/data.html">テンプレートデータ</a>
 
     </li>
                         <li>
-    <a href="/1.x/locator.html">Template Locator</a>
+    <a href="/1.x/locator.html">テンプレートロケーター</a>
 
     </li>
                         <li>
-    <a href="/1.x/partials.html">Partials</a>
+    <a href="/1.x/partials.html">パーシャル</a>
 
     </li>
                         <li>
-    <a href="/1.x/layouts.html">Layouts</a>
+    <a href="/1.x/layouts.html">レイアウト</a>
 
     </li>
                         <li>
-    <a href="/1.x/sections.html">Sections</a>
+    <a href="/1.x/sections.html">セクション</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/">Helpers</a>
+    <a href="/1.x/helpers/">ヘルパー</a>
     
     <ul class="dropdown-menu">
                         <li>
-    <a href="/1.x/helpers/overview.html">Overview</a>
+    <a href="/1.x/helpers/overview.html">概要</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/general.html">General Helpers</a>
+    <a href="/1.x/helpers/general.html">一般的なヘルパー</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/forms.html">Form Helpers</a>
+    <a href="/1.x/helpers/forms.html">フォームヘルパー</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/custom.html">Custom Helpers</a>
+    <a href="/1.x/helpers/custom.html">カスタムヘルパー</a>
 
     </li>
             </ul>
 
     </li>
                         <li>
-    <a href="/1.x/compiler.html">Compiler</a>
+    <a href="/1.x/compiler.html">コンパイラ</a>
 
     </li>
             </ul>
@@ -118,8 +118,8 @@
 <div class="container">
     <ol class="breadcrumb">
                         <li><a href="/">Qiq</a></li>
-                                <li><a href="/1.x/">1.x</a></li>
-                                <li class="active">Compiler</li>
+                                <li><a href="/1.x/">1.x Doc</a></li>
+                                <li class="active">コンパイラ</li>
             </ol>
     <div class="row">
 
@@ -127,62 +127,46 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#1-9" title="Compiler">Compiler</a>
+                <a href="#1-9" title="&#x30B3;&#x30F3;&#x30D1;&#x30A4;&#x30E9;">コンパイラ</a>
             </li>
                                 <li>
-                <a href="#1-9-1" title="Cache&#x20;Path">Cache Path</a>
+                <a href="#1-9-1" title="&#x30AD;&#x30E3;&#x30C3;&#x30B7;&#x30E5;&#x30D1;&#x30B9;">キャッシュパス</a>
             </li>
                                 <li>
-                <a href="#1-9-2" title="Cache&#x20;Clearing">Cache Clearing</a>
+                <a href="#1-9-2" title="&#x30AD;&#x30E3;&#x30C3;&#x30B7;&#x30E5;&#x306E;&#x30AF;&#x30EA;&#x30A2;">キャッシュのクリア...</a>
             </li>
             </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h1 id="1-9">1.9. Compiler</h1>
-<p>Although Qiq templates use native PHP, the <code>{{ ... }}</code> syntax sugar does require
-a compiling process. That process is very simple, even naive, but it does
-exist:</p>
+<div id="section-main"><h1 id="1-9">1.9. コンパイラ</h1>
+<p>QiqテンプレートはネイティブPHPを使用していますが、<code>{{ ... }}</code>シンタックスシュガーは、コンパイルプロセスを必要とします。このプロセスは非常にシンプルで、素朴なものでさえありますが、実際に存在するのです。</p>
 <ul>
 <li>
-<p>If a compiled template already exists in the cache directory, and is newer
-than the source template file, the <em>QiqCompiler</em> returns the already-existing
-compiled template. Otherwise ...</p>
+<p>コンパイル済みテンプレートがキャッシュ・ディレクトリに既に存在し、ソース・テンプレート・ファイルより新しい場合、QiqCompilerは既に存在するコンパイル済みテンプレートを返します。そうでない場合は</p>
 </li>
 <li>
-<p>The <em>QiqCompiler</em> reads the source template file, splits out the <code>{{ ... }}</code>
-tags using a regular expression, and retains them as <em>QiqToken</em> objects .</p>
+<p>QiqCompilerは、ソース・テンプレート・ファイルを読み込んで、<code>{{ ... }}</code>タグを正規表現を使って分割し、QiqTokenオブジェクトとして保持します。</p>
 </li>
 <li>
-<p>The <em>QiqCompiler</em> then invokes each <em>QiqToken</em> to get back the PHP code
-replacement for the <code>{{ ... }}</code> tag, and reassembles all the parts in order.</p>
+<p>QiqCompilerは次にそれぞれのQiqTokenを呼び出して、<code>{{ ... }}</code>に対応する PHP コードの置換を取得します。タグに対応する PHPコードを取得し、すべてのパーツを順番に組み立て直します。</p>
 </li>
 <li>
-<p>The compiled template is saved to the compiler cache directory. The same
-source template will not be compiled again -- at least, not until it gets
-re-saved, thereby updating its timestamp, making it newer than the compiled
-version.</p>
+<p>コンパイルされたテンプレートは、コンパイラのキャッシュディレクトリに保存されます。同じソース・テンプレートが再びコンパイルされることはありません。 -- 少なくとも、再保存されてタイムスタンプが更新され、コンパイルされたバージョンよりも新しくなるまで、です。</p>
 </li>
 </ul>
-<h2 id="1-9-1">1.9.1. Cache Path</h2>
-<p>The <em>QiqCompiler</em> cache path by default is your
-<a href="https://php.net/sys_get_temp_dir"><code>sys_get_temp_dir()</code></a> directory appended
-with <code>/qiq</code>, but you can specify any path with Template::new():</p>
+<h2 id="1-9-1">1.9.1. キャッシュパス</h2>
+<p>QiqCompilerのキャッシュパスは、デフォルトでは<a href="https://php.net/sys_get_temp_dir"><code>sys_get_temp_dir()</code></a> ディレクトリに<code>/qiq</code>を加えたものですが、<code>Template::new()</code>で任意のパスを指定することができます。</p>
 <pre><code class="language-php">$tpl = Template::new(
     cachePath: '/path/to/qiqcache/'
 );
 </code></pre>
-<p>The <em>QiqCompiler</em> saves the compiled templates in the cache using the full path
-of the source template file. For example, the cache path is <code>/private/tmp</code> and
-the source template file is at <code>/www/site/resources/templates/foo.php</code>. That
-means the compiled template file will be cached at:</p>
+<p>QiqCompilerは、コンパイルされたテンプレートをソース・テンプレート・ファイルのフル・パスを使用してキャッシュに保存します。例えば、キャッシュのパスは<code>/private/tmp</code>で、ソーステンプレートファイルは <code>/www/site/resources/templates/foo.php</code>にあるとします。つまり、コンパイルされたテンプレートファイルは、以下の場所にキャッシュされます。</p>
 <pre><code>/private/tmp/www/site/resources/templates/foo.php
 </code></pre>
-<p>If you see compiling errors, having the full source template path as part of
-the cache path will help you find the original template.</p>
-<h2 id="1-9-2">1.9.2. Cache Clearing</h2>
-<p>To clear the cache, reach into the <em>Template</em> to get the <em>TemplateLocator</em>,
-and call its <code>clear()</code> method.</p>
+<p>コンパイルエラーが発生した場合、キャッシュパスの一部としてソーステンプレートのフルパスがあれば、元のテンプレートを見つけるのに役立ちます。</p>
+<h2 id="1-9-2">1.9.2. キャッシュのクリア</h2>
+<p>キャッシュをクリアするには、Templateの中に入ってTemplateLocatorを取得し、その<code>clear()</code>メソッドを呼び出します。</p>
 <pre><code class="language-php">$tpl-&gt;getTemplateLocator()-&gt;clear();
 </code></pre>
 </div>        </div>

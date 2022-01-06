@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <meta name="HandheldFriendly" content="True"/>
-<title>Template Data</title>
+<title>テンプレートデータ</title>
     
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/journal/bootstrap.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -48,62 +48,62 @@
     
     <ul class="nav navbar-nav">
                         <li>
-    <a href="/1.x/">1.x</a>
+    <a href="/1.x/">1.x Doc</a>
     
     <ul class="dropdown-menu">
                         <li>
-    <a href="/1.x/intro.html">Introduction</a>
+    <a href="/1.x/intro.html">入門</a>
 
     </li>
                         <li>
-    <a href="/1.x/syntax.html">Template Syntax</a>
+    <a href="/1.x/syntax.html">テンプレートの構文</a>
 
     </li>
                         <li>
-    <a href="/1.x/data.html">Template Data</a>
+    <a href="/1.x/data.html">テンプレートデータ</a>
 
     </li>
                         <li>
-    <a href="/1.x/locator.html">Template Locator</a>
+    <a href="/1.x/locator.html">テンプレートロケーター</a>
 
     </li>
                         <li>
-    <a href="/1.x/partials.html">Partials</a>
+    <a href="/1.x/partials.html">パーシャル</a>
 
     </li>
                         <li>
-    <a href="/1.x/layouts.html">Layouts</a>
+    <a href="/1.x/layouts.html">レイアウト</a>
 
     </li>
                         <li>
-    <a href="/1.x/sections.html">Sections</a>
+    <a href="/1.x/sections.html">セクション</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/">Helpers</a>
+    <a href="/1.x/helpers/">ヘルパー</a>
     
     <ul class="dropdown-menu">
                         <li>
-    <a href="/1.x/helpers/overview.html">Overview</a>
+    <a href="/1.x/helpers/overview.html">概要</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/general.html">General Helpers</a>
+    <a href="/1.x/helpers/general.html">一般的なヘルパー</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/forms.html">Form Helpers</a>
+    <a href="/1.x/helpers/forms.html">フォームヘルパー</a>
 
     </li>
                         <li>
-    <a href="/1.x/helpers/custom.html">Custom Helpers</a>
+    <a href="/1.x/helpers/custom.html">カスタムヘルパー</a>
 
     </li>
             </ul>
 
     </li>
                         <li>
-    <a href="/1.x/compiler.html">Compiler</a>
+    <a href="/1.x/compiler.html">コンパイラ</a>
 
     </li>
             </ul>
@@ -118,8 +118,8 @@
 <div class="container">
     <ol class="breadcrumb">
                         <li><a href="/">Qiq</a></li>
-                                <li><a href="/1.x/">1.x</a></li>
-                                <li class="active">Template Data</li>
+                                <li><a href="/1.x/">1.x Doc</a></li>
+                                <li class="active">テンプレートデータ</li>
             </ol>
     <div class="row">
 
@@ -127,15 +127,14 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#1-3" title="Template&#x20;Data">Template Data</a>
+                <a href="#1-3" title="&#x30C6;&#x30F3;&#x30D7;&#x30EC;&#x30FC;&#x30C8;&#x30C7;&#x30FC;&#x30BF;">テンプレートデータ...</a>
             </li>
             </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h1 id="1-3">1.3. Template Data</h1>
-<p>To assign a data collection to the <em>Template</em>, use the <code>setData()</code> method and
-pass either an array or a <code>stdClass</code> object.</p>
+<div id="section-main"><h1 id="1-3">1.3. テンプレートデータ</h1>
+<p>Templateにデータコレクションを割り当てるには、<code>setData()</code>メソッドを使用して、配列または<code>stdClass</code>オブジェクトのいずれかを渡します。</p>
 <pre><code class="language-php">$tpl-&gt;setData([
     'items' =&gt; [
         [
@@ -153,16 +152,13 @@ pass either an array or a <code>stdClass</code> object.</p>
     )
 ]);
 </code></pre>
-<p>The <code>setData()</code> method will overwrite all existing data in the <em>Template</em>
-object.</p>
-<p>The <code>addData()</code> method, on the other hand, will merge any <code>iterable</code> with the
-existing <em>Template</em> data.</p>
+<p><code>setData()</code>メソッドは、Templateオブジェクトの既存のデータをすべて上書きします。</p>
+<p>一方、<code>addData()</code>メソッドは、任意の<code>iterable</code>を既存のTemplateデータにマージします。</p>
 <pre><code class="language-php">$tpl-&gt;addData([
     'title' =&gt; 'My Items',
 ]);
 </code></pre>
-<p>You can then use the data elements as if they are properties of <code>$this</code> inside
-the template:</p>
+<p>そうすると、テンプレート内でデータ要素を<code>$this</code>のプロパティのように使うことができます。</p>
 <pre><code class="language-html+php">&lt;p&gt;{{h $this-&gt;title}}&lt;/p&gt;
 &lt;ul&gt;
     {{ foreach ($this-&gt;items as $id =&gt; $name): }}

@@ -1,33 +1,27 @@
-## Installation
+## インストール方法
 
-After you install _Qiq_ via [Composer](https://getcomposer.org) ...
+[Composer](https://getcomposer.org)でQiqをインストールした後に
 
 ```
 composer require qiq/qiq ^1.0
 ```
 
-.. you can get started [here](/1.x/intro.html).
+[ここ](/1.x/intro.html)から始められます。
 
-The Github repository is at [qiqphp/qiq](https://github.com/qiqphp/qiq).
+Githubのリポジトリは[qiqphp/qiq](https://github.com/qiqphp/qiq) にあります。
+
+## なぜQiqを使うのか？
+
+Qiqは、ネイティブなPHPテンプレートを好む開発者のためのものですが、冗長性は低くなっています。パーシャル、レイアウト、セクション、そしてタグやフォームのための幅広いHTMLヘルパーを提供し、明示的かつ簡潔なエスケープが可能です。
+
+Qiqは、デザイナーやコンテンツ作成者に対してテンプレートを何らかの方法で「保護」しなければならないようなシステムには向いていません。そのような場合は、[Handlebars](https://pecl.php.net/package/handlebars) 、[Mustache](https://pecl.php.net/package/mustache) 、または[Twig](https://twig.symfony.com/) のようなものを使用してください。
 
 
-## Why Use Qiq?
+## Qiqテンプレートとは何ですか？
 
-Qiq is for developers who prefer native PHP templates, but with less verbosity.
-It offers partials, layouts, sections, and a wide range of HTML helpers for
-tags and forms, along with explicit but concise escaping.
+Qiqは古きよきPHPであり、必要なときにだけ、軽くシンタックスシュガーをまぶします。
 
-Qiq is *not* for systems where the templates must be "secured" in some way
-against designers or content creators. For that, use something like
-[Handlebars](https://pecl.php.net/package/handlebars),
-[Mustache](https://pecl.php.net/package/mustache),
-or [Twig](https://twig.symfony.com/).
-
-## What Are Qiq Templates?
-
-Qiq is plain old PHP, with a light dusting of syntax sugar when you want it.
-
-For example, escaping in plain old PHP looks like this:
+たとえば、PHPでエスケープを行うには、次のようにします。
 
 ```
 <?php echo htmlspecialchars(
@@ -37,54 +31,45 @@ For example, escaping in plain old PHP looks like this:
 ) ?>
 ```
 
-This is the same thing, using a Qiq helper for HTML escaping:
+これは、HTMLのエスケープのためのQiqヘルパーを使用するのと同じことです。
 
 ```
 <?= $this->h($var) ?>
 ```
 
-Finally, this is the same thing with the Qiq syntax sugar:
+最後に、Qiqのシンタックスシュガーと同じです。
 
 ```
 {{h $var }}
 ```
 
-You can always mix plain PHP and Qiq in the same template. For example:
+同じテンプレートの中で、常にプレーンなPHPとQiqを混在させることができます。例えば
 
 ```
 <?php $var = random_int(1, 99) ?>
 {{h $var }}
 ```
 
-Indeed, any unrecognized Qiq code is treated as PHP. For example, the following
-Qiq code ...
+実際、認識されないQiqコードはPHPとして扱われます。例えば、以下のようなQiqコードは
 
 ```qiq
 {{ $title = "Prefix: " . $this->title . " (Suffix)" }}
 <title>{{h $title}}</title>
 ```
 
-... is equivalent to this PHP code with Qiq helpers:
+Qiqヘルパーを使った次のPHPコードと同等です。
 
 ```html+php
 <?php $title = "Prefix: " . $this->title . " (Suffix)" ?>
 <title><?= $this->h($title) ?></title>
 ```
 
-This makes it easy to use Qiq with existing PHP templates, and allows for a
-smooth transition from PHP syntax to [Qiq syntax](/1.x/syntax.html) as desired.
+これにより、既存のPHPテンプレートでQiqを簡単に使用でき、必要に応じてPHP構文から[Qiq構文](/1.x/syntax.html)にスムーズに移行することができます。
 
-## Why Explicit Escaping?
+## なぜ明示的なエスケープを行うのか？
 
-Qiq does not offer automatic escaping. By design, the `{{ ... }}` tags **do
-not** generate output. All output must be explicitly escaped for a specific
-context, noted by the first character after the opening tag.
+Qiqは自動的なエスケープを提供しません。設計上、`{{ ... }}`タグは出力を生成**しません**。すべての出力は、開始タグの後の最初の文字で示される特定のコンテキストで明示的にエスケープされる必要があります。
 
-For example, `{{h ... }}` outputs escaped for HTML, whereas `{{j ... }}` outputs
-escaped for JavaScript. The `{{= ... }}` notation indicates raw output with no
-escaping at all.
+例えば、`{{h ... }}`は HTML 用にエスケープされたものを出力しますが、`{{j ... }}`はJavaScript用にエスケープされたものを出力します。一方、`{{= ... }}`の表記は、エスケープを全くしない生の出力を表します。
 
-This is an intentional design choice for Qiq. Auto-escaping makes it easy to
-forget what context you should be escaping for; explicitly marking the context
-means you always have to think about what you are doing, and when it comes to
-security, that's a good thing.
+これは、Qiqの意図的な設計上の選択です。自動エスケープは、どのような文脈でエスケープすべきかを忘れやすくします。文脈を明示的にマークすることは、自分が何をしているかを常に考えなければならないことを意味し、セキュリティに関して言えば、それは良いことです。
