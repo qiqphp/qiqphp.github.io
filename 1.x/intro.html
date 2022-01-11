@@ -141,16 +141,16 @@
                 <div class="col-md-9">
 <div id="section-main"><h1 id="1-1">1.1. 入門</h1>
 <h2 id="1-1-1">1.1.1. インストール方法</h2>
-<p>QiqはComposerから <a href="https://packagist.org/packages/qiq/qiq">qiq/qiq</a> としてインストールすることができます。</p>
+<p>QiqはComposerから <a href="https://packagist.org/packages/qiq/qiq">qiq/qiq</a> としてインストールします。</p>
 <pre><code>composer require qiq/qiq ^1.0
 </code></pre>
 <h2 id="1-1-2">1.1.2. はじめに</h2>
-<p>まず、テンプレートファイルは、<code>/path/to/templates/hello.php</code>に保存されているとします。</p>
+<p>まず、テンプレートファイルは<code>/path/to/templates/hello.php</code>に保存されているとします。</p>
 <pre><code class="language-html+php">Hello, {{h $this-&gt;name }}. That was Qiq!
 
 And this is PHP, &lt;?= $this-&gt;h($this-&gt;name) ?&gt;.
 </code></pre>
-<p>次に、<code>hello</code> テンプレートを使って出力を生成するためのプレゼンテーションコードです。</p>
+<p>次は<code>hello</code> テンプレートを使って出力を生成するためのプレゼンテーションコードです。</p>
 <pre><code class="language-php">use Qiq\Template;
 
 $tpl = Template::new('/path/to/templates');
