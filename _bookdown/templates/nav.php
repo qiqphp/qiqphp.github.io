@@ -43,10 +43,10 @@ $page = $this->page->getRoot();
             <div class="language-link">
                 <ul>
                     <li>
-                        <a href="https://qiqphp.com/">En</a>
+                        <a>En</a>
                     </li>
                     <li>
-                        <a href="https://qiqphp-ja.github.io/">Ja</a>
+                        <a href="https://qiqphp-ja.github.io<?= $this->page->getHref(); ?>">Ja</a>
                     </li>
                 </ul>
             </div>
