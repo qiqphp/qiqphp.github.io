@@ -65,7 +65,8 @@ h6:before {
 }
 
 .navbar-brand {
-    padding: 0;
+    margin-left: 15px;
+    padding: 5px;
 }
 
 .navbar-brand img {
@@ -105,10 +106,7 @@ h6:before {
 
 /* Search */
 .form-search {
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 999;
+
 }
 
 @media (max-width: 767px) {
@@ -119,7 +117,8 @@ h6:before {
 }
 
 .form-search .form-control {
-    border: 0;
+    border: 1px solid #efefef;
+    box-shadow: none;
     width: 80px;
 }
 
@@ -350,4 +349,69 @@ footer #copyright span a {
         left: 100%;
         top: 0;
     }
+}
+
+/* Language link */
+
+@media (min-width: 767px) {
+    .box-header-inner {
+        display: flex;
+        float: right;
+    }
+
+    .language-link {
+        --bootstrap-element-margin-top: 10.5px;
+        --bootstrap-form-control-padding-top: 8px;
+        margin-top: calc(var(--bootstrap-element-margin-top) + var(--bootstrap-form-control-padding-top));
+    }
+}
+
+@media (max-width: 767px) {
+    .language-link {
+        --bootstrap-navbar-toggle-margin-top: 13px;
+        --bootstrap-navbar-toggle-margin-right: 15px;
+        --bootstrap-navbar-toggle-width: 44px;
+        --bootstrap-navbar-toggle-padding-top: 9px;
+        position: absolute;
+        top: calc(var(--bootstrap-navbar-toggle-margin-top) / 2  + var(--bootstrap-navbar-toggle-padding-top));
+        right: calc(var(--bootstrap-navbar-toggle-margin-right) * 2 + var(--bootstrap-navbar-toggle-width));
+    }
+}
+
+.language-link * {
+    line-height: 1;
+}
+
+.language-link > ul {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.language-link > ul > li {
+    list-style: none;
+    color: rgba(153, 153, 153, 1);
+    font-weight: 600;
+}
+
+.language-link > ul > li + li::before {
+    color: inherit;
+    content: "|";
+    display: inline-block;
+    margin: 0 .5rem 0 .75rem;
+}
+
+.language-link > ul > li > a {
+    display: inline-block;
+    color: inherit;
+}
+
+.language-link > ul > li > a:hover {
+    text-underline-offset: .1rem;
+}
+
+.language-link > ul > li:first-child > a {
+    color: rgba(0, 0, 0, .9);
+    text-decoration: underline;
+    text-underline-offset: .1rem;
+    pointer-events: none;
 }
