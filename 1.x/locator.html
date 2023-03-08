@@ -80,6 +80,14 @@
 
     </li>
                         <li>
+    <a href="/1.x/blocks.html">Blocks</a>
+
+    </li>
+                        <li>
+    <a href="/1.x/inheritance.html">Inheritance</a>
+
+    </li>
+                        <li>
     <a href="/1.x/helpers/">Helpers</a>
     
     <ul class="dropdown-menu">
@@ -172,10 +180,31 @@ append or prepend a directory path to the <em>TemplateLocator</em>:</p>
 $tpl-&gt;getTemplateLocator()-&gt;appendPath('/lower/precedence/templates');
 </code></pre>
 <h3 id="1-4">1.4. Subdirectories</h3>
-<p>To render a template from a subdirectory, use the subdirectory in the
-template name:</p>
+<p>To render a template from any location, use the absolute path to the template
+name:</p>
 <pre><code class="language-php">// renders the "foo/bar/baz.php" template
 $output = $tpl('foo/bar/baz');
+</code></pre>
+<p>Alternatively, while inside a template, you may refer to template names by
+relative path. Use <code>./</code> to indicate a template in the same directory, or
+<code>../</code> to indicate the directory above the current one.</p>
+<p>Given a template file structure like the following ...</p>
+<pre><code>foo.php
+foo/
+    bar.php
+    bar/
+        baz.php
+        dib.php
+</code></pre>
+<p>... while inside the <code>foo/bar/baz.php</code> template file:</p>
+<pre><code class="language-php">// refers to "foo/bar/dib.php"
+echo $this-&gt;render('./dib');
+
+// refers to "foo/bar.php"
+echo $this-&gt;render('../bar');
+
+// refers to "foo.php"
+echo $this-&gt;render('../../foo');
 </code></pre>
 <h3 id="1-4">1.4. File Name Extension</h3>
 <p>By default, the <em>TemplateLocator</em> will auto-append <code>.php</code> to template file

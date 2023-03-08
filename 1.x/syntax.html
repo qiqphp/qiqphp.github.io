@@ -80,6 +80,14 @@
 
     </li>
                         <li>
+    <a href="/1.x/blocks.html">Blocks</a>
+
+    </li>
+                        <li>
+    <a href="/1.x/inheritance.html">Inheritance</a>
+
+    </li>
+                        <li>
     <a href="/1.x/helpers/">Helpers</a>
     
     <ul class="dropdown-menu">
@@ -345,6 +353,14 @@ with the opening tag. This Qiq code ...</p>
 </code></pre>
 <p>This is especially useful with looping output code, where you want to honor
 newlines at the very beginning and very end of the loop.</p>
+<p>Echoing Qiq can be made to consume a single trailing newline by using a tilde
+with the closing tag. This Qiq code ...</p>
+<pre><code class="language-qiq">{{h $foo ~}}
+</code></pre>
+<p>... compiles to this PHP code:</p>
+<pre><code class="language-html+php">&lt;?= $this-&gt;h($foo) ?&gt;
+</code></pre>
+<p>A tilde with the closing tag has no effect on non-echoing Qiq code.</p>
 <h3 id="1-2-6-2">1.2.6.2. Indenting</h3>
 <p>Echoing Qiq tags will automatically set the current indent for helpers based on
 the leading whitespace before the opening Qiq tag.</p>

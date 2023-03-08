@@ -80,6 +80,14 @@
 
     </li>
                         <li>
+    <a href="/1.x/blocks.html">Blocks</a>
+
+    </li>
+                        <li>
+    <a href="/1.x/inheritance.html">Inheritance</a>
+
+    </li>
+                        <li>
     <a href="/1.x/helpers/">Helpers</a>
     
     <ul class="dropdown-menu">
@@ -128,30 +136,30 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#1-8-3" title="Form&#x20;Helpers">Form Helpers</a>
+                <a href="#1-10-3" title="Form&#x20;Helpers">Form Helpers</a>
             </li>
                                 <li>
-                <a href="#1-8-3-1" title="Form&#x20;Tag">Form Tag</a>
+                <a href="#1-10-3-1" title="Form&#x20;Tag">Form Tag</a>
             </li>
                                 <li>
-                <a href="#1-8-3-2" title="Input&#x20;Tags">Input Tags</a>
+                <a href="#1-10-3-2" title="Input&#x20;Tags">Input Tags</a>
             </li>
                                                                                                                                                                                                                                                                                                         <li>
-                <a href="#1-8-3-3" title="Button&#x20;Tags">Button Tags</a>
+                <a href="#1-10-3-3" title="Button&#x20;Tags">Button Tags</a>
             </li>
                                                                                 <li>
-                <a href="#1-8-3-4" title="Label&#x20;Tag">Label Tag</a>
+                <a href="#1-10-3-4" title="Label&#x20;Tag">Label Tag</a>
             </li>
             </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h1 id="1-8-3">1.8.3. Form Helpers</h1>
+<div id="section-main"><h1 id="1-10-3">1.10.3. Form Helpers</h1>
 <p>All helpers automatically apply appropriate escaping. This means you can use
 <code>{{= ... }}</code> to output them. If you use <code>{{h ... }}</code> et al., you will end up
 double-escaping the output.</p>
 <p>You can also address the helpers as methods on <code>$this</code> in PHP template code.</p>
-<h2 id="1-8-3-1">1.8.3.1. Form Tag</h2>
+<h2 id="1-10-3-1">1.10.3.1. Form Tag</h2>
 <p>Open a form like so:</p>
 <pre><code class="language-qiq">{{= form ([                         // (array) attributes
     'method' =&gt; 'post',
@@ -161,8 +169,8 @@ double-escaping the output.</p>
 <pre><code class="language-html">&lt;form method="post" action="/hello" enctype="multipart/form-data"&gt;
 </code></pre>
 <p>You can close a form just using <code>&lt;/form&gt;</code>.</p>
-<h2 id="1-8-3-2">1.8.3.2. Input Tags</h2>
-<h3 id="1-8-3-2-1">1.8.3.2.1. checkboxField</h3>
+<h2 id="1-10-3-2">1.10.3.2. Input Tags</h2>
+<h3 id="1-10-3-2-1">1.10.3.2.1. checkboxField</h3>
 <p>You can use a <code>checkboxField</code> as a generic input field helper, but you will
 have to set the <code>checked</code> attribute yourself to mark it as checked or not.</p>
 <p>Alternatively, if you specify the pseudo-attribute <code>_options</code>, greater
@@ -201,7 +209,7 @@ field for the value when no checkboxes are checked.</p>
 &lt;label&gt;&lt;input type="checkbox" name="flags[]" value="bar" checked /&gt; Bar Flag&lt;/label&gt;
 &lt;label&gt;&lt;input type="checkbox" name="flags[]" value="baz" /&gt; Baz Flag&lt;/label&gt;
 </code></pre>
-<h3 id="1-8-3-2-2">1.8.3.2.2. colorField</h3>
+<h3 id="1-10-3-2-2">1.10.3.2.2. colorField</h3>
 <pre><code class="language-qiq">{{= colorField ([                   // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -209,7 +217,7 @@ field for the value when no checkboxes are checked.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="color" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-3">1.8.3.2.3. dateField</h3>
+<h3 id="1-10-3-2-3">1.10.3.2.3. dateField</h3>
 <pre><code class="language-qiq">{{= dateField ([                    // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -217,7 +225,7 @@ field for the value when no checkboxes are checked.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="date" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-4">1.8.3.2.4. datetimeField</h3>
+<h3 id="1-10-3-2-4">1.10.3.2.4. datetimeField</h3>
 <pre><code class="language-qiq">{{= datetimeField ([                // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -225,7 +233,7 @@ field for the value when no checkboxes are checked.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="datetime" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-5">1.8.3.2.5. datetimeLocalField</h3>
+<h3 id="1-10-3-2-5">1.10.3.2.5. datetimeLocalField</h3>
 <pre><code class="language-qiq">{{= datetimeLocalField ([           // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -233,7 +241,7 @@ field for the value when no checkboxes are checked.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="datetime-local" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-6">1.8.3.2.6. emailField</h3>
+<h3 id="1-10-3-2-6">1.10.3.2.6. emailField</h3>
 <pre><code class="language-qiq">{{= emailField ([                   // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -241,7 +249,7 @@ field for the value when no checkboxes are checked.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="email" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-7">1.8.3.2.7. fileField</h3>
+<h3 id="1-10-3-2-7">1.10.3.2.7. fileField</h3>
 <pre><code class="language-qiq">{{= fileField ([                    // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -249,7 +257,7 @@ field for the value when no checkboxes are checked.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="file" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-8">1.8.3.2.8. hiddenField</h3>
+<h3 id="1-10-3-2-8">1.10.3.2.8. hiddenField</h3>
 <pre><code class="language-qiq">{{= hiddenField ([                  // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -257,7 +265,7 @@ field for the value when no checkboxes are checked.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="hidden" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-9">1.8.3.2.9. inputField</h3>
+<h3 id="1-10-3-2-9">1.10.3.2.9. inputField</h3>
 <p>A generic input field; specify the <code>type</code> needed.</p>
 <pre><code class="language-qiq">{{= inputField ([                  // (array) attributes
     'type' =&gt; 'text',
@@ -268,7 +276,7 @@ field for the value when no checkboxes are checked.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="text" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-10">1.8.3.2.10. monthField</h3>
+<h3 id="1-10-3-2-10">1.10.3.2.10. monthField</h3>
 <pre><code class="language-qiq">{{= monthField ([                   // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -276,7 +284,7 @@ field for the value when no checkboxes are checked.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="month" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-11">1.8.3.2.11. numberField</h3>
+<h3 id="1-10-3-2-11">1.10.3.2.11. numberField</h3>
 <pre><code class="language-qiq">{{= numberField ([                  // (array) attributes
     'type' =&gt; 'number',
     'name' =&gt; 'foo',
@@ -285,7 +293,7 @@ field for the value when no checkboxes are checked.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="number" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-12">1.8.3.2.12. passwordField</h3>
+<h3 id="1-10-3-2-12">1.10.3.2.12. passwordField</h3>
 <pre><code class="language-qiq">{{= passwordField ([                // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -293,7 +301,7 @@ field for the value when no checkboxes are checked.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="password" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-13">1.8.3.2.13. radioField</h3>
+<h3 id="1-10-3-2-13">1.10.3.2.13. radioField</h3>
 <p>You can use a <code>radioField</code> as a generic input field helper, but you will
 have to set the <code>checked</code> attribute yourself to mark it as checked or not.</p>
 <p>Alternatively, if you specify the pseudo-attribute <code>_options</code>, greater
@@ -322,7 +330,7 @@ checkboxes will be <code>checked</code> for you.</p>
 &lt;label&gt;&lt;input type="radio" name="foo" value="baz" checked /&gt; Baz Label&lt;/label&gt;
 &lt;label&gt;&lt;input type="radio" name="foo" value="dib" /&gt; Dib Label&lt;/label&gt;
 </code></pre>
-<h3 id="1-8-3-2-14">1.8.3.2.14. rangeField</h3>
+<h3 id="1-10-3-2-14">1.10.3.2.14. rangeField</h3>
 <pre><code class="language-qiq">{{= rangeField ([                   // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -330,7 +338,7 @@ checkboxes will be <code>checked</code> for you.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="range" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-15">1.8.3.2.15. searchField</h3>
+<h3 id="1-10-3-2-15">1.10.3.2.15. searchField</h3>
 <pre><code class="language-qiq">{{= searchField ([                  // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -338,7 +346,7 @@ checkboxes will be <code>checked</code> for you.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="search" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-16">1.8.3.2.16. select</h3>
+<h3 id="1-10-3-2-16">1.10.3.2.16. select</h3>
 <p>Use the pseudo-attribute <code>_options</code> to describe the <code>&lt;option&gt;</code> tags.</p>
 <p>The attribute <code>placeholder</code> is honored as a placeholder label when no
 option is selected. The pseudo-attribute <code>_default</code> specifies the value of
@@ -395,7 +403,7 @@ the array of values will be options under that group.</p>
     &lt;/optgroup&gt;
 &lt;/select&gt;
 </code></pre>
-<h3 id="1-8-3-2-17">1.8.3.2.17. telField</h3>
+<h3 id="1-10-3-2-17">1.10.3.2.17. telField</h3>
 <pre><code class="language-qiq">{{= telField([                      // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -403,7 +411,7 @@ the array of values will be options under that group.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="tel" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-18">1.8.3.2.18. textField</h3>
+<h3 id="1-10-3-2-18">1.10.3.2.18. textField</h3>
 <pre><code class="language-qiq">{{= textField ([                    // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -411,7 +419,7 @@ the array of values will be options under that group.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="text" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-19">1.8.3.2.19. textarea</h3>
+<h3 id="1-10-3-2-19">1.10.3.2.19. textarea</h3>
 <pre><code class="language-qiq">{{= textarea ([                     // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -419,7 +427,7 @@ the array of values will be options under that group.</p>
 </code></pre>
 <pre><code class="language-html">&lt;textarea name="foo"&gt;bar&lt;/textarea&gt;
 </code></pre>
-<h3 id="1-8-3-2-20">1.8.3.2.20. timeField</h3>
+<h3 id="1-10-3-2-20">1.10.3.2.20. timeField</h3>
 <pre><code class="language-qiq">{{= timeField ([                    // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -427,7 +435,7 @@ the array of values will be options under that group.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="time" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-21">1.8.3.2.21. urlField</h3>
+<h3 id="1-10-3-2-21">1.10.3.2.21. urlField</h3>
 <pre><code class="language-qiq">{{= urlField ([                      // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -435,7 +443,7 @@ the array of values will be options under that group.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="url" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-2-22">1.8.3.2.22. weekField</h3>
+<h3 id="1-10-3-2-22">1.10.3.2.22. weekField</h3>
 <pre><code class="language-qiq">{{= weekField ([                    // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -443,9 +451,9 @@ the array of values will be options under that group.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="week" name="foo" value="bar" /&gt;
 </code></pre>
-<h2 id="1-8-3-3">1.8.3.3. Button Tags</h2>
+<h2 id="1-10-3-3">1.10.3.3. Button Tags</h2>
 <p>Helpers for various button tags.</p>
-<h3 id="1-8-3-3-1">1.8.3.3.1. button</h3>
+<h3 id="1-10-3-3-1">1.10.3.3.1. button</h3>
 <pre><code class="language-qiq">{{= button ([                       // (array) atttributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -453,7 +461,7 @@ the array of values will be options under that group.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="button" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-3-2">1.8.3.3.2. imageButton</h3>
+<h3 id="1-10-3-3-2">1.10.3.3.2. imageButton</h3>
 <pre><code class="language-qiq">{{= imageButton ([                  // (array) atttributes
     'name' =&gt; 'foo',
     'src' =&gt; '/images/map.png',
@@ -461,7 +469,7 @@ the array of values will be options under that group.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="image" name="foo" src="/images/map.png" /&gt;
 </code></pre>
-<h3 id="1-8-3-3-3">1.8.3.3.3. submitButton</h3>
+<h3 id="1-10-3-3-3">1.10.3.3.3. submitButton</h3>
 <pre><code class="language-qiq">{{= submitButton ([                 // (array) atttributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -469,7 +477,7 @@ the array of values will be options under that group.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="submit" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="1-8-3-3-4">1.8.3.3.4. resetButton</h3>
+<h3 id="1-10-3-3-4">1.10.3.3.4. resetButton</h3>
 <pre><code class="language-qiq">{{= resetButton ([                  // (array) attributes
     'name' =&gt; 'foo',
     'value' =&gt; 'bar',
@@ -477,7 +485,7 @@ the array of values will be options under that group.</p>
 </code></pre>
 <pre><code class="language-html">&lt;input type="reset" name="foo" value="bar" /&gt;
 </code></pre>
-<h2 id="1-8-3-4">1.8.3.4. Label Tag</h2>
+<h2 id="1-10-3-4">1.10.3.4. Label Tag</h2>
 <p>A helper for <code>&lt;label&gt;</code> tags.</p>
 <pre><code class="language-qiq">{{= label (
     'Label For Field',              // (string) label text

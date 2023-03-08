@@ -80,6 +80,14 @@
 
     </li>
                         <li>
+    <a href="/1.x/blocks.html">Blocks</a>
+
+    </li>
+                        <li>
+    <a href="/1.x/inheritance.html">Inheritance</a>
+
+    </li>
+                        <li>
     <a href="/1.x/helpers/">Helpers</a>
     
     <ul class="dropdown-menu">
@@ -128,25 +136,25 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#1-8-4" title="Custom&#x20;Helpers">Custom Helpers</a>
+                <a href="#1-10-4" title="Custom&#x20;Helpers">Custom Helpers</a>
             </li>
                                 <li>
-                <a href="#1-8-4-1" title="The&#x20;Helper&#x20;Class">The Helper Class</a>
+                <a href="#1-10-4-1" title="The&#x20;Helper&#x20;Class">The Helper Class</a>
             </li>
                                 <li>
-                <a href="#1-8-4-2" title="The&#x20;Helper&#x20;Locator">The Helper Locator</a>
+                <a href="#1-10-4-2" title="The&#x20;Helper&#x20;Locator">The Helper Locator</a>
             </li>
                                 <li>
-                <a href="#1-8-4-3" title="Use&#x20;The&#x20;Helper">Use The Helper</a>
+                <a href="#1-10-4-3" title="Use&#x20;The&#x20;Helper">Use The Helper</a>
             </li>
             </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h1 id="1-8-4">1.8.4. Custom Helpers</h1>
+<div id="section-main"><h1 id="1-10-4">1.10.4. Custom Helpers</h1>
 <p>Developing a custom helper is straightforward: write a class for it, register
 it with the <em>HelperLocator</em>, then use it in a template.</p>
-<h2 id="1-8-4-1">1.8.4.1. The Helper Class</h2>
+<h2 id="1-10-4-1">1.10.4.1. The Helper Class</h2>
 <p>To write a helper, extend the <em>Helper</em> class, and implement the <code>__invoke ()</code> method with whatever parameters you like. Have it return a string that has
 been appropriately escaped.</p>
 <p>Here is a helper to ROT-13 a string:</p>
@@ -162,7 +170,7 @@ class Rot13 extends Helper
     }
 }
 </code></pre>
-<h2 id="1-8-4-2">1.8.4.2. The Helper Locator</h2>
+<h2 id="1-10-4-2">1.10.4.2. The Helper Locator</h2>
 <p>Now that you have the helper class, you will need to register a callable factory
 for it in the <em>HelperLocator</em>. (Registering a callable factory allows
 the <em>HelperLocator</em> to lazy-load the helper only when it is called.)  The
@@ -181,7 +189,7 @@ $helperLocator-&gt;set(
 </code></pre>
 <p>Note that you need to construct <em>Helper</em> classes with the <em>Escape</em> instance
 already in the <em>HelperLocator</em>.</p>
-<h2 id="1-8-4-3">1.8.4.3. Use The Helper</h2>
+<h2 id="1-10-4-3">1.10.4.3. Use The Helper</h2>
 <p>Now you can use the helper in template, either as Qiq code ...</p>
 <pre><code>&lt;p&gt;{{= rotOneThree ('Uryyb Jbeyq!') }}&lt;/p&gt;
 </code></pre>
