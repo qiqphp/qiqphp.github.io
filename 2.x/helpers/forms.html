@@ -50,7 +50,7 @@
                         <a>En</a>
                     </li>
                     <li>
-                        <a href="https://qiqphp-ja.github.io/1.x/helpers/forms.html">Ja</a>
+                        <a href="https://qiqphp-ja.github.io/2.x/helpers/forms.html">Ja</a>
                     </li>
                 </ul>
             </div>
@@ -213,8 +213,8 @@
 <div class="container">
     <ol class="breadcrumb">
                         <li><a href="/">Qiq</a></li>
-                                <li><a href="/1.x/">1.x</a></li>
-                                <li><a href="/1.x/helpers/">Helpers</a></li>
+                                <li><a href="/2.x/">2.x</a></li>
+                                <li><a href="/2.x/helpers/">Helpers</a></li>
                                 <li class="active">Form Helpers</li>
             </ol>
     <div class="row">
@@ -223,235 +223,291 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#2-10-3" title="Form&#x20;Helpers">Form Helpers</a>
+                <a href="#1-9-3" title="Form&#x20;Helpers">Form Helpers</a>
             </li>
                                 <li>
-                <a href="#2-10-3-1" title="Form&#x20;Tag">Form Tag</a>
+                <a href="#1-9-3-1" title="Form&#x20;Tag">Form Tag</a>
             </li>
                                 <li>
-                <a href="#2-10-3-2" title="Input&#x20;Tags">Input Tags</a>
+                <a href="#1-9-3-2" title="Input&#x20;Tags">Input Tags</a>
             </li>
-                                                                                                                                                                                                                                                                                                        <li>
-                <a href="#2-10-3-3" title="Button&#x20;Tags">Button Tags</a>
+                                                                                                                                                                                                                                                                                                                                <li>
+                <a href="#1-9-3-3" title="Button&#x20;Tags">Button Tags</a>
             </li>
                                                                                 <li>
-                <a href="#2-10-3-4" title="Label&#x20;Tag">Label Tag</a>
+                <a href="#1-9-3-4" title="Label&#x20;Tag">Label Tag</a>
             </li>
             </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h1 id="2-10-3">2.10.3. Form Helpers</h1>
+<div id="section-main"><h1 id="1-9-3">1.9.3. Form Helpers</h1>
 <p>All helpers automatically apply appropriate escaping. This means you can use
 <code>{{= ... }}</code> to output them. If you use <code>{{h ... }}</code> et al., you will end up
 double-escaping the output.</p>
 <p>You can also address the helpers as methods on <code>$this</code> in PHP template code.</p>
-<h2 id="2-10-3-1">2.10.3.1. Form Tag</h2>
+<p>Finally, many of these helpers accept a trailing variadic list of named
+parameters as HTML tag attributes. This means you can add just about any
+attribute as if it was a parameter on the helper method. Underscores in  the
+parameter name will be converted to dashes; e.g., <code>foo_bar: 'baz'</code> will
+become <code>foo-bar="baz"</code> in the returned helper output. For attributes that
+cannot double as named parameters, use the <code>attr</code> array parameter.</p>
+<h2 id="1-9-3-1">1.9.3.1. Form Tag</h2>
 <p>Open a form like so:</p>
-<pre><code class="language-qiq">{{= form ([                         // (array) attributes
-    'method' =&gt; 'post',
-    'action' =&gt; '/hello',
-]) }}
+<pre><code class="language-qiq">{{= form (
+    action: '/hello',
+    attr: [],               // (array) optional key-value attributes
+    id: 'form-id'           // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
-<pre><code class="language-html">&lt;form method="post" action="/hello" enctype="multipart/form-data"&gt;
+<pre><code class="language-html">&lt;!-- defaults to method="post" action="" enctype="multipart/form-data" --&gt;
+&lt;form method="post" action="/hello" enctype="multipart/form-data" id="form-id"&gt;
 </code></pre>
 <p>You can close a form just using <code>&lt;/form&gt;</code>.</p>
-<h2 id="2-10-3-2">2.10.3.2. Input Tags</h2>
-<h3 id="2-10-3-2-1">2.10.3.2.1. checkboxField</h3>
-<p>You can use a <code>checkboxField</code> as a generic input field helper, but you will
-have to set the <code>checked</code> attribute yourself to mark it as checked or not.</p>
-<p>Alternatively, if you specify the pseudo-attribute <code>_options</code>, greater
-functionality becomes available:</p>
+<h2 id="1-9-3-2">1.9.3.2. Input Tags</h2>
+<h3 id="1-9-3-2-1">1.9.3.2.1. checkboxField</h3>
+<pre><code class="language-qiq">{{= checkboxField (
+    name: 'flag',
+    value: 'foo',
+    checked: true,
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
+</code></pre>
+<pre><code class="language-html">&lt;input type="checkbox" name="flag" value="foo" checked /&gt;
+</code></pre>
+<h3 id="1-9-3-2-2">1.9.3.2.2. checkboxFields</h3>
+<p>The <code>checkboxFields</code> helper can be used for one or more checkboxes at a time,
+and has greater functionality than the <code>checkboxField</code> helper:</p>
 <ul>
 <li>
-<p>The <code>_options</code> specify one or more checkboxes as part of the field,
-with their value when checked, and their corresponding label.</p>
+<p>The <code>options</code> array specifies one or more checkboxes as part of the
+field, with each value when checked, and the corresponding label.</p>
 </li>
 <li>
-<p>If the <code>_options</code> have more than one element, then field name will be
+<p>If the <code>options</code> have more than one element, then field name will be
 appended automatically with <code>[]</code> to make it an array.</p>
 </li>
 <li>
-<p>The <code>value</code> attribute will be matched against the <code>_options</code> and the correct
+<p>The <code>value</code> attribute will be matched against the <code>options</code> and the correct
 checkboxes will be <code>checked</code> for you.</p>
 </li>
 <li>
-<p>The <code>_default</code> pseudo-attribute, when present, will produce a hidden input
-field for the value when no checkboxes are checked.</p>
+<p>The <code>default</code> parameter, when non-null, will produce a hidden input field
+for the value when no checkboxes are checked.</p>
 </li>
 </ul>
-<pre><code class="language-qiq">{{= checkboxField ([                // (array) attributes
-    'name' =&gt; 'flags',
-    'value' =&gt; 'bar',
-    '_default' =&gt; '',
-    '_options' =&gt; [
+<pre><code class="language-qiq">{{= checkboxFields (
+    name: 'flags',
+    value: 'bar',
+    default: '',
+    options: [
         'foo' =&gt; 'Foo Flag',
         'bar' =&gt; 'Bar Flag',
         'baz' =&gt; 'Baz Flag',
-    ]
-]) }}
+    ],
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="hidden" name="flags" value="" /&gt;
 &lt;label&gt;&lt;input type="checkbox" name="flags[]" value="foo" /&gt; Foo Flag&lt;/label&gt;
 &lt;label&gt;&lt;input type="checkbox" name="flags[]" value="bar" checked /&gt; Bar Flag&lt;/label&gt;
 &lt;label&gt;&lt;input type="checkbox" name="flags[]" value="baz" /&gt; Baz Flag&lt;/label&gt;
 </code></pre>
-<h3 id="2-10-3-2-2">2.10.3.2.2. colorField</h3>
-<pre><code class="language-qiq">{{= colorField ([                   // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-3">1.9.3.2.3. colorField</h3>
+<pre><code class="language-qiq">{{= colorField (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="color" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-3">2.10.3.2.3. dateField</h3>
-<pre><code class="language-qiq">{{= dateField ([                    // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-4">1.9.3.2.4. dateField</h3>
+<pre><code class="language-qiq">{{= dateField (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="date" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-4">2.10.3.2.4. datetimeField</h3>
-<pre><code class="language-qiq">{{= datetimeField ([                // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-5">1.9.3.2.5. datetimeField</h3>
+<pre><code class="language-qiq">{{= datetimeField (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="datetime" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-5">2.10.3.2.5. datetimeLocalField</h3>
-<pre><code class="language-qiq">{{= datetimeLocalField ([           // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-6">1.9.3.2.6. datetimeLocalField</h3>
+<pre><code class="language-qiq">{{= datetimeLocalField (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="datetime-local" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-6">2.10.3.2.6. emailField</h3>
-<pre><code class="language-qiq">{{= emailField ([                   // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-7">1.9.3.2.7. emailField</h3>
+<pre><code class="language-qiq">{{= emailField (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="email" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-7">2.10.3.2.7. fileField</h3>
-<pre><code class="language-qiq">{{= fileField ([                    // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-8">1.9.3.2.8. fileField</h3>
+<pre><code class="language-qiq">{{= fileField (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="file" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-8">2.10.3.2.8. hiddenField</h3>
-<pre><code class="language-qiq">{{= hiddenField ([                  // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-9">1.9.3.2.9. hiddenField</h3>
+<pre><code class="language-qiq">{{= hiddenField (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="hidden" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-9">2.10.3.2.9. inputField</h3>
+<h3 id="1-9-3-2-10">1.9.3.2.10. inputField</h3>
 <p>A generic input field; specify the <code>type</code> needed.</p>
-<pre><code class="language-qiq">{{= inputField ([                  // (array) attributes
-    'type' =&gt; 'text',
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-    // ...
-]) }}
+<pre><code class="language-qiq">{{= inputField (
+    type: 'text',
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="text" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-10">2.10.3.2.10. monthField</h3>
-<pre><code class="language-qiq">{{= monthField ([                   // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-11">1.9.3.2.11. monthField</h3>
+<pre><code class="language-qiq">{{= monthField (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="month" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-11">2.10.3.2.11. numberField</h3>
-<pre><code class="language-qiq">{{= numberField ([                  // (array) attributes
-    'type' =&gt; 'number',
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-12">1.9.3.2.12. numberField</h3>
+<pre><code class="language-qiq">{{= numberField (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="number" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-12">2.10.3.2.12. passwordField</h3>
-<pre><code class="language-qiq">{{= passwordField ([                // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-13">1.9.3.2.13. passwordField</h3>
+<pre><code class="language-qiq">{{= passwordField (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="password" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-13">2.10.3.2.13. radioField</h3>
-<p>You can use a <code>radioField</code> as a generic input field helper, but you will
-have to set the <code>checked</code> attribute yourself to mark it as checked or not.</p>
-<p>Alternatively, if you specify the pseudo-attribute <code>_options</code>, greater
-functionality becomes available:</p>
+<h3 id="1-9-3-2-14">1.9.3.2.14. radioField</h3>
+<pre><code class="language-qiq">{{= radioField (
+    name: 'foo',
+    value: 'baz',
+    checked: true,
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
+</code></pre>
+<pre><code class="language-html">&lt;input type="radio" name="foo" value="baz" checked /&gt;
+</code></pre>
+<h3 id="1-9-3-2-15">1.9.3.2.15. radioFields</h3>
+<p>The <code>radioFields</code> helper has greater functionality than the <code>radioField</code>
+helper:</p>
 <ul>
 <li>
-<p>The <code>_options</code> specify one or more radio buttons as part of the field,
-with their value when checked, and their corresponding label.</p>
+<p>The <code>options</code> parameter specfies one or more radio buttons as part of the
+field, with their value when checked, and their corresponding label.</p>
 </li>
 <li>
-<p>The <code>value</code> attribute will be matched against the <code>_options</code> and the correct
-checkboxes will be <code>checked</code> for you.</p>
+<p>The <code>value</code> parameter will be matched against the <code>options</code> and the correct
+radio button will be <code>checked</code> for you.</p>
 </li>
 </ul>
-<pre><code class="language-qiq">{{= radioField ([                   // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'baz',
-    '_options' =&gt; [
+<pre><code class="language-qiq">{{= radioFields (
+    name: 'foo',
+    value: 'baz',
+    options: [
         'bar' =&gt; 'Bar Label',
         'baz' =&gt; 'Baz Label,
         'dib' =&gt; 'Dib Label',
     ),
-]) }}
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;label&gt;&lt;input type="radio" name="foo" value="bar" /&gt; Bar Label&lt;/label&gt;
 &lt;label&gt;&lt;input type="radio" name="foo" value="baz" checked /&gt; Baz Label&lt;/label&gt;
 &lt;label&gt;&lt;input type="radio" name="foo" value="dib" /&gt; Dib Label&lt;/label&gt;
 </code></pre>
-<h3 id="2-10-3-2-14">2.10.3.2.14. rangeField</h3>
-<pre><code class="language-qiq">{{= rangeField ([                   // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-16">1.9.3.2.16. rangeField</h3>
+<pre><code class="language-qiq">{{= rangeField (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="range" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-15">2.10.3.2.15. searchField</h3>
-<pre><code class="language-qiq">{{= searchField ([                  // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-17">1.9.3.2.17. searchField</h3>
+<pre><code class="language-qiq">{{= searchField (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="search" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-16">2.10.3.2.16. select</h3>
-<p>Use the pseudo-attribute <code>_options</code> to describe the <code>&lt;option&gt;</code> tags.</p>
-<p>The attribute <code>placeholder</code> is honored as a placeholder label when no
-option is selected. The pseudo-attribute <code>_default</code> specifies the value of
-the placeholder.</p>
-<p>Using the attribute <code>'multiple' =&gt; true</code> will set up a multiple select, and
-automatically add <code>[]</code> to the name if it is not already there.</p>
-<pre><code class="language-qiq">{{= select ([                       // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'dib',
-    'placeholder' =&gt; 'Please pick one',
-    '_default' =&gt; '',
-    '_options' =&gt; [
+<h3 id="1-9-3-2-18">1.9.3.2.18. select</h3>
+<p>Use the <code>options</code> parameter to describe the <code>&lt;option&gt;</code> tags.</p>
+<p>The <code>placeholder</code> parameter is honored as a placeholder label when no option
+is selected. The <code>default</code> parameter, when non-null, specifies the value of
+that placeholder.</p>
+<p>Use <code>multiple: true</code> to set up a multiple select; this will automatically add
+<code>[]</code> to the name if it is not already there.</p>
+<pre><code class="language-qiq">{{= select (
+    name: 'foo',
+    value: 'dib',
+    placeholder: 'Please pick one',
+    default: '',
+    options: [
         'bar' =&gt; 'Bar Label',
         'baz' =&gt; 'Baz Label',
         'dib' =&gt; 'Dib Label',
         'zim' =&gt; 'Zim Label',
     ],
-]) }}
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;select name="foo"&gt;
     &lt;option value="" disabled&gt;Please pick one&lt;/option&gt;
@@ -461,13 +517,13 @@ automatically add <code>[]</code> to the name if it is not already there.</p>
     &lt;option value="zim"&gt;Zim Label&lt;/option&gt;
 &lt;/select&gt;
 </code></pre>
-<p>The helper also supports option groups. If an <code>_options</code> array value is itself
+<p>The helper also supports option groups. If an <code>options</code> array value is itself
 an array, the key for that element will be used as an <code>&lt;optgroup&gt;</code> label and
 the array of values will be options under that group.</p>
-<pre><code class="language-qiq">{{= select ([
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-    '_options' =&gt; [
+<pre><code class="language-qiq">{{= select (
+    name: 'foo',
+    value: 'bar',
+    options: =&gt; [
         'Group A' =&gt; [
             'bar' =&gt; 'Bar Label',
             'baz' =&gt; 'Baz Label',
@@ -477,7 +533,7 @@ the array of values will be options under that group.</p>
             'zim' =&gt; 'Zim Label',
         ],
     ],
-]) }}
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;select name="foo"&gt;
     &lt;optgroup label="Group A"&gt;
@@ -490,95 +546,114 @@ the array of values will be options under that group.</p>
     &lt;/optgroup&gt;
 &lt;/select&gt;
 </code></pre>
-<h3 id="2-10-3-2-17">2.10.3.2.17. telField</h3>
-<pre><code class="language-qiq">{{= telField([                      // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-19">1.9.3.2.19. telField</h3>
+<pre><code class="language-qiq">{{= telField(
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="tel" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-18">2.10.3.2.18. textField</h3>
-<pre><code class="language-qiq">{{= textField ([                    // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-20">1.9.3.2.20. textField</h3>
+<pre><code class="language-qiq">{{= textField (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="text" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-19">2.10.3.2.19. textarea</h3>
-<pre><code class="language-qiq">{{= textarea ([                     // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-21">1.9.3.2.21. textarea</h3>
+<pre><code class="language-qiq">{{= textarea (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;textarea name="foo"&gt;bar&lt;/textarea&gt;
 </code></pre>
-<h3 id="2-10-3-2-20">2.10.3.2.20. timeField</h3>
-<pre><code class="language-qiq">{{= timeField ([                    // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-22">1.9.3.2.22. timeField</h3>
+<pre><code class="language-qiq">{{= timeField (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="time" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-21">2.10.3.2.21. urlField</h3>
-<pre><code class="language-qiq">{{= urlField ([                      // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-23">1.9.3.2.23. urlField</h3>
+<pre><code class="language-qiq">{{= urlField (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="url" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-2-22">2.10.3.2.22. weekField</h3>
-<pre><code class="language-qiq">{{= weekField ([                    // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-2-24">1.9.3.2.24. weekField</h3>
+<pre><code class="language-qiq">{{= weekField (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="week" name="foo" value="bar" /&gt;
 </code></pre>
-<h2 id="2-10-3-3">2.10.3.3. Button Tags</h2>
+<h2 id="1-9-3-3">1.9.3.3. Button Tags</h2>
 <p>Helpers for various button tags.</p>
-<h3 id="2-10-3-3-1">2.10.3.3.1. button</h3>
-<pre><code class="language-qiq">{{= button ([                       // (array) atttributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-3-1">1.9.3.3.1. button</h3>
+<pre><code class="language-qiq">{{= button (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="button" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-3-2">2.10.3.3.2. imageButton</h3>
-<pre><code class="language-qiq">{{= imageButton ([                  // (array) atttributes
-    'name' =&gt; 'foo',
-    'src' =&gt; '/images/map.png',
-]) }}
+<h3 id="1-9-3-3-2">1.9.3.3.2. imageButton</h3>
+<pre><code class="language-qiq">{{= imageButton (
+    name: 'foo',
+    src: '/images/map.png',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="image" name="foo" src="/images/map.png" /&gt;
 </code></pre>
-<h3 id="2-10-3-3-3">2.10.3.3.3. submitButton</h3>
-<pre><code class="language-qiq">{{= submitButton ([                 // (array) atttributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-3-3">1.9.3.3.3. submitButton</h3>
+<pre><code class="language-qiq">{{= submitButton (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="submit" name="foo" value="bar" /&gt;
 </code></pre>
-<h3 id="2-10-3-3-4">2.10.3.3.4. resetButton</h3>
-<pre><code class="language-qiq">{{= resetButton ([                  // (array) attributes
-    'name' =&gt; 'foo',
-    'value' =&gt; 'bar',
-]) }}
+<h3 id="1-9-3-3-4">1.9.3.3.4. resetButton</h3>
+<pre><code class="language-qiq">{{= resetButton (
+    name: 'foo',
+    value: 'bar',
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
 <pre><code class="language-html">&lt;input type="reset" name="foo" value="bar" /&gt;
 </code></pre>
-<h2 id="2-10-3-4">2.10.3.4. Label Tag</h2>
+<h2 id="1-9-3-4">1.9.3.4. Label Tag</h2>
 <p>A helper for <code>&lt;label&gt;</code> tags.</p>
 <pre><code class="language-qiq">{{= label (
-    'Label For Field',              // (string) label text
-    [                               // (array) optional attributes
-        'for' =&gt; 'field'
-    ]
+    'Label For Field',      // (string) label text
+    attr: [],               // (array) optional key-value attributes
+    for: 'field'            // (...mixed) optional named parameter attributes
 ) }}
 </code></pre>
 <pre><code class="language-html">&lt;label for="field"&gt;Label For Field&lt;/label&gt;
@@ -592,9 +667,9 @@ the array of values will be options under that group.</p>
         <div class="container">
             <div class="row">
                 <div class="prev col-xs-6">
-                                            <a href="/1.x/helpers/general.html">Previous</a>                                    </div>
+                                            <a href="/2.x/helpers/general.html">Previous</a>                                    </div>
                 <div class="next col-xs-6">
-                                            <a href="/1.x/helpers/custom.html">Next</a>                                    </div>
+                                            <a href="/2.x/helpers/custom.html">Next</a>                                    </div>
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <meta name="HandheldFriendly" content="True"/>
-<title>Overview</title>
+<title>Custom Helpers</title>
     
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/journal/bootstrap.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -50,7 +50,7 @@
                         <a>En</a>
                     </li>
                     <li>
-                        <a href="https://qiqphp-ja.github.io/1.x/helpers/overview.html">Ja</a>
+                        <a href="https://qiqphp-ja.github.io/2.x/helpers/custom.html">Ja</a>
                     </li>
                 </ul>
             </div>
@@ -213,9 +213,9 @@
 <div class="container">
     <ol class="breadcrumb">
                         <li><a href="/">Qiq</a></li>
-                                <li><a href="/1.x/">1.x</a></li>
-                                <li><a href="/1.x/helpers/">Helpers</a></li>
-                                <li class="active">Overview</li>
+                                <li><a href="/2.x/">2.x</a></li>
+                                <li><a href="/2.x/helpers/">Helpers</a></li>
+                                <li class="active">Custom Helpers</li>
             </ol>
     <div class="row">
 
@@ -223,35 +223,177 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#2-10-1" title="Overview">Overview</a>
+                <a href="#1-9-4" title="Custom&#x20;Helpers">Custom Helpers</a>
+            </li>
+                                <li>
+                <a href="#1-9-4-1" title="Creating&#x20;A&#x20;&lt;em&gt;Helpers&lt;&#x2F;em&gt;&#x20;Class">Creating A Helpers Class</a>
+            </li>
+                                <li>
+                <a href="#1-9-4-2" title="Using&#x20;Your&#x20;&lt;em&gt;Helpers&lt;&#x2F;em&gt;&#x0A;">Using Your Helpers
+</a>
+            </li>
+                                <li>
+                <a href="#1-9-4-3" title="Helper&#x20;Classes">Helper Classes</a>
+            </li>
+                                <li>
+                <a href="#1-9-4-4" title="&#x0A;&lt;em&gt;Helpers&lt;&#x2F;em&gt;&#x20;Container">
+Helpers Container</a>
             </li>
             </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h1 id="2-10-1">2.10.1. Overview</h1>
-<p>Helpers are invokable objects that generate HTML for you. You can address them
-as methods on <code>$this</code> in PHP template code, or by just the helper name when
-using Qiq syntax.</p>
-<p>PHP syntax:</p>
-<pre><code class="language-html+php">&lt;?= $this-&gt;anchor('http://qiqphp.com', 'Qiq for PHP') ?&gt;
-</code></pre>
-<p>Qiq syntax:</p>
-<pre><code class="language-qiq">{{= anchor ('http://qiqphp.com', 'Qiq for PHP') }}
-</code></pre>
-<p>Both generate this HTML:</p>
-<pre><code class="language-html">&lt;a href="http://qiqphp.com"&gt;Qiq for PHP&lt;/a&gt;
-</code></pre>
-<p>Qiq comes with a comprehensive set of helpers for <a href="./general.html">general use</a>,
-and for <a href="./forms.html">building forms</a>. You can also create your own
-<a href="./custom.html">custom helpers</a>.</p>
-<p>Further, you can call any public or protected <em>Template</em> method from the
-template code. (This is because the template code is executed "inside" the
-<em>Template</em> object.) Among other things, you can set the layout, or render other
-templates, from inside any template:</p>
-<pre><code class="language-qiq">{{ setLayout ('seasonal-layout') }}
+<div id="section-main"><h1 id="1-9-4">1.9.4. Custom Helpers</h1>
+<p>You can provide your <em>Template</em> objects with a custom <em>Helpers</em> object. In
+that custom <em>Helpers</em> object, you can add any helper methods you like. Your
+helper methods will available inside template files processed by
+that <em>Template</em> instance.</p>
+<h2 id="1-9-4-1">1.9.4.1. Creating A <em>Helpers</em> Class</h2>
+<p>The easiest thing to do is extend <em>HtmlHelpers</em> and add a method on that new
+class.</p>
+<p>For example, the following custom <em>Helpers</em> class adds a method to ROT-13 a
+string, escaping it appropriately:</p>
+<pre><code class="language-php">&lt;?php
+namespace Project\Template\Helper;
 
-{{= render ('some/other/template') }}
+use Qiq\Helper\Html\HtmlHelpers;
+
+class CustomHelpers extends HtmlHelpers
+{
+    public function rot13(string $str) : string
+    {
+        return $this-&gt;h(str_rot13($str));
+    }
+}
+</code></pre>
+<p>Alternatively, you can extend the base <em>Helpers</em> object, and use
+the <em>HtmlHelperMethods</em> trait:</p>
+<pre><code class="language-php">&lt;?php
+namespace Project\Template\Helper;
+
+use Qiq\Helper\Html\HtmlHelperMethods;
+use Qiq\Helpers;
+
+class CustomHelpers extends Helpers
+{
+    use HtmlHelperMethods;
+
+    public function rot13(string $str) : string
+    {
+        return $this-&gt;h(str_rot13($str));
+    }
+}
+</code></pre>
+<p>Finally, if you are not using HTML at all, you can just extend the <em>Helpers</em>
+class.</p>
+<pre><code class="language-php">&lt;?php
+namespace Project\Template\Helper;
+
+use Qiq\Helpers;
+
+class CustomHelpers extends Helpers
+{
+    public function rot13(string $str) : string
+    {
+        return str_rot13($str);
+    }
+}
+</code></pre>
+<h2 id="1-9-4-2">1.9.4.2. Using Your <em>Helpers</em>
+</h2>
+<p>Once you have a custom <em>Helpers</em> class, create your <em>Template</em> with an
+instance of it:</p>
+<pre><code class="language-php">use Project\Template\Helper\CustomHelpers;
+use Qiq\Template;
+
+$template = Template::new(
+    paths: ...,
+    helpers: new CustomHelpers(),
+);
+</code></pre>
+<p>Now you can use your custom helper methods in a template file, either in plain
+PHP ...</p>
+<pre><code class="language-html+php">&lt;?= $this-&gt;rot13('Uryyb Jbeyq!'); ?&gt;
+</code></pre>
+<p>... or in Qiq syntax:</p>
+<pre><code class="language-html+php">{{= rot13 ('Uryyb Jbeyq!') }}
+</code></pre>
+<p>Either way, the output will be "Hello World!".</p>
+<h2 id="1-9-4-3">1.9.4.3. Helper Classes</h2>
+<p>If you like, you can put your helper logic in a class, then retrieve an
+instance of that class from the autowiring <em>Qiq\Container</em> (described below)
+using <code>$this-&gt;get()</code>.</p>
+<p>For example, if you put the ROT-13 logic into a class ...</p>
+<pre><code class="language-php">&lt;?php
+namespace Project\Template\Helper;
+
+use Qiq\Helper\Html\Escape;
+
+class Rot13
+{
+    public function __construct(protected Escape $escape)
+    {
+    }
+
+    public function __invoke(string $str): string
+    {
+        return $this-&gt;escape-&gt;h(str_rot13($str));
+    }
+}
+</code></pre>
+<p>... you can then <code>get()</code> an instance of that class from inside your
+custom <em>Helpers</em> object and use it as you wish:</p>
+<pre><code class="language-php">&lt;?php
+namespace Project\Template\Helper;
+
+use Project\Template\Helper\Rot13;
+use Qiq\Helper\Html\HtmlHelpers;
+
+class CustomHelpers extends HelperHelpers
+{
+    public function rot13(string $str) : string
+    {
+        return $this-&gt;get(Rot13::class)-&gt;__invoke($str);
+    }
+}
+</code></pre>
+<h2 id="1-9-4-4">1.9.4.4. 
+<em>Helpers</em> Container</h2>
+<p>The <em>Helpers</em> class uses an autowiring <em>Qiq\Container</em> object. In your custom
+helper methods, you can use <code>$this-&gt;get()</code> to retrieve an object from
+the <em>Qiq\Container</em>.</p>
+<p>To configure the <em>Qiq\Container</em>, instantiate it with an array of class
+constructor parameter names and values, and create your <em>Helpers</em> with it.
+For example, to change the <em>Escape</em> encoding to something other than UTF-8:</p>
+<pre><code class="language-php">use Project\Template\Helper\CustomHelpers;
+use Qiq\Container;
+use Qiq\Helper\Html\Escape;
+use Qiq\Template;
+
+$container = new Container([
+    Escape::class =&gt; [
+        'encoding' =&gt; 'EUC-JP'
+    ],
+]);
+
+$template = Template::new(
+    paths: ...,
+    helpers: new CustomHelpers($container)
+);
+</code></pre>
+<p>The <em>Qiq\Container</em> is relatively low-powered. If you wish, you can replace
+the <em>Qiq\Container</em> with any <a href="https://www.php-fig.org/psr/psr-11/">PSR-11</a>
+<em>ContainerInterface</em> instance:</p>
+<pre><code class="language-php">use Project\Template\Helper\CustomHelpers;
+use Project\Psr11Container;
+use Qiq\Template;
+
+$psr11container = new Psr11Container();
+
+$template = Template::new(
+    paths: ...,
+    helpers: new CustomHelpers($psr11container)
+);
 </code></pre>
 </div>        </div>
     </div>
@@ -262,9 +404,9 @@ templates, from inside any template:</p>
         <div class="container">
             <div class="row">
                 <div class="prev col-xs-6">
-                                            <a href="/1.x/helpers/">Previous</a>                                    </div>
+                                            <a href="/2.x/helpers/forms.html">Previous</a>                                    </div>
                 <div class="next col-xs-6">
-                                            <a href="/1.x/helpers/general.html">Next</a>                                    </div>
+                                            <a href="/2.x/compiler.html">Next</a>                                    </div>
             </div>
         </div>
     </div>

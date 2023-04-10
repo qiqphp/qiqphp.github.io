@@ -61,6 +61,80 @@
     
     <ul class="nav navbar-nav">
                         <li>
+    <a href="/2.x/">2.x</a>
+    
+    <ul class="dropdown-menu">
+                        <li>
+    <a href="/2.x/intro.html">Introduction</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/syntax.html">Template Syntax</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/data.html">Template Data</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/catalog.html">Template File Catalog</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/partials.html">Partials</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/layouts.html">Layouts</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/blocks.html">Blocks</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/inheritance.html">Inheritance</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/helpers/">Helpers</a>
+    
+    <ul class="dropdown-menu">
+                        <li>
+    <a href="/2.x/helpers/overview.html">Overview</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/helpers/general.html">General Helpers</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/helpers/forms.html">Form Helpers</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/helpers/custom.html">Custom Helpers</a>
+
+    </li>
+            </ul>
+
+    </li>
+                        <li>
+    <a href="/2.x/compiler.html">Compiler</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/static-analysis.html">Static Analysis</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/upgrading.html">Upgrading</a>
+
+    </li>
+            </ul>
+
+    </li>
+                        <li>
     <a href="/1.x/">1.x</a>
     
     <ul class="dropdown-menu">
@@ -153,14 +227,27 @@
         <div class="col-md-8">
             <h2>Installation</h2>
 <p>After you install <em>Qiq</em> via <a href="https://getcomposer.org">Composer</a> ...</p>
-<pre><code>composer require qiq/qiq ^1.0
+<pre><code>composer require qiq/qiq ^2.0
 </code></pre>
-<p>.. you can get started <a href="/1.x/intro.html">here</a>.</p>
+<p>.. you can get started <a href="/2.x/intro.html">here</a>.</p>
 <p>The Github repository is at <a href="https://github.com/qiqphp/qiq">qiqphp/qiq</a>.</p>
 <h2>Why Use Qiq?</h2>
 <p>Qiq is for developers who prefer native PHP templates, but with less verbosity.
-It offers partials, layouts, sections, and a wide range of HTML helpers for
-tags and forms, along with explicit but concise escaping.</p>
+It offers:</p>
+<ul>
+<li>Native <code>&lt;?php ?&gt;</code> <strong>and</strong> <code>{{ qiq }}</code> syntax</li>
+<li>Concise, explicit, context-specific escaping</li>
+<li>Views, <a href="./2.x/layouts.html">layouts</a>, and <a href="./2.x/partials.html">partials</a>
+</li>
+<li>
+<a href="./2.x/blocks.html">Blocks</a> and <a href="./2.x/inheritance.html">inheritance</a>
+</li>
+<li>Rich and extensible <a href="./2.x/helpers/overview.html">HTML helpers</a>
+</li>
+<li>Easy-to-implmenent <a href="./2.x/static-analysis.html">static analysis</a>
+</li>
+<li>Full documentation and unit-testing</li>
+</ul>
 <p>Qiq is <em>not</em> for systems where the templates must be &quot;secured&quot; in some way
 against designers or content creators. For that, use something like
 <a href="https://pecl.php.net/package/handlebars">Handlebars</a>,
@@ -187,26 +274,73 @@ or <a href="https://twig.symfony.com/">Twig</a>.</p>
 </code></pre>
 <p>Indeed, any unrecognized Qiq code is treated as PHP. For example, the following
 Qiq code ...</p>
-<pre><code class="language-qiq">{{ $title = &quot;Prefix: &quot; . $this-&gt;title . &quot; (Suffix)&quot; }}
+<pre><code class="language-qiq">{{ $title = &quot;Prefix: &quot; . $title . &quot; (Suffix)&quot; }}
 &lt;title&gt;{{h $title}}&lt;/title&gt;
 </code></pre>
 <p>... is equivalent to this PHP code with Qiq helpers:</p>
-<pre><code class="language-html+php">&lt;?php $title = &quot;Prefix: &quot; . $this-&gt;title . &quot; (Suffix)&quot; ?&gt;
+<pre><code class="language-html+php">&lt;?php $title = &quot;Prefix: &quot; . $title . &quot; (Suffix)&quot; ?&gt;
 &lt;title&gt;&lt;?= $this-&gt;h($title) ?&gt;&lt;/title&gt;
 </code></pre>
 <p>This makes it easy to use Qiq with existing PHP templates, and allows for a
-smooth transition from PHP syntax to <a href="/1.x/syntax.html">Qiq syntax</a> as desired.</p>
+smooth transition from PHP syntax to <a href="/2.x/syntax.html">Qiq syntax</a> as desired.</p>
+<h2>What Are Qiq Helpers?</h2>
+<p>Qiq helpers are just methods on a <em>Helper</em> object. For example, to add a
+<code>&lt;select&gt;</code> HTML form element, you can use a helper to generate it for you in
+Qiq ...</p>
+<pre><code class="language-qiq">{{= select (
+    id: 'country-select',
+    name: 'Country',
+    value: 'usa',
+    placeholder: 'Please pick a country',
+    default: 'usa',
+    options: [
+        'usa' =&gt; 'United States',
+        'can' =&gt; 'Canada',
+        'mex' =&gt; 'Mexico',
+    ],
+) }}
+</code></pre>
+<p>... or in plain PHP:</p>
+<pre><code>&lt;?= $this-&gt;select (
+    id: 'country-select',
+    name: 'Country',
+    value: 'usa',
+    placeholder: 'Please pick a country',
+    default: 'usa',
+    options: [
+        'usa' =&gt; 'United States',
+        'can' =&gt; 'Canada',
+        'mex' =&gt; 'Mexico',
+    ],
+) ?&gt;
+</code></pre>
+<p>Read more about the <a href="./2.x/helpers/general.html">general HTML helpers</a>, the
+<a href="./2.x/helpers/forms.html">form helpers</a>, or learn how to create your own
+<a href="./2.x/helpers/custom.html">custom helpers</a>.</p>
 <h2>Why Explicit Escaping?</h2>
 <p>Qiq does not offer automatic escaping. By design, the <code>{{ ... }}</code> tags <strong>do
 not</strong> generate output. All output must be explicitly escaped for a specific
-context, noted by the first character after the opening tag.</p>
-<p>For example, <code>{{h ... }}</code> outputs escaped for HTML, whereas <code>{{j ... }}</code> outputs
-escaped for JavaScript. The <code>{{= ... }}</code> notation indicates raw output with no
-escaping at all.</p>
+context, noted by the first character after the opening tag:</p>
+<ul>
+<li>
+<code>{{h ... }}</code> escapes for HTML content</li>
+<li>
+<code>{{a ... }}</code> escapes for HTML attributes</li>
+<li>
+<code>{{u ... }}</code> escapes for URLs</li>
+<li>
+<code>{{c ... }}</code> escapes for CSS</li>
+<li>
+<code>{{j ... }}</code> escapes for JavaScript</li>
+<li>
+<code>{{= ... }}</code> is raw, unescaped output</li>
+</ul>
 <p>This is an intentional design choice for Qiq. Auto-escaping makes it easy to
-forget what context you should be escaping for; explicitly marking the context
-means you always have to think about what you are doing, and when it comes to
+forget what context you should be escaping for. Explicitly marking the context
+means you always have to think about what you are doing; when it comes to
 security, that's a good thing.</p>
+<hr />
+<p>Want to know more? Get started <a href="/2.x/intro.html">here</a>!</p>
 
         </div>
         <div class="col-md-2"></div>
@@ -218,7 +352,7 @@ security, that's a good thing.</p>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p>&copy; 2021, Qiq for PHP</p>
+                    <p>&copy; 2021-2023, Qiq for PHP</p>
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <meta name="HandheldFriendly" content="True"/>
-<title>Overview</title>
+<title>Helpers</title>
     
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/journal/bootstrap.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -50,7 +50,7 @@
                         <a>En</a>
                     </li>
                     <li>
-                        <a href="https://qiqphp-ja.github.io/1.x/helpers/overview.html">Ja</a>
+                        <a href="https://qiqphp-ja.github.io/2.x/helpers/">Ja</a>
                     </li>
                 </ul>
             </div>
@@ -213,47 +213,18 @@
 <div class="container">
     <ol class="breadcrumb">
                         <li><a href="/">Qiq</a></li>
-                                <li><a href="/1.x/">1.x</a></li>
-                                <li><a href="/1.x/helpers/">Helpers</a></li>
-                                <li class="active">Overview</li>
+                                <li><a href="/2.x/">2.x</a></li>
+                                <li class="active">Helpers</li>
             </ol>
     <div class="row">
 
-                <div class="col-md-3">
-            <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
-    <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
-                                <li>
-                <a href="#2-10-1" title="Overview">Overview</a>
-            </li>
-            </ul>
-</nav>
-        </div>
-                <div class="col-md-9">
-<div id="section-main"><h1 id="2-10-1">2.10.1. Overview</h1>
-<p>Helpers are invokable objects that generate HTML for you. You can address them
-as methods on <code>$this</code> in PHP template code, or by just the helper name when
-using Qiq syntax.</p>
-<p>PHP syntax:</p>
-<pre><code class="language-html+php">&lt;?= $this-&gt;anchor('http://qiqphp.com', 'Qiq for PHP') ?&gt;
-</code></pre>
-<p>Qiq syntax:</p>
-<pre><code class="language-qiq">{{= anchor ('http://qiqphp.com', 'Qiq for PHP') }}
-</code></pre>
-<p>Both generate this HTML:</p>
-<pre><code class="language-html">&lt;a href="http://qiqphp.com"&gt;Qiq for PHP&lt;/a&gt;
-</code></pre>
-<p>Qiq comes with a comprehensive set of helpers for <a href="./general.html">general use</a>,
-and for <a href="./forms.html">building forms</a>. You can also create your own
-<a href="./custom.html">custom helpers</a>.</p>
-<p>Further, you can call any public or protected <em>Template</em> method from the
-template code. (This is because the template code is executed "inside" the
-<em>Template</em> object.) Among other things, you can set the layout, or render other
-templates, from inside any template:</p>
-<pre><code class="language-qiq">{{ setLayout ('seasonal-layout') }}
+                <div class="col-md-12">
 
-{{= render ('some/other/template') }}
-</code></pre>
-</div>        </div>
+<h1>1.9. Helpers</h1>
+
+<ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.1.</span>&nbsp;&nbsp;<a href="/2.x/helpers/overview.html#1-9-1">Overview</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.</span>&nbsp;&nbsp;<a href="/2.x/helpers/general.html#1-9-2">General Helpers</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.1.</span>&nbsp;&nbsp;<a href="/2.x/helpers/general.html#1-9-2-1">anchor</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.2.</span>&nbsp;&nbsp;<a href="/2.x/helpers/general.html#1-9-2-2">base</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.3.</span>&nbsp;&nbsp;<a href="/2.x/helpers/general.html#1-9-2-3">dl</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.4.</span>&nbsp;&nbsp;<a href="/2.x/helpers/general.html#1-9-2-4">image</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.5.</span>&nbsp;&nbsp;<a href="/2.x/helpers/general.html#1-9-2-5">items</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.6.</span>&nbsp;&nbsp;<a href="/2.x/helpers/general.html#1-9-2-6">link</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.7.</span>&nbsp;&nbsp;<a href="/2.x/helpers/general.html#1-9-2-7">linkStylesheet</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.8.</span>&nbsp;&nbsp;<a href="/2.x/helpers/general.html#1-9-2-8">meta</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.9.</span>&nbsp;&nbsp;<a href="/2.x/helpers/general.html#1-9-2-9">ol</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.10.</span>&nbsp;&nbsp;<a href="/2.x/helpers/general.html#1-9-2-10">script</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.11.</span>&nbsp;&nbsp;<a href="/2.x/helpers/general.html#1-9-2-11">ul</a></div></div></li></ul></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3">Form Helpers</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.1.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-1">Form Tag</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2">Input Tags</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.1.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-1">checkboxField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.2.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-2">checkboxFields</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.3.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-3">colorField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.4.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-4">dateField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.5.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-5">datetimeField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.6.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-6">datetimeLocalField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.7.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-7">emailField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.8.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-8">fileField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.9.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-9">hiddenField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.10.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-10">inputField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.11.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-11">monthField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.12.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-12">numberField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.13.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-13">passwordField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.14.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-14">radioField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.15.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-15">radioFields</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.16.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-16">rangeField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.17.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-17">searchField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.18.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-18">select</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.19.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-19">telField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.20.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-20">textField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.21.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-21">textarea</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.22.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-22">timeField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.23.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-23">urlField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.24.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-2-24">weekField</a></div></div></li></ul></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.3.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-3">Button Tags</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.3.1.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-3-1">button</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.3.2.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-3-2">imageButton</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.3.3.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-3-3">submitButton</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.3.4.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-3-4">resetButton</a></div></div></li></ul></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.4.</span>&nbsp;&nbsp;<a href="/2.x/helpers/forms.html#1-9-3-4">Label Tag</a></div></div></li></ul></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.4.</span>&nbsp;&nbsp;<a href="/2.x/helpers/custom.html#1-9-4">Custom Helpers</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.4.1.</span>&nbsp;&nbsp;<a href="/2.x/helpers/custom.html#1-9-4-1">Creating A <em>Helpers</em> Class</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.4.2.</span>&nbsp;&nbsp;<a href="/2.x/helpers/custom.html#1-9-4-2">Using Your <em>Helpers</em>
+</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.4.3.</span>&nbsp;&nbsp;<a href="/2.x/helpers/custom.html#1-9-4-3">Helper Classes</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.4.4.</span>&nbsp;&nbsp;<a href="/2.x/helpers/custom.html#1-9-4-4">
+<em>Helpers</em> Container</a></div></div></li></ul></li></ul><div id="section-main"></div>        </div>
     </div>
 </div>
 
@@ -262,9 +233,9 @@ templates, from inside any template:</p>
         <div class="container">
             <div class="row">
                 <div class="prev col-xs-6">
-                                            <a href="/1.x/helpers/">Previous</a>                                    </div>
+                                            <a href="/2.x/inheritance.html">Previous</a>                                    </div>
                 <div class="next col-xs-6">
-                                            <a href="/1.x/helpers/general.html">Next</a>                                    </div>
+                                            <a href="/2.x/helpers/overview.html">Next</a>                                    </div>
             </div>
         </div>
     </div>

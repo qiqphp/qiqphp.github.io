@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <meta name="HandheldFriendly" content="True"/>
-<title>Overview</title>
+<title>Upgrading</title>
     
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/journal/bootstrap.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -50,7 +50,7 @@
                         <a>En</a>
                     </li>
                     <li>
-                        <a href="https://qiqphp-ja.github.io/1.x/helpers/overview.html">Ja</a>
+                        <a href="https://qiqphp-ja.github.io/2.x/upgrading.html">Ja</a>
                     </li>
                 </ul>
             </div>
@@ -213,9 +213,8 @@
 <div class="container">
     <ol class="breadcrumb">
                         <li><a href="/">Qiq</a></li>
-                                <li><a href="/1.x/">1.x</a></li>
-                                <li><a href="/1.x/helpers/">Helpers</a></li>
-                                <li class="active">Overview</li>
+                                <li><a href="/2.x/">2.x</a></li>
+                                <li class="active">Upgrading</li>
             </ol>
     <div class="row">
 
@@ -223,36 +222,131 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#2-10-1" title="Overview">Overview</a>
+                <a href="#1-12" title="Upgrading">Upgrading</a>
             </li>
-            </ul>
+                                <li>
+                <a href="#1-12-1" title="1.x&#x20;to&#x20;2.x">1.x to 2.x</a>
+            </li>
+                                                                        </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h1 id="2-10-1">2.10.1. Overview</h1>
-<p>Helpers are invokable objects that generate HTML for you. You can address them
-as methods on <code>$this</code> in PHP template code, or by just the helper name when
-using Qiq syntax.</p>
-<p>PHP syntax:</p>
-<pre><code class="language-html+php">&lt;?= $this-&gt;anchor('http://qiqphp.com', 'Qiq for PHP') ?&gt;
+<div id="section-main"><h1 id="1-12">1.12. Upgrading</h1>
+<h2 id="1-12-1">1.12.1. 1.x to 2.x</h2>
+<p>Upgrading from Qiq 1.x to 2.x is straightforward but may be time consuming.</p>
+<h3 id="1-12-1-1">1.12.1.1. Assigned Variables</h3>
+<p>Magic <code>__get()</code>, <code>__set()</code>, etc. access to assigned variables has been removed.</p>
+<p>This means template files <strong>no longer use <code>$this-&gt;var</code></strong> for assigned variables.</p>
+<p>Instead, they now use <code>$var</code> (without the <code>$this-&gt;</code> prefix). This is in support
+of <a href="./static-analysis.html">static analysis</a> in template files.</p>
+<p>If you need to modify the assigned variables directly, use <code>&amp;refData()</code> to get
+a reference to the array of assigned data. Modifications to this array will
+be honored on the next call to <code>render()</code>.</p>
+<h3 id="1-12-1-2">1.12.1.2. Sections and Blocks</h3>
+<p>Sections have been removed entirely in favor of blocks. Instead of
+<code>setSection()</code>, <code>preSection()</code>, <code>addSection()</code>, and <code>getSection()</code>, use
+<code>setBlock()</code>, <code>parentBlock()</code>, and <code>getBlock()</code>. Please see the
+<a href="./blocks.html">blocks</a> documentation for more information.</p>
+<h3 id="1-12-1-3">1.12.1.3. Helpers</h3>
+<p>The <em>HelperLocator</em> has been removed entirely in favor of <em>Helpers</em> and
+a <em>Container</em>. If you have custom helpers, you will need to following the
+<a href="./helpers/custom.html">custom helpers</a> documentation to make them available in
+your templates.</p>
+<p>The tag-related helpers no longer use arrays for attributes; instead, they use
+named parameters. For example, an input text field helper in 1.x would have
+been called like this:</p>
+<pre><code class="language-qiq">{{= textField ([
+  'name' =&gt; 'foo',
+  'value' =&gt; 'foo text',
+  'id' =&gt; 'foo-id',
+]) }}
 </code></pre>
-<p>Qiq syntax:</p>
-<pre><code class="language-qiq">{{= anchor ('http://qiqphp.com', 'Qiq for PHP') }}
+<p>In 2.x, you call it like this; note that the array and its keys are replaced
+by named parameters:</p>
+<pre><code class="language-qiq">{{= textField (
+  name: 'foo',
+  value: 'foo text',
+  id: 'foo-id',
+) }}
 </code></pre>
-<p>Both generate this HTML:</p>
-<pre><code class="language-html">&lt;a href="http://qiqphp.com"&gt;Qiq for PHP&lt;/a&gt;
+<p>As a transitional aid, you may use the spread (<code>...</code>) operator to expand the
+array into named parameters:</p>
+<pre><code class="language-qiq">{{= textField (...[
+  'name' =&gt; 'foo',
+  'value' =&gt; 'foo text',
+  'id' =&gt; 'foo-id',
+]) }}
 </code></pre>
-<p>Qiq comes with a comprehensive set of helpers for <a href="./general.html">general use</a>,
-and for <a href="./forms.html">building forms</a>. You can also create your own
-<a href="./custom.html">custom helpers</a>.</p>
-<p>Further, you can call any public or protected <em>Template</em> method from the
-template code. (This is because the template code is executed "inside" the
-<em>Template</em> object.) Among other things, you can set the layout, or render other
-templates, from inside any template:</p>
-<pre><code class="language-qiq">{{ setLayout ('seasonal-layout') }}
-
-{{= render ('some/other/template') }}
-</code></pre>
+<p>Further:</p>
+<ul>
+<li>
+<p>All HTML helpers have been moved from the <em>Qiq\Helper</em> namespace to the
+<em>Qiq\Helper\Html</em> namespace; the <em>Helper</em> class has been renamed
+to <em>TagHelper</em>.</p>
+</li>
+<li>
+<p>The <em>Escape</em> class is now defined in the the <em>Qiq\Helper\Html</em> namespace, not
+the <em>Qiq</em> namespace.</p>
+</li>
+<li>
+<p>The attribute builder no longer honors the <code>_raw</code> pseudo-attribute. If you
+want tag body text to be unescaped, you will need to build it manually.</p>
+</li>
+<li>
+<p>The <code>_default</code> pseudo-attribute in various form-related helpers has been
+replaced with the named parameter <code>default</code>.</p>
+</li>
+<li>
+<p>The <code>_options</code> pseudo-attribute in various form-related helpers has been
+replaced with the named parameter <code>options</code>.</p>
+</li>
+</ul>
+<h3 id="1-12-1-4">1.12.1.4. Static Analysis</h3>
+<p>All Qiq code now declares <code>strict_types=1</code> and is covered by static analysis.
+Normally this would mean your calling code might have to be more strict about
+what it sends to Qiq.</p>
+<p>However, most string-like parameters are typed as <code>mixed</code>, with <code>@param</code>
+docblocks indicating the type as <code>null|scalar|Stringable</code> (or arrays thereof).
+This is because casting a <code>mixed</code> value to <code>string</code> is flagged by static
+analysis tools when being escaped for string output.</p>
+<p>As a result, you should not have to recast the values you send to Qiq much, if
+at all -- but be aware of these changes nonetheless.</p>
+<h3 id="1-12-1-5">1.12.1.5. Other Changes</h3>
+<ul>
+<li>
+<p>An <em>Engine</em> interface has been introduced.</p>
+</li>
+<li>
+<p><em>TemplateCore</em> has been renamed to <em>Kernel</em>, and implements the <em>Engine</em>
+interface.</p>
+</li>
+<li>
+<p><code>Template::new()</code> has been moved to <code>Kernel::new()</code>.</p>
+</li>
+<li>
+<p><em>TemplateLocator</em> has been renamed to <em>Catalog</em>; <code>TemplateLocator::get()</code> is
+now <code>Catalog::getCompiled()</code>.</p>
+</li>
+<li>
+<p>The <em>Compiler</em> interface is now defined in the <em>Qiq</em> namespace, not
+the <em>Qiq\Compiler</em> namespace.</p>
+</li>
+<li>
+<p>The <em>Exception</em> class is now defined in the <em>Qiq</em> namespace, not
+the <em>Qiq\Exception</em> namespace.</p>
+</li>
+<li>
+<p>The <em>HelperNotFound</em> exception has been renamed to <em>ObjectNotFound</em>, and
+implements the PSR-11 <em>NotFoundExceptionInterface</em>.</p>
+</li>
+<li>
+<p>The <em>TemplateNotFound</em> exception has been renamed to <em>FileNotFound</em>.</p>
+</li>
+<li>
+<p>The <em>Indent</em> class now uses instance methods, not static methods, and is
+shared as an instance in the <em>Container</em>.</p>
+</li>
+</ul>
 </div>        </div>
     </div>
 </div>
@@ -262,9 +356,9 @@ templates, from inside any template:</p>
         <div class="container">
             <div class="row">
                 <div class="prev col-xs-6">
-                                            <a href="/1.x/helpers/">Previous</a>                                    </div>
+                                            <a href="/2.x/static-analysis.html">Previous</a>                                    </div>
                 <div class="next col-xs-6">
-                                            <a href="/1.x/helpers/general.html">Next</a>                                    </div>
+                                            <a href="/1.x/">Next</a>                                    </div>
             </div>
         </div>
     </div>

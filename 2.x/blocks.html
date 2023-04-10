@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <meta name="HandheldFriendly" content="True"/>
-<title>Overview</title>
+<title>Blocks</title>
     
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/journal/bootstrap.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -50,7 +50,7 @@
                         <a>En</a>
                     </li>
                     <li>
-                        <a href="https://qiqphp-ja.github.io/1.x/helpers/overview.html">Ja</a>
+                        <a href="https://qiqphp-ja.github.io/2.x/blocks.html">Ja</a>
                     </li>
                 </ul>
             </div>
@@ -213,9 +213,8 @@
 <div class="container">
     <ol class="breadcrumb">
                         <li><a href="/">Qiq</a></li>
-                                <li><a href="/1.x/">1.x</a></li>
-                                <li><a href="/1.x/helpers/">Helpers</a></li>
-                                <li class="active">Overview</li>
+                                <li><a href="/2.x/">2.x</a></li>
+                                <li class="active">Blocks</li>
             </ol>
     <div class="row">
 
@@ -223,35 +222,68 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#2-10-1" title="Overview">Overview</a>
+                <a href="#1-7" title="Blocks">Blocks</a>
             </li>
             </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h1 id="2-10-1">2.10.1. Overview</h1>
-<p>Helpers are invokable objects that generate HTML for you. You can address them
-as methods on <code>$this</code> in PHP template code, or by just the helper name when
-using Qiq syntax.</p>
-<p>PHP syntax:</p>
-<pre><code class="language-html+php">&lt;?= $this-&gt;anchor('http://qiqphp.com', 'Qiq for PHP') ?&gt;
-</code></pre>
-<p>Qiq syntax:</p>
-<pre><code class="language-qiq">{{= anchor ('http://qiqphp.com', 'Qiq for PHP') }}
-</code></pre>
-<p>Both generate this HTML:</p>
-<pre><code class="language-html">&lt;a href="http://qiqphp.com"&gt;Qiq for PHP&lt;/a&gt;
-</code></pre>
-<p>Qiq comes with a comprehensive set of helpers for <a href="./general.html">general use</a>,
-and for <a href="./forms.html">building forms</a>. You can also create your own
-<a href="./custom.html">custom helpers</a>.</p>
-<p>Further, you can call any public or protected <em>Template</em> method from the
-template code. (This is because the template code is executed "inside" the
-<em>Template</em> object.) Among other things, you can set the layout, or render other
-templates, from inside any template:</p>
-<pre><code class="language-qiq">{{ setLayout ('seasonal-layout') }}
+<div id="section-main"><h1 id="1-7">1.7. Blocks</h1>
+<p>Blocks are similar to partials, except that they are captured inline for later
+use.</p>
+<p>In general, blocks are used by view templates to capture output for layout
+templates.</p>
+<p>Alternatively, blocks may be used by child templates to capture output for
+parent templates (cf.  the <a href="./inheritance.html">inheritance</a> documentation).</p>
+<p>For example, a layout template file might define a block for local navigation,
+adding some default content for that block:</p>
+<pre><code class="language-html+php">&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Blocks Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id="local-nav"&gt;
 
-{{= render ('some/other/template') }}
+{{ setBlock ('local-nav') }}
+    &lt;p&gt;&lt;a href="/foo"&gt;Foo&lt;/a&gt;&lt;/p&gt;&lt;!-- layout --&gt;
+{{= getBlock () ~}}
+
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>The <code>setBlock()</code> method opens the specified block; <code>getBlock()</code> closes the
+block and echoes the captured output from between the two method calls.</p>
+<p>Then, a view file might redefine that block:</p>
+<pre><code class="language-html+php">{{ setBlock ('local-nav') }}
+    &lt;p&gt;&lt;a href="/bar"&gt;Bar&lt;/a&gt;&lt;/p&gt;&lt;!-- view, above parent--&gt;
+    {{ parentBlock() }}
+    &lt;p&gt;&lt;a href="/baz"&gt;Baz&lt;/a&gt;&lt;/p&gt;&lt;!-- view, below parent --&gt;
+{{ endBlock () }}
+</code></pre>
+<p>Note the use of <code>parentBlock()</code> above. This method is a placeholder for the
+parent block content, allowing you to prepend and append that content if you
+like. (If you do not call <code>parentBlock()</code>, the <code>setBlock()</code> call will
+completely override the parent block content.)</p>
+<p>Finally, rendering the combined view and layout ...</p>
+<pre><code class="language-php">$template = Template::new(...);
+$template-&gt;setLayout('layout');
+$template-&gt;setView('view');
+$output = $template();
+</code></pre>
+<p>... will generate something like the following output:</p>
+<pre><code class="language-html">&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Blocks Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id="local-nav"&gt;
+    &lt;p&gt;&lt;a href="/bar"&gt;Bar&lt;/a&gt;&lt;/p&gt;&lt;!-- view, above parent --&gt;
+    &lt;p&gt;&lt;a href="/foo"&gt;Foo&lt;/a&gt;&lt;/p&gt;&lt;!-- layout --&gt;
+    &lt;p&gt;&lt;a href="/baz"&gt;Baz&lt;/a&gt;&lt;/p&gt;&lt;!-- view, below parent --&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
 </div>        </div>
     </div>
@@ -262,9 +294,9 @@ templates, from inside any template:</p>
         <div class="container">
             <div class="row">
                 <div class="prev col-xs-6">
-                                            <a href="/1.x/helpers/">Previous</a>                                    </div>
+                                            <a href="/2.x/layouts.html">Previous</a>                                    </div>
                 <div class="next col-xs-6">
-                                            <a href="/1.x/helpers/general.html">Next</a>                                    </div>
+                                            <a href="/2.x/inheritance.html">Next</a>                                    </div>
             </div>
         </div>
     </div>

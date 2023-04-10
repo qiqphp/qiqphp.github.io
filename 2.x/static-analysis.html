@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <meta name="HandheldFriendly" content="True"/>
-<title>Overview</title>
+<title>Static Analysis</title>
     
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/journal/bootstrap.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -50,7 +50,7 @@
                         <a>En</a>
                     </li>
                     <li>
-                        <a href="https://qiqphp-ja.github.io/1.x/helpers/overview.html">Ja</a>
+                        <a href="https://qiqphp-ja.github.io/2.x/static-analysis.html">Ja</a>
                     </li>
                 </ul>
             </div>
@@ -213,9 +213,8 @@
 <div class="container">
     <ol class="breadcrumb">
                         <li><a href="/">Qiq</a></li>
-                                <li><a href="/1.x/">1.x</a></li>
-                                <li><a href="/1.x/helpers/">Helpers</a></li>
-                                <li class="active">Overview</li>
+                                <li><a href="/2.x/">2.x</a></li>
+                                <li class="active">Static Analysis</li>
             </ol>
     <div class="row">
 
@@ -223,36 +222,115 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#2-10-1" title="Overview">Overview</a>
+                <a href="#1-11" title="Static&#x20;Analysis">Static Analysis</a>
+            </li>
+                                <li>
+                <a href="#1-11-1" title="Enabling&#x20;Analysis">Enabling Analysis</a>
+            </li>
+                                                        <li>
+                <a href="#1-11-2" title="Performing&#x20;Analysis">Performing Analysis</a>
+            </li>
+                                <li>
+                <a href="#1-11-3" title="Resolving&#x20;Analysis&#x20;Issues">Resolving Analysis Issue...</a>
             </li>
             </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h1 id="2-10-1">2.10.1. Overview</h1>
-<p>Helpers are invokable objects that generate HTML for you. You can address them
-as methods on <code>$this</code> in PHP template code, or by just the helper name when
-using Qiq syntax.</p>
-<p>PHP syntax:</p>
-<pre><code class="language-html+php">&lt;?= $this-&gt;anchor('http://qiqphp.com', 'Qiq for PHP') ?&gt;
+<div id="section-main"><h1 id="1-11">1.11. Static Analysis</h1>
+<p>Qiq template files are easily analyzed by static analysis tools such as
+PHPStan. Only a docblock is required to enable analysis. This docblock is
+what makes the <em>Template</em> methods, helpers, and variables recognizable by the
+analyzer.</p>
+<h2 id="1-11-1">1.11.1. Enabling Analysis</h2>
+<p>In each template file to be analyzed, add a docblock to specify a type for
+<code>$this</code>, using an intersection type of <em>Qiq\Engine</em> and your <em>Helpers</em> object.</p>
+<p>You should also be sure to document each variable used in the template file.</p>
+<p>In PHP code, the docblock might look like this ...</p>
+<pre><code>&lt;?php
+/**
+ * @var \Qiq\Engine&amp;\Qiq\Helper\Html\HtmlHelpers $this
+ * @var string $name
+ */
+?&gt;
+Hello &lt;?= $this-&gt;h($name) ?&gt;!
 </code></pre>
-<p>Qiq syntax:</p>
-<pre><code class="language-qiq">{{= anchor ('http://qiqphp.com', 'Qiq for PHP') }}
-</code></pre>
-<p>Both generate this HTML:</p>
-<pre><code class="language-html">&lt;a href="http://qiqphp.com"&gt;Qiq for PHP&lt;/a&gt;
-</code></pre>
-<p>Qiq comes with a comprehensive set of helpers for <a href="./general.html">general use</a>,
-and for <a href="./forms.html">building forms</a>. You can also create your own
-<a href="./custom.html">custom helpers</a>.</p>
-<p>Further, you can call any public or protected <em>Template</em> method from the
-template code. (This is because the template code is executed "inside" the
-<em>Template</em> object.) Among other things, you can set the layout, or render other
-templates, from inside any template:</p>
-<pre><code class="language-qiq">{{ setLayout ('seasonal-layout') }}
+<p>... whereas the Qiq syntax might look like this:</p>
+<pre><code class="language-qiq">{{ /** @var \Qiq\Engine&amp;\Qiq\Helper\Html\HtmlHelpers $this */ }}
+{{ /** @var string $name */ }}
 
-{{= render ('some/other/template') }}
+Hello {{h $name }}!
 </code></pre>
+<h3 id="1-11-1-1">1.11.1.1. Custom Typing</h3>
+<p>If you find that typehint too verbose, your static analyzer may let you define
+a custom pseudo-type. For example, a PHPStan configuration entry might define
+this type alias:</p>
+<pre><code class="language-yaml">parameters:
+    typeAliases:
+        HtmlTemplate: \Qiq\Engine&amp;\Qiq\Helper\Html\HtmlHelpers
+</code></pre>
+<p>Then in your template file docblock, you can specify <code>$this</code> as the custom type:</p>
+<pre><code class="language-qiq">{{ /** @var HtmlTemplate $this */ }}
+</code></pre>
+<h3 id="1-11-1-2">1.11.1.2. Mixins</h3>
+<p>Alternatively, you may wish to extend the <em>Template</em> class itself and specify
+a <code>@mixin</code> for the appropriate <em>Helpers</em> class. For example:</p>
+<pre><code class="language-php">namespace Project;
+
+use Qiq\Catalog;
+use Qiq\Helper\Html\HtmlHelpers;
+use Qiq\Template;
+
+/**
+ * @mixin HtmlHelpers
+ */
+class HtmlTemplate extends Template
+{
+    public function __construct(
+        Catalog $catalog,
+        HtmlHelpers $helpers
+    ) {
+        parent::__construct($catalog, $helpers)
+    }
+}
+</code></pre>
+<p>Then in your template file docblock, you can use the extended class name:</p>
+<pre><code class="language-qiq">{{ /** @var Project\HtmlTemplate $this */ }}
+</code></pre>
+<h2 id="1-11-2">1.11.2. Performing Analysis</h2>
+<p>If your template files are PHP only, that's enough: you can run static
+analysis against them as they are in their source locations.</p>
+<p>However, for template files with Qiq syntax, you will need to compile the
+template files to PHP as a precursor to static analysis. To do so,
+instantiate the <em>Template</em> class that will render the template files, and
+<code>compileAll()</code> of the template files in the <em>Catalog</em>:</p>
+<pre><code class="language-php">$cachePath = '/path/to/compiled';
+
+$template = Template::new(
+    paths: ...,
+    cachePath: $cachePath,
+);
+
+$template-&gt;getCatalog()-&gt;compileAll();
+</code></pre>
+<p>You can then run static analysis against the <code>$cachePath</code> directory of
+compiled template files (<strong>not</strong> the source template files, since they have
+non-analyzable Qiq code in them).</p>
+<p>Given the above <code>$cachePath</code> example, a PHPStan configuration entry for static
+analysis of the compiled template files might include an entry like this:</p>
+<pre><code class="language-neon">parameters:
+    paths:
+        - /path/to/compiled/
+</code></pre>
+<h2 id="1-11-3">1.11.3. Resolving Analysis Issues</h2>
+<p>Debugging and resolving issues revealed by static analysis is straightforward.</p>
+<p>Because the compiled template files are saved in the <code>$cachePath</code> using the
+source template file path, it is easy to see which source template file
+contains the issue.</p>
+<p>Further, because the compiled template code lines match the source template
+code lines, the reported line numbers match up as well.</p>
+<p>From there, resolve the issue in the source template file as you would in any
+other PHP code, recompile, and re-analyze.</p>
 </div>        </div>
     </div>
 </div>
@@ -262,9 +340,9 @@ templates, from inside any template:</p>
         <div class="container">
             <div class="row">
                 <div class="prev col-xs-6">
-                                            <a href="/1.x/helpers/">Previous</a>                                    </div>
+                                            <a href="/2.x/compiler.html">Previous</a>                                    </div>
                 <div class="next col-xs-6">
-                                            <a href="/1.x/helpers/general.html">Next</a>                                    </div>
+                                            <a href="/2.x/upgrading.html">Next</a>                                    </div>
             </div>
         </div>
     </div>
