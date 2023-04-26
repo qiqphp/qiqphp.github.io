@@ -20,7 +20,7 @@ It offers:
 - Views, [layouts](./2.x/layouts.html), and [partials](./2.x/partials.html)
 - [Blocks](./2.x/blocks.html) and [inheritance](./2.x/inheritance.html)
 - Rich and extensible [HTML helpers](./2.x/helpers/overview.html)
-- Easy-to-implmenent [static analysis](./2.x/static-analysis.html)
+- Easy-to-implement [static analysis](./2.x/static-analysis.html)
 - Full documentation and unit-testing
 
 Qiq is *not* for systems where the templates must be "secured" in some way
