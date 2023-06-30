@@ -231,10 +231,10 @@
                 <a href="#1-2-2" title="Control&#x20;Structures">Control Structures</a>
             </li>
                                 <li>
-                <a href="#1-2-3" title="Reserved&#x20;Words">Reserved Words</a>
+                <a href="#1-2-3" title="Helpers">Helpers</a>
             </li>
                                 <li>
-                <a href="#1-2-4" title="Helpers">Helpers</a>
+                <a href="#1-2-4" title="Undefined&#x20;Helpers">Undefined Helpers</a>
             </li>
                                 <li>
                 <a href="#1-2-5" title="Other&#x20;PHP&#x20;Code">Other PHP Code</a>
@@ -320,63 +320,10 @@ when available, inside <code>{{ ... }}</code> Qiq tags.</p>
     &lt;?php endif ?&gt;
 &lt;?php endforeach ?&gt;
 </code></pre>
-<p>Qiq syntax recognizes most PHP control structures:</p>
-<ul>
-<li>
-<code>break</code>
-</li>
-<li>
-<code>continue</code>
-</li>
-<li>
-<code>declare</code>
-</li>
-<li>
-<code>for</code>, <code>endfor</code>
-</li>
-<li>
-<code>foreach</code>, <code>endforeach</code>
-</li>
-<li>
-<code>goto</code>
-</li>
-<li>
-<code>if</code>, <code>elseif</code>, <code>else</code>, <code>endif</code>
-</li>
-<li>
-<code>include</code>, <code>include_once</code>
-</li>
-<li>
-<code>require</code>, <code>require_once</code>
-</li>
-<li>
-<code>while</code>, <code>endwhile</code>
-</li>
-</ul>
-<p>Qiq does not recognize <code>else if</code>, <code>switch</code>, <code>case</code>, or <code>match</code>; for these, you
-can always fall back to plain PHP.</p>
-<h2 id="1-2-3">1.2.3. Reserved Words</h2>
-<p>Qiq recognizes the following reserved words.</p>
-<ul>
-<li>
-<code>empty</code>
-</li>
-<li>
-<code>isset</code>
-</li>
-<li>
-<code>list</code>
-</li>
-<li>
-<code>namespace</code>
-</li>
-<li>
-<code>use</code>
-</li>
-</ul>
-<h2 id="1-2-4">1.2.4. Helpers</h2>
-<p>Any opening keyword Qiq does not recognize is treated as a template helper
-method. The following Qiq syntax ...</p>
+<h2 id="1-2-3">1.2.3. Helpers</h2>
+<p>Any code inside Qiq tags, that PHP would recognize as a potential function
+call, is treated as a Qiq template helper method. Thus, the following Qiq
+syntax ...</p>
 <pre><code class="language-qiq">{{= label ("Street Address", for: 'street') }}
 {{= textField (
     name: 'street',
@@ -384,20 +331,28 @@ method. The following Qiq syntax ...</p>
 ) }}
 </code></pre>
 <p>... is equivalent to this PHP code with Qiq helpers:</p>
-<pre><code class="language-html+php">&lt;?= $this-&gt;label("Street Address", for: 'street') ?&gt;
+<pre><code class="language-php">&lt;?= $this-&gt;label("Street Address", for: 'street') ?&gt;
 &lt;?= $this-&gt;textField(
     name: 'street',
     value: $street,
 ) ?&gt;
 </code></pre>
-<p>If that helper method is not defined, the <em>Helpers</em> class will call it as as
+<p>You can use helper method names anywhere inside Qiq code with or without the
+<code>$this-&gt;</code> prefix. In all of the below examples, the <code>anchor()</code> helper result
+is assigned to a variable:</p>
+<pre><code class="language-qiq">{{ $a_com = anchor ('http://example.com') }}
+{{ $a_net = $this-&gt;anchor ('http://example.net') }}
+&lt;?php $a_org = $this-&gt;anchor('http://example.org') ?&gt;
+</code></pre>
+<h2 id="1-2-4">1.2.4. Undefined Helpers</h2>
+<p>If a helper method name is not defined, the <em>Helpers</em> class will call it as as
 PHP function instead. For example, if a <code>time</code> helper method is not defined,
 the following will call the <a href="https://php.net/time"><code>time</code></a> PHP function:</p>
 <pre><code class="language-qiq">{{h time () }}
 </code></pre>
 <p>However, this may not pass <a href="./static-analysis.html">static analysis</a> checks. To
-improve static analysis results, prefix the opening keyword with a backslash
-to explicitly indicate a PHP function:</p>
+improve static analysis results, prefix the call with a backslash to
+explicitly indicate a PHP function:</p>
 <pre><code class="language-qiq">{{h \time () }}
 </code></pre>
 <p>Alternatively, you may create a <a href="./helpers/custom.html">custom helper method</a>
@@ -469,7 +424,7 @@ the leading whitespace before the opening Qiq tag.</p>
 </code></pre>
 <p>... compiles to this PHP code:</p>
 <pre><code class="language-qiq">&lt;ul&gt;
-    &lt;?php $this-&gt;setIndent('    ') ?&gt;&lt;?= $this-&gt;items(['foo', 'bar', 'baz']) ?&gt;
+    &lt;?php $this-&gt;setIndent("    ") ?&gt;&lt;?= $this-&gt;items(['foo', 'bar', 'baz']) ?&gt;
 &lt;/ul&gt;
 </code></pre>
 </div>        </div>
