@@ -61,6 +61,80 @@
     
     <ul class="nav navbar-nav">
                         <li>
+    <a href="/3.x/">3.x</a>
+    
+    <ul class="dropdown-menu">
+                        <li>
+    <a href="/3.x/intro.html">Introduction</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/syntax.html">Template Syntax</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/data.html">Template Data</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/catalog.html">Template File Catalog</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/partials.html">Partials</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/layouts.html">Layouts</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/blocks.html">Blocks</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/inheritance.html">Inheritance</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/helpers/">Helpers</a>
+    
+    <ul class="dropdown-menu">
+                        <li>
+    <a href="/3.x/helpers/overview.html">Overview</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/helpers/general.html">General Helpers</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/helpers/forms.html">Form Helpers</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/helpers/custom.html">Custom Helpers</a>
+
+    </li>
+            </ul>
+
+    </li>
+                        <li>
+    <a href="/3.x/compiler.html">Compiler</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/static-analysis.html">Static Analysis</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/upgrading.html">Upgrading from</a>
+
+    </li>
+            </ul>
+
+    </li>
+                        <li>
     <a href="/2.x/">2.x</a>
     
     <ul class="dropdown-menu">
@@ -222,34 +296,34 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#1-2" title="Template&#x20;Syntax">Template Syntax</a>
+                <a href="#2-2" title="Template&#x20;Syntax">Template Syntax</a>
             </li>
                                 <li>
-                <a href="#1-2-1" title="Escaping&#x20;and&#x20;Output">Escaping and Output</a>
+                <a href="#2-2-1" title="Escaping&#x20;and&#x20;Output">Escaping and Output</a>
             </li>
                                 <li>
-                <a href="#1-2-2" title="Control&#x20;Structures">Control Structures</a>
+                <a href="#2-2-2" title="Control&#x20;Structures">Control Structures</a>
             </li>
                                 <li>
-                <a href="#1-2-3" title="Helpers">Helpers</a>
+                <a href="#2-2-3" title="Helpers">Helpers</a>
             </li>
                                 <li>
-                <a href="#1-2-4" title="Undefined&#x20;Helpers">Undefined Helpers</a>
+                <a href="#2-2-4" title="Undefined&#x20;Helpers">Undefined Helpers</a>
             </li>
                                 <li>
-                <a href="#1-2-5" title="Other&#x20;PHP&#x20;Code">Other PHP Code</a>
+                <a href="#2-2-5" title="Other&#x20;PHP&#x20;Code">Other PHP Code</a>
             </li>
                                 <li>
-                <a href="#1-2-6" title="Whitespace">Whitespace</a>
+                <a href="#2-2-6" title="Whitespace">Whitespace</a>
             </li>
                                     </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h1 id="1-2">1.2. Template Syntax</h1>
+<div id="section-main"><h1 id="2-2">2.2. Template Syntax</h1>
 <p>Qiq templates are native PHP templates, with an optional <code>{{ ... }}</code> syntax for
 concise escaping and helper use.</p>
-<h2 id="1-2-1">1.2.1. Escaping and Output</h2>
+<h2 id="2-2-1">2.2.1. Escaping and Output</h2>
 <p>Qiq will not echo any output itself, unless the opening tag starts with a
 recognized escaping character:</p>
 <ul>
@@ -298,7 +372,7 @@ code ...</p>
 
 {{ this is not qiq code }}
 </code></pre>
-<h2 id="1-2-2">1.2.2. Control Structures</h2>
+<h2 id="2-2-2">2.2.2. Control Structures</h2>
 <p>All control structures are written exactly as in PHP, using the
 <a href="https://php.net/control-structures.alternative-syntax">alternative control structure syntax</a>
 when available, inside <code>{{ ... }}</code> Qiq tags.</p>
@@ -320,7 +394,7 @@ when available, inside <code>{{ ... }}</code> Qiq tags.</p>
     &lt;?php endif ?&gt;
 &lt;?php endforeach ?&gt;
 </code></pre>
-<h2 id="1-2-3">1.2.3. Helpers</h2>
+<h2 id="2-2-3">2.2.3. Helpers</h2>
 <p>Any code inside Qiq tags, that PHP would recognize as a potential function
 call, is treated as a Qiq template helper method. Thus, the following Qiq
 syntax ...</p>
@@ -344,7 +418,7 @@ is assigned to a variable:</p>
 {{ $a_net = $this-&gt;anchor ('http://example.net') }}
 &lt;?php $a_org = $this-&gt;anchor('http://example.org') ?&gt;
 </code></pre>
-<h2 id="1-2-4">1.2.4. Undefined Helpers</h2>
+<h2 id="2-2-4">2.2.4. Undefined Helpers</h2>
 <p>If a helper method name is not defined, the <em>Helpers</em> class will call it as as
 PHP function instead. For example, if a <code>time</code> helper method is not defined,
 the following will call the <a href="https://php.net/time"><code>time</code></a> PHP function:</p>
@@ -357,7 +431,7 @@ explicitly indicate a PHP function:</p>
 </code></pre>
 <p>Alternatively, you may create a <a href="./helpers/custom.html">custom helper method</a>
 to override the PHP function.</p>
-<h2 id="1-2-5">1.2.5. Other PHP Code</h2>
+<h2 id="2-2-5">2.2.5. Other PHP Code</h2>
 <p>Qiq treats all other code inside <code>{{ ... }}</code> tags as plain old PHP code. For
 example, this Qiq syntax ...</p>
 <pre><code class="language-qiq">{{ $title = "Prefix: " . $title . " (Suffix)" }}
@@ -367,11 +441,11 @@ example, this Qiq syntax ...</p>
 <pre><code class="language-html+php">&lt;?php $title = "Prefix: " . $title . " (Suffix)" ?&gt;
 &lt;title&gt;&lt;?= $this-&gt;h($title) ?&gt;&lt;/title&gt;
 </code></pre>
-<h2 id="1-2-6">1.2.6. Whitespace</h2>
+<h2 id="2-2-6">2.2.6. Whitespace</h2>
 <p>Qiq goes to some lengths to help control whitespace in output, to keep the
 compiled template code on the same lines as in the source template, and to
 help make sure the output is formatted nicely.</p>
-<h3 id="1-2-6-1">1.2.6.1. Newlines</h3>
+<h3 id="2-2-6-1">2.2.6.1. Newlines</h3>
 <p>Qiq offers intuitive handling of newlines around tags:</p>
 <ul>
 <li>
@@ -414,7 +488,7 @@ with the closing tag. This Qiq code ...</p>
 <pre><code class="language-html+php">&lt;?= $this-&gt;h($foo) ?&gt;
 </code></pre>
 <p>A tilde with the closing tag has no effect on non-echoing Qiq code.</p>
-<h3 id="1-2-6-2">1.2.6.2. Indenting</h3>
+<h3 id="2-2-6-2">2.2.6.2. Indenting</h3>
 <p>Echoing Qiq tags will automatically set the current indent for helpers based on
 the leading whitespace before the opening Qiq tag.</p>
 <p>This Qiq code ...</p>

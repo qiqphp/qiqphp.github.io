@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<meta name="HandheldFriendly" content="True"/>
+<title>3.x</title>
+    
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/journal/bootstrap.min.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<link rel="stylesheet" href="https://tobiju.github.io/share/prismjs/prism-prism.css" />
+<link rel="stylesheet" href="https://tobiju.github.io/share/prismjs/prism-linenumbers.css" />
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body data-spy="scroll" data-target="#sideNav" data-offset="50" class="bbt-theme-journal">
+<div class="page-wrapper">
+    <header>
+    
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="box-header container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#js-navbar-collapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+                            <a class="navbar-brand" href="/">
+                    <img alt="logo" src="/qiq.png" title="Home">
+                </a>
+                    </div>
+
+        <div class="box-header-inner">
+            <form class="form-search navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text"
+                           placeholder="Search"
+                           class="js-search-input form-control"
+                           data-roothref="/">
+
+                    <div class="js-search-results"></div>
+                </div>
+            </form>
+
+            <div class="language-link">
+                <ul>
+                    <li>
+                        <a>En</a>
+                    </li>
+                    <li>
+                        <a href="https://qiqphp-ja.github.io/3.x/">Ja</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="collapse navbar-collapse" id="js-navbar-collapse">
+            
+    
+    <ul class="nav navbar-nav">
+                        <li>
+    <a href="/3.x/">3.x</a>
+    
+    <ul class="dropdown-menu">
+                        <li>
+    <a href="/3.x/intro.html">Introduction</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/syntax.html">Template Syntax</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/data.html">Template Data</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/catalog.html">Template File Catalog</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/partials.html">Partials</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/layouts.html">Layouts</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/blocks.html">Blocks</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/inheritance.html">Inheritance</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/helpers/">Helpers</a>
+    
+    <ul class="dropdown-menu">
+                        <li>
+    <a href="/3.x/helpers/overview.html">Overview</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/helpers/general.html">General Helpers</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/helpers/forms.html">Form Helpers</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/helpers/custom.html">Custom Helpers</a>
+
+    </li>
+            </ul>
+
+    </li>
+                        <li>
+    <a href="/3.x/compiler.html">Compiler</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/static-analysis.html">Static Analysis</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/upgrading.html">Upgrading from</a>
+
+    </li>
+            </ul>
+
+    </li>
+                        <li>
+    <a href="/2.x/">2.x</a>
+    
+    <ul class="dropdown-menu">
+                        <li>
+    <a href="/2.x/intro.html">Introduction</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/syntax.html">Template Syntax</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/data.html">Template Data</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/catalog.html">Template File Catalog</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/partials.html">Partials</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/layouts.html">Layouts</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/blocks.html">Blocks</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/inheritance.html">Inheritance</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/helpers/">Helpers</a>
+    
+    <ul class="dropdown-menu">
+                        <li>
+    <a href="/2.x/helpers/overview.html">Overview</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/helpers/general.html">General Helpers</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/helpers/forms.html">Form Helpers</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/helpers/custom.html">Custom Helpers</a>
+
+    </li>
+            </ul>
+
+    </li>
+                        <li>
+    <a href="/2.x/compiler.html">Compiler</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/static-analysis.html">Static Analysis</a>
+
+    </li>
+                        <li>
+    <a href="/2.x/upgrading.html">Upgrading</a>
+
+    </li>
+            </ul>
+
+    </li>
+                        <li>
+    <a href="/1.x/">1.x</a>
+    
+    <ul class="dropdown-menu">
+                        <li>
+    <a href="/1.x/intro.html">Introduction</a>
+
+    </li>
+                        <li>
+    <a href="/1.x/syntax.html">Template Syntax</a>
+
+    </li>
+                        <li>
+    <a href="/1.x/data.html">Template Data</a>
+
+    </li>
+                        <li>
+    <a href="/1.x/locator.html">Template Locator</a>
+
+    </li>
+                        <li>
+    <a href="/1.x/partials.html">Partials</a>
+
+    </li>
+                        <li>
+    <a href="/1.x/layouts.html">Layouts</a>
+
+    </li>
+                        <li>
+    <a href="/1.x/sections.html">Sections</a>
+
+    </li>
+                        <li>
+    <a href="/1.x/blocks.html">Blocks</a>
+
+    </li>
+                        <li>
+    <a href="/1.x/inheritance.html">Inheritance</a>
+
+    </li>
+                        <li>
+    <a href="/1.x/helpers/">Helpers</a>
+    
+    <ul class="dropdown-menu">
+                        <li>
+    <a href="/1.x/helpers/overview.html">Overview</a>
+
+    </li>
+                        <li>
+    <a href="/1.x/helpers/general.html">General Helpers</a>
+
+    </li>
+                        <li>
+    <a href="/1.x/helpers/forms.html">Form Helpers</a>
+
+    </li>
+                        <li>
+    <a href="/1.x/helpers/custom.html">Custom Helpers</a>
+
+    </li>
+            </ul>
+
+    </li>
+                        <li>
+    <a href="/1.x/compiler.html">Compiler</a>
+
+    </li>
+            </ul>
+
+    </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+</header>
+<div class="container">
+    <ol class="breadcrumb">
+                        <li><a href="/">Qiq</a></li>
+                                <li class="active">3.x</li>
+            </ol>
+    <div class="row">
+
+                <div class="col-md-12">
+
+<h1>1. 3.x</h1>
+
+<ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.1.</span>&nbsp;&nbsp;<a href="/3.x/intro.html#1-1">Introduction</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.1.1.</span>&nbsp;&nbsp;<a href="/3.x/intro.html#1-1-1">Installation</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.1.2.</span>&nbsp;&nbsp;<a href="/3.x/intro.html#1-1-2">Getting Started</a></div></div></li></ul></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.2.</span>&nbsp;&nbsp;<a href="/3.x/syntax.html#1-2">Template Syntax</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.2.1.</span>&nbsp;&nbsp;<a href="/3.x/syntax.html#1-2-1">Escaping and Output</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.2.2.</span>&nbsp;&nbsp;<a href="/3.x/syntax.html#1-2-2">Control Structures</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.2.3.</span>&nbsp;&nbsp;<a href="/3.x/syntax.html#1-2-3">Helpers</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.2.4.</span>&nbsp;&nbsp;<a href="/3.x/syntax.html#1-2-4">Undefined Helpers</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.2.5.</span>&nbsp;&nbsp;<a href="/3.x/syntax.html#1-2-5">Other PHP Code</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.2.6.</span>&nbsp;&nbsp;<a href="/3.x/syntax.html#1-2-6">Whitespace</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.2.6.1.</span>&nbsp;&nbsp;<a href="/3.x/syntax.html#1-2-6-1">Newlines</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.2.6.2.</span>&nbsp;&nbsp;<a href="/3.x/syntax.html#1-2-6-2">Indenting</a></div></div></li></ul></li></ul></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.3.</span>&nbsp;&nbsp;<a href="/3.x/data.html#1-3">Template Data</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.3.1.</span>&nbsp;&nbsp;<a href="/3.x/data.html#1-3-1">Assigning Variables</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.3.2.</span>&nbsp;&nbsp;<a href="/3.x/data.html#1-3-2">Using Assigned Variables</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.3.3.</span>&nbsp;&nbsp;<a href="/3.x/data.html#1-3-3">Getting Assigned Variables</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.3.4.</span>&nbsp;&nbsp;<a href="/3.x/data.html#1-3-4">Variable Scope</a></div></div></li></ul></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.4.</span>&nbsp;&nbsp;<a href="/3.x/catalog.html#1-4">Collections</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.5.</span>&nbsp;&nbsp;<a href="/3.x/partials.html#1-5">Partials</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.6.</span>&nbsp;&nbsp;<a href="/3.x/layouts.html#1-6">Layouts</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.7.</span>&nbsp;&nbsp;<a href="/3.x/blocks.html#1-7">Blocks</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.8.</span>&nbsp;&nbsp;<a href="/3.x/inheritance.html#1-8">Inheritance</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.</span>&nbsp;&nbsp;<a href="/3.x/helpers/">Helpers</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.1.</span>&nbsp;&nbsp;<a href="/3.x/helpers/overview.html#1-9-1">Overview</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.</span>&nbsp;&nbsp;<a href="/3.x/helpers/general.html#1-9-2">General Helpers</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.1.</span>&nbsp;&nbsp;<a href="/3.x/helpers/general.html#1-9-2-1">anchor</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.2.</span>&nbsp;&nbsp;<a href="/3.x/helpers/general.html#1-9-2-2">base</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.3.</span>&nbsp;&nbsp;<a href="/3.x/helpers/general.html#1-9-2-3">dl</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.4.</span>&nbsp;&nbsp;<a href="/3.x/helpers/general.html#1-9-2-4">image</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.5.</span>&nbsp;&nbsp;<a href="/3.x/helpers/general.html#1-9-2-5">items</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.6.</span>&nbsp;&nbsp;<a href="/3.x/helpers/general.html#1-9-2-6">link</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.7.</span>&nbsp;&nbsp;<a href="/3.x/helpers/general.html#1-9-2-7">linkStylesheet</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.8.</span>&nbsp;&nbsp;<a href="/3.x/helpers/general.html#1-9-2-8">meta</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.9.</span>&nbsp;&nbsp;<a href="/3.x/helpers/general.html#1-9-2-9">ol</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.10.</span>&nbsp;&nbsp;<a href="/3.x/helpers/general.html#1-9-2-10">script</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.2.11.</span>&nbsp;&nbsp;<a href="/3.x/helpers/general.html#1-9-2-11">ul</a></div></div></li></ul></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3">Form Helpers</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.1.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-1">Form Tag</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2">Input Tags</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.1.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-1">checkboxField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.2.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-2">checkboxFields</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.3.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-3">colorField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.4.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-4">dateField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.5.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-5">datetimeField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.6.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-6">datetimeLocalField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.7.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-7">emailField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.8.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-8">fileField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.9.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-9">hiddenField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.10.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-10">inputField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.11.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-11">monthField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.12.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-12">numberField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.13.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-13">passwordField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.14.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-14">radioField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.15.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-15">radioFields</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.16.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-16">rangeField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.17.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-17">searchField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.18.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-18">select</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.19.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-19">telField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.20.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-20">textField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.21.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-21">textarea</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.22.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-22">timeField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.23.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-23">urlField</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.2.24.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-2-24">weekField</a></div></div></li></ul></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.3.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-3">Button Tags</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.3.1.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-3-1">button</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.3.2.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-3-2">imageButton</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.3.3.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-3-3">submitButton</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.3.4.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-3-4">resetButton</a></div></div></li></ul></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.3.4.</span>&nbsp;&nbsp;<a href="/3.x/helpers/forms.html#1-9-3-4">Label Tag</a></div></div></li></ul></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.4.</span>&nbsp;&nbsp;<a href="/3.x/helpers/custom.html#1-9-4">Custom Helpers</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.4.1.</span>&nbsp;&nbsp;<a href="/3.x/helpers/custom.html#1-9-4-1">Creating A <em>Helpers</em> Class</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.4.2.</span>&nbsp;&nbsp;<a href="/3.x/helpers/custom.html#1-9-4-2">Using Your <em>Helpers</em>
+</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.4.3.</span>&nbsp;&nbsp;<a href="/3.x/helpers/custom.html#1-9-4-3">Helper Classes</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.9.4.4.</span>&nbsp;&nbsp;<a href="/3.x/helpers/custom.html#1-9-4-4">
+<em>Helpers</em> Container</a></div></div></li></ul></li></ul></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.10.</span>&nbsp;&nbsp;<a href="/3.x/compiler.html#1-10">Compiler</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.10.1.</span>&nbsp;&nbsp;<a href="/3.x/compiler.html#1-10-1">Cache Path</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.10.2.</span>&nbsp;&nbsp;<a href="/3.x/compiler.html#1-10-2">Cache Clearing</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.10.3.</span>&nbsp;&nbsp;<a href="/3.x/compiler.html#1-10-3">Disabling The Compiler</a></div></div></li></ul></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.11.</span>&nbsp;&nbsp;<a href="/3.x/static-analysis.html#1-11">Static Analysis</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.11.1.</span>&nbsp;&nbsp;<a href="/3.x/static-analysis.html#1-11-1">Enabling Analysis</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.11.1.1.</span>&nbsp;&nbsp;<a href="/3.x/static-analysis.html#1-11-1-1">Custom Typing</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.11.1.2.</span>&nbsp;&nbsp;<a href="/3.x/static-analysis.html#1-11-1-2">Mixins</a></div></div></li></ul></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.11.2.</span>&nbsp;&nbsp;<a href="/3.x/static-analysis.html#1-11-2">Performing Analysis</a></div></div></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.11.3.</span>&nbsp;&nbsp;<a href="/3.x/static-analysis.html#1-11-3">Resolving Analysis Issues</a></div></div></li></ul></li><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.12.</span>&nbsp;&nbsp;<a href="/3.x/upgrading.html#1-12">Upgrading from</a></div></div><ul class="list-toc"><li class="list-group-item"><div class="row clearfix"><div class="col-sm-9"><span class="text-number">1.12.1.</span>&nbsp;&nbsp;<a href="/3.x/upgrading.html#1-12-1">2.x to 3.x</a></div></div></li></ul></li></ul><div id="section-main"></div>        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="links">
+        <div class="container">
+            <div class="row">
+                <div class="prev col-xs-6">
+                                            <a href="/">Previous</a>                                    </div>
+                <div class="next col-xs-6">
+                                            <a href="/3.x/intro.html">Next</a>                                    </div>
+            </div>
+        </div>
+    </div>
+    <div id="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Powered by <a href="https://github.com/tobiju/bookdown-bootswatch-templates" title="Visit project to generate your own docs">Bookdown Bootswatch Templates</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+<script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/0.6.0/lunr.min.js"></script>
+<script src="//bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
+<script src="//tobiju.github.io/share/prismjs/main.js"></script>
+<script src="//tobiju.github.io/share/prismjs/prism.js"></script>
+<script type="text/javascript">
+
+    function Search() {
+        this.store = {};
+        this.index = lunr(function () {
+            this.ref('id');
+            this.field('title', {boost: 10});
+            this.field('content');
+        });
+        this.searchResults = $('.js-search-results').addClass('list-search-results');
+    }
+
+    Search.prototype = {
+        constructor: Search,
+        init: function () {
+            this.createIndex();
+            this.bindEvents();
+        },
+        createIndex: function () {
+            var $this = this,
+                indexFilePath = $('.js-search-input').data('roothref') + 'index.json';
+
+            $.getJSON(indexFilePath, function (data) {
+                $.each(data, function (key, item) {
+                    $this.index.add({
+                        id: item.id,
+                        title: item.title,
+                        content: item.content
+                    });
+
+                    $this.store[item.id] = {
+                        href: item.id,
+                        title: item.title,
+                        content: item.content
+                    }
+                });
+            });
+        },
+        bindEvents: function () {
+            var $this = this;
+
+            $('html')
+                .on('click', function (event) {
+                    $this.close($(this), event);
+                });
+
+            $('.js-search-input, .js-search-results')
+                .on('click', function (event) {
+                    $this.click($(this), event);
+                });
+
+            $('.js-search-input')
+                .on('focus', function (event) {
+                    $this.focus($(this), event);
+                })
+                .on('keyup', function (event) {
+                    $this.search($(this), event)
+                })
+                .on('keydown', function (event) {
+                    if ($('.js-search-results ul').is(':visible')){
+                        $this.navigation($(this), event)
+                    }
+                })
+        },
+        click: function (element, event) {
+            event.stopPropagation();
+        },
+        focus: function (element, event) {
+            this.searchInputWidth = element.css('width');
+            element.animate({
+                'width': 600
+            }, 500);
+            $('#js-navbar-collapse > ul').fadeOut();
+        },
+        close: function (element, event) {
+            var $this = this;
+
+            $('.js-search-results').hide();
+            $('.js-search-input').animate({
+                'width': $this.searchInputWidth
+            }, 500);
+            $('#js-navbar-collapse > ul').fadeIn();
+        },
+        search: function (element, event) {
+            var $this = this;
+
+            if (event.keyCode == 13 || event.keyCode == 38 || event.keyCode == 40) {
+                return;
+            }
+
+            var query = element.val(),
+                results = $this.index.search(query);
+
+            if (!results.length) {
+                $this.searchResults.empty();
+                return;
+            }
+
+            var resultsList = results.reduce(function (ul, result) {
+                var item = $this.store[result.ref];
+                var title = $('<b>').text(item.title);
+
+                var cropText = $this.cropText(item.content, query);
+                if (cropText.length === 0) {
+                    cropText = $('<p>').html(item.content.substring(0, 120) + "...");
+                }
+                var content = content = $('<p>').html(cropText);
+
+                var div = $('<div>')
+                    .append(title)
+                    .append(content);
+                var a = $('<a>').attr('href', item.href)
+                    .append(div);
+                var li = $('<li>')
+                    .append(a);
+                ul.append(li);
+
+                return ul;
+            }, $('<ul>'));
+
+            this.searchResults.html(resultsList);
+
+            $('.js-search-results').show();
+            $(".js-search-results li:first-child").addClass('selected');
+        },
+        cropText: function (content, query) {
+            var cropedText = '',
+                re = new RegExp("\\s?(.{0,30})?" + query + ".*?\\b(.{0,30}.)?\\s?", "gi");
+
+            $.each(content.match(re), function (key, value) {
+                cropedText += '...' + value + '...';
+            });
+
+            return cropedText;
+        },
+        navigation: function (element, event) {
+            var selected = null,
+                listSelector = ".js-search-results ul",
+                listItemSelector = listSelector + " li",
+                selectedListItemSelector = listItemSelector + ".selected",
+                selectedListItemSelectorAnchor = listItemSelector + ".selected a";
+
+            // enter
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                this.close();
+                window.location.replace($(selectedListItemSelectorAnchor).attr('href'));
+            }
+
+            // up
+            if (event.keyCode == 38) {
+                selected = $(selectedListItemSelector);
+                $(listItemSelector).removeClass("selected");
+
+                if (selected.prev().length == 0) {
+                    selected.siblings().last().addClass("selected");
+                } else {
+                    selected.prev().addClass("selected");
+                }
+
+                selected = $(selectedListItemSelector);
+                this.scrollListUp(selected);
+            }
+
+            // down
+            if (event.keyCode == 40) {
+                selected = $(selectedListItemSelector);
+                $(listItemSelector).removeClass("selected");
+
+                if (selected.next().length == 0) {
+                    selected.siblings().first().addClass("selected");
+                } else {
+                    selected.next().addClass("selected");
+                }
+
+                selected = $(selectedListItemSelector);
+                this.scrollListDown(selected);
+            }
+        },
+        scrollListDown: function (element) {
+            var ul = element.parent(),
+                ulHeight = ul.height(),
+                ulBottomPosition = ulHeight + ul.scrollTop(),
+                liBottomPosition = element.position().top + element.height();
+
+            if (liBottomPosition > ulBottomPosition) {
+                ul.scrollTop(liBottomPosition - ulHeight);
+            }
+
+            if (element.is(':first-child')) {
+                ul.scrollTop(0);
+            }
+        },
+        scrollListUp: function (element) {
+            var ul = element.parent(),
+                ulTopPosition = ul.scrollTop(),
+                liTopPosition = element.position().top;
+
+            if (liTopPosition < ulTopPosition) {
+                ul.scrollTop(element.position().top);
+            }
+
+            if (element.is(':last-child')) {
+                ul.scrollTop(element.position().top - element.height());
+            }
+        }
+    };
+
+    $(function () {
+        var search = new Search();
+        search.init();
+    });
+</script>
+</body>
+</html>

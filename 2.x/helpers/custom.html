@@ -61,6 +61,80 @@
     
     <ul class="nav navbar-nav">
                         <li>
+    <a href="/3.x/">3.x</a>
+    
+    <ul class="dropdown-menu">
+                        <li>
+    <a href="/3.x/intro.html">Introduction</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/syntax.html">Template Syntax</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/data.html">Template Data</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/catalog.html">Template File Catalog</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/partials.html">Partials</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/layouts.html">Layouts</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/blocks.html">Blocks</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/inheritance.html">Inheritance</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/helpers/">Helpers</a>
+    
+    <ul class="dropdown-menu">
+                        <li>
+    <a href="/3.x/helpers/overview.html">Overview</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/helpers/general.html">General Helpers</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/helpers/forms.html">Form Helpers</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/helpers/custom.html">Custom Helpers</a>
+
+    </li>
+            </ul>
+
+    </li>
+                        <li>
+    <a href="/3.x/compiler.html">Compiler</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/static-analysis.html">Static Analysis</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/upgrading.html">Upgrading from</a>
+
+    </li>
+            </ul>
+
+    </li>
+                        <li>
     <a href="/2.x/">2.x</a>
     
     <ul class="dropdown-menu">
@@ -223,32 +297,32 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#1-9-4" title="Custom&#x20;Helpers">Custom Helpers</a>
+                <a href="#2-9-4" title="Custom&#x20;Helpers">Custom Helpers</a>
             </li>
                                 <li>
-                <a href="#1-9-4-1" title="Creating&#x20;A&#x20;&lt;em&gt;Helpers&lt;&#x2F;em&gt;&#x20;Class">Creating A Helpers Class</a>
+                <a href="#2-9-4-1" title="Creating&#x20;A&#x20;&lt;em&gt;Helpers&lt;&#x2F;em&gt;&#x20;Class">Creating A Helpers Class</a>
             </li>
                                 <li>
-                <a href="#1-9-4-2" title="Using&#x20;Your&#x20;&lt;em&gt;Helpers&lt;&#x2F;em&gt;&#x0A;">Using Your Helpers
+                <a href="#2-9-4-2" title="Using&#x20;Your&#x20;&lt;em&gt;Helpers&lt;&#x2F;em&gt;&#x0A;">Using Your Helpers
 </a>
             </li>
                                 <li>
-                <a href="#1-9-4-3" title="Helper&#x20;Classes">Helper Classes</a>
+                <a href="#2-9-4-3" title="Helper&#x20;Classes">Helper Classes</a>
             </li>
                                 <li>
-                <a href="#1-9-4-4" title="&#x0A;&lt;em&gt;Helpers&lt;&#x2F;em&gt;&#x20;Container">
+                <a href="#2-9-4-4" title="&#x0A;&lt;em&gt;Helpers&lt;&#x2F;em&gt;&#x20;Container">
 Helpers Container</a>
             </li>
             </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h1 id="1-9-4">1.9.4. Custom Helpers</h1>
+<div id="section-main"><h1 id="2-9-4">2.9.4. Custom Helpers</h1>
 <p>You can provide your <em>Template</em> objects with a custom <em>Helpers</em> object. In
 that custom <em>Helpers</em> object, you can add any helper methods you like. Your
 helper methods will available inside template files processed by
 that <em>Template</em> instance.</p>
-<h2 id="1-9-4-1">1.9.4.1. Creating A <em>Helpers</em> Class</h2>
+<h2 id="2-9-4-1">2.9.4.1. Creating A <em>Helpers</em> Class</h2>
 <p>The easiest thing to do is extend <em>HtmlHelpers</em> and add a method on that new
 class.</p>
 <p>For example, the following custom <em>Helpers</em> class adds a method to ROT-13 a
@@ -299,7 +373,7 @@ class CustomHelpers extends Helpers
     }
 }
 </code></pre>
-<h2 id="1-9-4-2">1.9.4.2. Using Your <em>Helpers</em>
+<h2 id="2-9-4-2">2.9.4.2. Using Your <em>Helpers</em>
 </h2>
 <p>Once you have a custom <em>Helpers</em> class, create your <em>Template</em> with an
 instance of it:</p>
@@ -319,7 +393,7 @@ PHP ...</p>
 <pre><code class="language-html+php">{{= rot13 ('Uryyb Jbeyq!') }}
 </code></pre>
 <p>Either way, the output will be "Hello World!".</p>
-<h2 id="1-9-4-3">1.9.4.3. Helper Classes</h2>
+<h2 id="2-9-4-3">2.9.4.3. Helper Classes</h2>
 <p>If you like, you can put your helper logic in a class, then retrieve an
 instance of that class from the autowiring <em>Qiq\Container</em> (described below)
 using <code>$this-&gt;get()</code>.</p>
@@ -357,7 +431,7 @@ class CustomHelpers extends HelperHelpers
     }
 }
 </code></pre>
-<h2 id="1-9-4-4">1.9.4.4. 
+<h2 id="2-9-4-4">2.9.4.4. 
 <em>Helpers</em> Container</h2>
 <p>The <em>Helpers</em> class uses an autowiring <em>Qiq\Container</em> object. In your custom
 helper methods, you can use <code>$this-&gt;get()</code> to retrieve an object from

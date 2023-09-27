@@ -50,7 +50,7 @@
                         <a>En</a>
                     </li>
                     <li>
-                        <a href="https://qiqphp-ja.github.io/1.x/partials.html">Ja</a>
+                        <a href="https://qiqphp-ja.github.io/3.x/partials.html">Ja</a>
                     </li>
                 </ul>
             </div>
@@ -287,7 +287,7 @@
 <div class="container">
     <ol class="breadcrumb">
                         <li><a href="/">Qiq</a></li>
-                                <li><a href="/1.x/">1.x</a></li>
+                                <li><a href="/3.x/">3.x</a></li>
                                 <li class="active">Partials</li>
             </ol>
     <div class="row">
@@ -296,19 +296,19 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#3-5" title="Partials">Partials</a>
+                <a href="#1-5" title="Partials">Partials</a>
             </li>
             </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h3 id="3-5">3.5. Partials</h3>
-<p>Sometimes you will want to split a single template into multiple pieces. You can
-render these "partial" template pieces using the <code>render()</code> method in your main
-template code.</p>
+<div id="section-main"><h3 id="1-5">1.5. Partials</h3>
+<p>Sometimes you will want to split a single template file into multiple files.
+You can render these "partial" template pieces using the <code>render()</code> method in
+your main template code.</p>
 <p>When rendering, you can pass an array of variables to be extracted into the
-local scope of the partial template. (The main <code>$this</code> <em>Template</em> variable will
-always be available regardless.)</p>
+local scope of the partial template. (All shared variables assigned to
+the <em>Template</em> variable will also be available.)</p>
 <p>For example, a <code>list</code> partial template might look like this:</p>
 <pre><code class="language-html+php">&lt;ul&gt;
     {{ foreach ($items as $item): }}
@@ -318,8 +318,8 @@ always be available regardless.)</p>
 </code></pre>
 <p>Then in a main <code>browse</code> template, you can render the partial <code>list</code>:</p>
 <pre><code class="language-html+php">&lt;p&gt;My List&lt;/p&gt;
-{{= render ('list', [
-    'items' =&gt; 'foo', 'bar', 'baz']
+{{= render ('./list', [
+    'items' =&gt; ['foo', 'bar', 'baz']
 ]) }}
 </code></pre>
 <p>The rendered HTML will look something like this:</p>
@@ -339,9 +339,9 @@ always be available regardless.)</p>
         <div class="container">
             <div class="row">
                 <div class="prev col-xs-6">
-                                            <a href="/1.x/locator.html">Previous</a>                                    </div>
+                                            <a href="/3.x/catalog.html">Previous</a>                                    </div>
                 <div class="next col-xs-6">
-                                            <a href="/1.x/layouts.html">Next</a>                                    </div>
+                                            <a href="/3.x/layouts.html">Next</a>                                    </div>
             </div>
         </div>
     </div>

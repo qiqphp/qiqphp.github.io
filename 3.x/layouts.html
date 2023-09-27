@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <meta name="HandheldFriendly" content="True"/>
-<title>Partials</title>
+<title>Layouts</title>
     
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/journal/bootstrap.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -50,7 +50,7 @@
                         <a>En</a>
                     </li>
                     <li>
-                        <a href="https://qiqphp-ja.github.io/1.x/partials.html">Ja</a>
+                        <a href="https://qiqphp-ja.github.io/3.x/layouts.html">Ja</a>
                     </li>
                 </ul>
             </div>
@@ -287,8 +287,8 @@
 <div class="container">
     <ol class="breadcrumb">
                         <li><a href="/">Qiq</a></li>
-                                <li><a href="/1.x/">1.x</a></li>
-                                <li class="active">Partials</li>
+                                <li><a href="/3.x/">3.x</a></li>
+                                <li class="active">Layouts</li>
             </ol>
     <div class="row">
 
@@ -296,40 +296,55 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#3-5" title="Partials">Partials</a>
+                <a href="#1-6" title="Layouts">Layouts</a>
             </li>
             </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h3 id="3-5">3.5. Partials</h3>
-<p>Sometimes you will want to split a single template into multiple pieces. You can
-render these "partial" template pieces using the <code>render()</code> method in your main
-template code.</p>
-<p>When rendering, you can pass an array of variables to be extracted into the
-local scope of the partial template. (The main <code>$this</code> <em>Template</em> variable will
-always be available regardless.)</p>
-<p>For example, a <code>list</code> partial template might look like this:</p>
-<pre><code class="language-html+php">&lt;ul&gt;
-    {{ foreach ($items as $item): }}
-    &lt;li&gt;{{h $item}}&lt;/li&gt;
-    {{ endforeach }}
-&lt;/ul&gt;
+<div id="section-main"><h1 id="1-6">1.6. Layouts</h1>
+<p>To wrap a main "inner" view template with an "outer" layout template, call
+<code>setLayout()</code> to pick a second "outer" template for the second step. (If no
+layout is set, the second step will not be executed.)</p>
+<p>Let's say you already have a view template called <code>browse</code>. You might then have
+a layout template called <code>default</code> to wrap the view. The <code>default.php</code> layout
+template could look like this:</p>
+<pre><code class="language-html+php">&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My Site&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+{{= getContent() }}
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
-<p>Then in a main <code>browse</code> template, you can render the partial <code>list</code>:</p>
-<pre><code class="language-html+php">&lt;p&gt;My List&lt;/p&gt;
-{{= render ('list', [
-    'items' =&gt; 'foo', 'bar', 'baz']
-]) }}
+<p>You can then set the view and layout templates on the <em>Template</em> object and
+invoke it:</p>
+<pre><code class="language-php">$template-&gt;setView('browse');
+$template-&gt;setLayout('default');
+$output = $template();
 </code></pre>
-<p>The rendered HTML will look something like this:</p>
-<pre><code class="language-html+php">&lt;p&gt;My List&lt;/p&gt;
-&lt;ul&gt;
-    &lt;li&gt;foo&lt;/li&gt;
-    &lt;li&gt;bar&lt;/li&gt;
-    &lt;li&gt;baz&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
+<p>The output from the inner view template is automatically retained and becomes
+available via the <code>getContent()</code> method on the <em>Template</em> object. The layout
+template then calls <code>getContent()</code> to place the inner view results in the outer
+layout template.</p>
+<blockquote>
+<p><strong>Note:</strong></p>
+<p>You can also call <code>setLayout()</code> from inside the view template, allowing you
+to pick a layout as part of the view logic.</p>
+</blockquote>
+<p>The view template and the layout template both execute inside the
+same <em>Template</em> object. This means:</p>
+<ul>
+<li>
+<p>All variables assigned to the view are shared with the layout.</p>
+</li>
+<li>
+<p>All helpers are shared between the view and the layout.</p>
+</li>
+</ul>
+<p>This sharing situation allows the view to modify data and helpers before the
+layout is executed.</p>
 </div>        </div>
     </div>
 </div>
@@ -339,9 +354,9 @@ always be available regardless.)</p>
         <div class="container">
             <div class="row">
                 <div class="prev col-xs-6">
-                                            <a href="/1.x/locator.html">Previous</a>                                    </div>
+                                            <a href="/3.x/partials.html">Previous</a>                                    </div>
                 <div class="next col-xs-6">
-                                            <a href="/1.x/layouts.html">Next</a>                                    </div>
+                                            <a href="/3.x/blocks.html">Next</a>                                    </div>
             </div>
         </div>
     </div>

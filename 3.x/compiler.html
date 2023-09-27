@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <meta name="HandheldFriendly" content="True"/>
-<title>Partials</title>
+<title>Compiler</title>
     
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/journal/bootstrap.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -50,7 +50,7 @@
                         <a>En</a>
                     </li>
                     <li>
-                        <a href="https://qiqphp-ja.github.io/1.x/partials.html">Ja</a>
+                        <a href="https://qiqphp-ja.github.io/3.x/compiler.html">Ja</a>
                     </li>
                 </ul>
             </div>
@@ -287,8 +287,8 @@
 <div class="container">
     <ol class="breadcrumb">
                         <li><a href="/">Qiq</a></li>
-                                <li><a href="/1.x/">1.x</a></li>
-                                <li class="active">Partials</li>
+                                <li><a href="/3.x/">3.x</a></li>
+                                <li class="active">Compiler</li>
             </ol>
     <div class="row">
 
@@ -296,40 +296,77 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#3-5" title="Partials">Partials</a>
+                <a href="#1-10" title="Compiler">Compiler</a>
+            </li>
+                                <li>
+                <a href="#1-10-1" title="Cache&#x20;Path">Cache Path</a>
+            </li>
+                                <li>
+                <a href="#1-10-2" title="Cache&#x20;Clearing">Cache Clearing</a>
+            </li>
+                                <li>
+                <a href="#1-10-3" title="Disabling&#x20;The&#x20;Compiler">Disabling The Compiler</a>
             </li>
             </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h3 id="3-5">3.5. Partials</h3>
-<p>Sometimes you will want to split a single template into multiple pieces. You can
-render these "partial" template pieces using the <code>render()</code> method in your main
-template code.</p>
-<p>When rendering, you can pass an array of variables to be extracted into the
-local scope of the partial template. (The main <code>$this</code> <em>Template</em> variable will
-always be available regardless.)</p>
-<p>For example, a <code>list</code> partial template might look like this:</p>
-<pre><code class="language-html+php">&lt;ul&gt;
-    {{ foreach ($items as $item): }}
-    &lt;li&gt;{{h $item}}&lt;/li&gt;
-    {{ endforeach }}
-&lt;/ul&gt;
+<div id="section-main"><h1 id="1-10">1.10. Compiler</h1>
+<p>Although Qiq templates use native PHP, the <code>{{ ... }}</code> syntax sugar does require
+a compiling process. That process is very simple, even naive, but it does
+exist:</p>
+<ul>
+<li>
+<p>If a compiled template already exists in the cache directory, and is newer
+than the source template file, the <em>QiqCompiler</em> returns the already-existing
+compiled template. Otherwise ...</p>
+</li>
+<li>
+<p>The <em>QiqCompiler</em> reads the source template file, splits out the <code>{{ ... }}</code>
+tags using a regular expression, and retains them as <em>QiqToken</em> objects .</p>
+</li>
+<li>
+<p>The <em>QiqCompiler</em> then invokes each <em>QiqToken</em> to get back the PHP code
+replacement for the <code>{{ ... }}</code> tag, and reassembles all the parts in order.</p>
+</li>
+<li>
+<p>The compiled template is saved to the compiler cache directory. The same
+source template will not be compiled again -- at least, not until it gets
+re-saved, thereby updating its timestamp, making it newer than the compiled
+version.</p>
+</li>
+</ul>
+<h2 id="1-10-1">1.10.1. Cache Path</h2>
+<p>The <em>QiqCompiler</em> cache path by default is your
+<a href="https://php.net/sys_get_temp_dir"><code>sys_get_temp_dir()</code></a> directory appended
+with <code>/qiq</code>, but you can specify any path with <code>Template::new()</code>:</p>
+<pre><code class="language-php">$template = Template::new(
+    cachePath: '/path/to/qiqcache/'
+);
 </code></pre>
-<p>Then in a main <code>browse</code> template, you can render the partial <code>list</code>:</p>
-<pre><code class="language-html+php">&lt;p&gt;My List&lt;/p&gt;
-{{= render ('list', [
-    'items' =&gt; 'foo', 'bar', 'baz']
-]) }}
+<p>The <em>QiqCompiler</em> saves the compiled templates in the cache using the full path
+of the source template file. For example, if the cache path is <code>/private/tmp</code> and
+the source template file is at <code>/www/site/resources/templates/foo.php</code>, that
+means the compiled template file will be cached at:</p>
+<pre><code>/private/tmp/www/site/resources/templates/foo.php
 </code></pre>
-<p>The rendered HTML will look something like this:</p>
-<pre><code class="language-html+php">&lt;p&gt;My List&lt;/p&gt;
-&lt;ul&gt;
-    &lt;li&gt;foo&lt;/li&gt;
-    &lt;li&gt;bar&lt;/li&gt;
-    &lt;li&gt;baz&lt;/li&gt;
-&lt;/ul&gt;
+<p>If you see compiling errors, having the full source template path as part of
+the cache path will help you find the original template.</p>
+<h2 id="1-10-2">1.10.2. Cache Clearing</h2>
+<p>To clear the cache, reach into the <em>Template</em> to get the <em>Compiler</em>,
+and call its <code>clear()</code> method.</p>
+<pre><code class="language-php">$template-&gt;getCompiler()-&gt;clear();
 </code></pre>
+<h2 id="1-10-3">1.10.3. Disabling The Compiler</h2>
+<p>If you are absolutely certain that you do not want to use Qiq syntax, and
+will use only PHP in your template files, you can create a <em>Template</em> with
+<code>$cachePath</code> set to false:</p>
+<pre><code class="language-php">$template = Template::new(
+    cachePath: false
+);
+</code></pre>
+<p>This will cause the <em>Template</em> to use the <em>NonCompiler</em>, which does not
+compile or cache template files at all.</p>
 </div>        </div>
     </div>
 </div>
@@ -339,9 +376,9 @@ always be available regardless.)</p>
         <div class="container">
             <div class="row">
                 <div class="prev col-xs-6">
-                                            <a href="/1.x/locator.html">Previous</a>                                    </div>
+                                            <a href="/3.x/helpers/custom.html">Previous</a>                                    </div>
                 <div class="next col-xs-6">
-                                            <a href="/1.x/layouts.html">Next</a>                                    </div>
+                                            <a href="/3.x/static-analysis.html">Next</a>                                    </div>
             </div>
         </div>
     </div>

@@ -61,6 +61,80 @@
     
     <ul class="nav navbar-nav">
                         <li>
+    <a href="/3.x/">3.x</a>
+    
+    <ul class="dropdown-menu">
+                        <li>
+    <a href="/3.x/intro.html">Introduction</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/syntax.html">Template Syntax</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/data.html">Template Data</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/catalog.html">Template File Catalog</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/partials.html">Partials</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/layouts.html">Layouts</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/blocks.html">Blocks</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/inheritance.html">Inheritance</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/helpers/">Helpers</a>
+    
+    <ul class="dropdown-menu">
+                        <li>
+    <a href="/3.x/helpers/overview.html">Overview</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/helpers/general.html">General Helpers</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/helpers/forms.html">Form Helpers</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/helpers/custom.html">Custom Helpers</a>
+
+    </li>
+            </ul>
+
+    </li>
+                        <li>
+    <a href="/3.x/compiler.html">Compiler</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/static-analysis.html">Static Analysis</a>
+
+    </li>
+                        <li>
+    <a href="/3.x/upgrading.html">Upgrading from</a>
+
+    </li>
+            </ul>
+
+    </li>
+                        <li>
     <a href="/2.x/">2.x</a>
     
     <ul class="dropdown-menu">
@@ -222,22 +296,22 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#1-4" title="Template&#x20;File&#x20;Catalog">Template File Catalog</a>
+                <a href="#2-4" title="Template&#x20;File&#x20;Catalog">Template File Catalog</a>
             </li>
                                 <li>
-                <a href="#1-4" title="Subdirectories">Subdirectories</a>
+                <a href="#2-4" title="Subdirectories">Subdirectories</a>
             </li>
                                 <li>
-                <a href="#1-4" title="File&#x20;Name&#x20;Extension">File Name Extension</a>
+                <a href="#2-4" title="File&#x20;Name&#x20;Extension">File Name Extension</a>
             </li>
                                 <li>
-                <a href="#1-4" title="Collections">Collections</a>
+                <a href="#2-4" title="Collections">Collections</a>
             </li>
             </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h1 id="1-4">1.4. Template File Catalog</h1>
+<div id="section-main"><h1 id="2-4">2.4. Template File Catalog</h1>
 <p>Qiq will search through any number of directory paths for template files. You
 can pass an array of <code>paths</code> to <code>Template::new()</code> ...</p>
 <pre><code class="language-php">$template = Template::new(
@@ -266,7 +340,7 @@ prepend or append a directory path to the <em>Catalog</em>:</p>
 <pre><code class="language-php">$template-&gt;getCatalog()-&gt;prependPath('/higher/precedence/templates');
 $template-&gt;getCatalog()-&gt;appendPath('/lower/precedence/templates');
 </code></pre>
-<h3 id="1-4">1.4. Subdirectories</h3>
+<h3 id="2-4">2.4. Subdirectories</h3>
 <p>To render a template file from any location, use the absolute path to the
 template name (no leading slash is necessary):</p>
 <pre><code class="language-php">// renders the "foo/bar/baz.php" template
@@ -293,7 +367,7 @@ echo $this-&gt;render('../bar');
 // refers to "foo.php"
 echo $this-&gt;render('../../foo');
 </code></pre>
-<h3 id="1-4">1.4. File Name Extension</h3>
+<h3 id="2-4">2.4. File Name Extension</h3>
 <p>By default, the <em>Catalog</em> will auto-append <code>.php</code> to template file names. If
 the template files end with a different extension, change it using the
 <code>setExtension()</code> method:</p>
@@ -305,7 +379,7 @@ $catalog-&gt;setExtension('.phtml');
     extension: '.qiq.php'
 );
 </code></pre>
-<h3 id="1-4">1.4. Collections</h3>
+<h3 id="2-4">2.4. Collections</h3>
 <p>Sometimes it may be useful to identify collections of templates, say for
 emails or for admin pages. (Other template systems may refer to these
 as "groups", "folders", or "namespaces".)</p>

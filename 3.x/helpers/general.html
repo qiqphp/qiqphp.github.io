@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <meta name="HandheldFriendly" content="True"/>
-<title>Partials</title>
+<title>General Helpers</title>
     
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/journal/bootstrap.min.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -50,7 +50,7 @@
                         <a>En</a>
                     </li>
                     <li>
-                        <a href="https://qiqphp-ja.github.io/1.x/partials.html">Ja</a>
+                        <a href="https://qiqphp-ja.github.io/3.x/helpers/general.html">Ja</a>
                     </li>
                 </ul>
             </div>
@@ -287,8 +287,9 @@
 <div class="container">
     <ol class="breadcrumb">
                         <li><a href="/">Qiq</a></li>
-                                <li><a href="/1.x/">1.x</a></li>
-                                <li class="active">Partials</li>
+                                <li><a href="/3.x/">3.x</a></li>
+                                <li><a href="/3.x/helpers/">Helpers</a></li>
+                                <li class="active">General Helpers</li>
             </ol>
     <div class="row">
 
@@ -296,35 +297,234 @@
             <nav class="nav-left hidden-xs hidden-sm" id="sideNav">
     <ul class="nav nav-stacked" data-spy="affix" data-offset-top="59" role="tablist">
                                 <li>
-                <a href="#3-5" title="Partials">Partials</a>
+                <a href="#1-9-2" title="General&#x20;Helpers">General Helpers</a>
+            </li>
+                                <li>
+                <a href="#1-9-2-1" title="anchor">anchor</a>
+            </li>
+                                <li>
+                <a href="#1-9-2-2" title="base">base</a>
+            </li>
+                                <li>
+                <a href="#1-9-2-3" title="dl">dl</a>
+            </li>
+                                <li>
+                <a href="#1-9-2-4" title="image">image</a>
+            </li>
+                                <li>
+                <a href="#1-9-2-5" title="items">items</a>
+            </li>
+                                <li>
+                <a href="#1-9-2-6" title="link">link</a>
+            </li>
+                                <li>
+                <a href="#1-9-2-7" title="linkStylesheet">linkStylesheet</a>
+            </li>
+                                <li>
+                <a href="#1-9-2-8" title="meta">meta</a>
+            </li>
+                                <li>
+                <a href="#1-9-2-9" title="ol">ol</a>
+            </li>
+                                <li>
+                <a href="#1-9-2-10" title="script">script</a>
+            </li>
+                                <li>
+                <a href="#1-9-2-11" title="ul">ul</a>
             </li>
             </ul>
 </nav>
         </div>
                 <div class="col-md-9">
-<div id="section-main"><h3 id="3-5">3.5. Partials</h3>
-<p>Sometimes you will want to split a single template into multiple pieces. You can
-render these "partial" template pieces using the <code>render()</code> method in your main
-template code.</p>
-<p>When rendering, you can pass an array of variables to be extracted into the
-local scope of the partial template. (The main <code>$this</code> <em>Template</em> variable will
-always be available regardless.)</p>
-<p>For example, a <code>list</code> partial template might look like this:</p>
-<pre><code class="language-html+php">&lt;ul&gt;
-    {{ foreach ($items as $item): }}
-    &lt;li&gt;{{h $item}}&lt;/li&gt;
-    {{ endforeach }}
-&lt;/ul&gt;
+<div id="section-main"><h1 id="1-9-2">1.9.2. General Helpers</h1>
+<p>All helpers automatically apply appropriate escaping. This means you can use
+<code>{{= ... }}</code> to output them. If you use <code>{{h ... }}</code> et al., you will end up
+double-escaping the output.</p>
+<p>You can also address the helpers as methods on <code>$this</code> in PHP template code.</p>
+<p>Finally, many of these helpers accept a trailing variadic list of named
+parameters as HTML tag attributes. This means you can add just about any
+attribute as if it was a parameter on the helper method. Underscores in  the
+parameter name will be converted to dashes; e.g., <code>foo_bar: 'baz'</code> will
+become <code>foo-bar="baz"</code> in the returned helper output. For attributes that
+cannot double as named parameters, use the <code>attr</code> array parameter; for
+example:</p>
+<pre><code class="language-qiq">{{= anchor (
+    'http://qiqphp.com',
+    'Qiq Project',
+    attr: [                 // (array) optional key-value attributes
+        'xml:lang' =&gt; 'en',
+    ],
+    id: 'qiq-link',         // (...mixed) optional named parameter attributes
+) }}
 </code></pre>
-<p>Then in a main <code>browse</code> template, you can render the partial <code>list</code>:</p>
-<pre><code class="language-html+php">&lt;p&gt;My List&lt;/p&gt;
-{{= render ('list', [
-    'items' =&gt; 'foo', 'bar', 'baz']
+<p>The example code will produce this HTML:</p>
+<pre><code class="language-html">&lt;a href="http://qiqphp.com" xml:lang="en" id="qiq-link"&gt;Qiq for PHP&lt;/a&gt;
+</code></pre>
+<h2 id="1-9-2-1">1.9.2.1. anchor</h2>
+<p>Helper for <code>&lt;a&gt;</code> tags.</p>
+<pre><code class="language-qiq">{{= anchor (
+    'http://qiqphp.com',    // (string) href
+    'Qiq Project',          // (string) text
+    attr: [],               // (array) optional key-value attributes
+    id: 'qiq-link',         // (...mixed) optional named parameter attributes
+) }}
+</code></pre>
+<pre><code class="language-html">&lt;a href="http://qiqphp.com" id="qiq-link"&gt;Qiq for PHP&lt;/a&gt;
+</code></pre>
+<h2 id="1-9-2-2">1.9.2.2. base</h2>
+<p>Helper for <code>&lt;base&gt;</code> tags.</p>
+<pre><code class="language-qiq">{{= base (
+    '/base'                 // (string) href
+) }}
+</code></pre>
+<pre><code class="language-html">&lt;base href="/base" /&gt;
+</code></pre>
+<h2 id="1-9-2-3">1.9.2.3. dl</h2>
+<p>Helper for <code>&lt;dl&gt;</code> tags with <code>&lt;dt&gt;</code>/<code>&lt;dd&gt;</code> items.</p>
+<pre><code class="language-qiq">{{= dl (
+    [                       // (array) dt keys and dd values
+        'foo' =&gt; 'Foo Def',
+        'bar' =&gt; [
+            'Bar Def A',
+            'Bar Def B',
+            'Bar Def C',
+        ],
+        'baz' =&gt; 'Baz Def',
+    ],
+    attr: [],               // (array) optional key-value attributes
+    id: 'test'              // (...mixed) optional named parameter attributes
+) }}
+</code></pre>
+<pre><code class="language-html">&lt;dl id="test"&gt;
+    &lt;dt&gt;foo&lt;/dt&gt;
+        &lt;dd&gt;Foo Def&lt;/dd&gt;
+    &lt;dt&gt;bar&lt;/dt&gt;
+        &lt;dd&gt;Bar Def A&lt;/dd&gt;
+        &lt;dd&gt;Bar Def B&lt;/dd&gt;
+        &lt;dd&gt;Bar Def C&lt;/dd&gt;
+    &lt;dt&gt;baz&lt;/dt&gt;
+        &lt;dd&gt;Baz Def&lt;/dd&gt;
+&lt;/dl&gt;
+</code></pre>
+<h2 id="1-9-2-4">1.9.2.4. image</h2>
+<p>Helper for <code>&lt;img&gt;</code> tags.</p>
+<pre><code class="language-qiq">{{= image (
+    '/images/hello.jpg',    // (string) image href src
+    attr: [],               // (array) optional key-value attributes
+    id: 'image-id'          // (...mixed) optional named parameter attributes
+) }}
+</code></pre>
+<pre><code class="language-html">&lt;!-- if alt is not specified, uses the basename of the image href --&gt;
+&lt;img src="/images/hello.jpg" alt="hello" id="image-id" /&gt;
+</code></pre>
+<h2 id="1-9-2-5">1.9.2.5. items</h2>
+<p>Helper for a series of <code>&lt;li&gt;</code> tags.</p>
+<pre><code class="language-qiq">{{= items ([                // (array) list items
+    'foo',
+    'bar',
+    'baz'
 ]) }}
 </code></pre>
-<p>The rendered HTML will look something like this:</p>
-<pre><code class="language-html+php">&lt;p&gt;My List&lt;/p&gt;
-&lt;ul&gt;
+<pre><code class="language-html">&lt;li&gt;foo&lt;/li&gt;
+&lt;li&gt;bar&lt;/li&gt;
+&lt;li&gt;baz&lt;/li&gt;
+</code></pre>
+<h2 id="1-9-2-6">1.9.2.6. link</h2>
+<p>Helper for a <code>&lt;link&gt;</code> tag.</p>
+<pre><code class="language-qiq">{{= link (
+    rel: 'prev',
+    href: '/path/to/prev',
+    attr: [],               // (array) optional key-value attributes
+    id: 'link-id'           // (...mixed) optional named parameter attributes
+) }}
+</code></pre>
+<pre><code class="language-html">&lt;link rel="prev" href="/path/to/prev" id="link-id" /&gt;
+</code></pre>
+<h2 id="1-9-2-7">1.9.2.7. linkStylesheet</h2>
+<p>Helper for a <code>&lt;link&gt;</code> stylesheet tag.</p>
+<pre><code class="language-qiq">{{= linkStylesheet (
+    '/css/print.css',       // (string) the stylesheet href
+    attr: [],               // (array) optional key-value attributes
+    media: 'print'          // (...mixed) optional named parameter attributes
+) }}
+</code></pre>
+<pre><code class="language-html">&lt;!-- if type is not specified, uses "text/css" --&gt;
+&lt;!-- if media is not specified, uses "screen" --&gt;
+&lt;link rel="stylesheet" href="/css/print.css" type="text/css" media="print" /&gt;
+</code></pre>
+<h2 id="1-9-2-8">1.9.2.8. meta</h2>
+<p>Helper for a <code>&lt;meta&gt;</code> tag.</p>
+<p>For general use:</p>
+<pre><code class="language-qiq">{{= meta (
+    attr: [],               // (array) optional key-value attributes
+    ...                     // (...mixed) optional named parameter attributes
+) }}
+</code></pre>
+<p>For <code>charset</code>:</p>
+<pre><code class="language-qiq">{{= meta (
+    charset: 'utf-8'
+) }}
+</code></pre>
+<pre><code class="language-html">&lt;meta charset="utf-8"&gt;
+</code></pre>
+<p>For <code>http-equiv</code>:</p>
+<pre><code class="language-qiq">{{= meta (
+    http_equiv: 'Location',
+    content: '/redirect/to/here'
+) }}
+</code></pre>
+<pre><code class="language-html">&lt;meta http-equiv="Location" content="/redirect/to/here"&gt;
+</code></pre>
+<p>For <code>name</code>:</p>
+<pre><code class="language-qiq">{{= meta (
+    name: 'author',
+    content: 'Qiq for PHP'
+) }}
+</code></pre>
+<pre><code class="language-html">&lt;meta name="author" content="Qiq for PHP"&gt;
+</code></pre>
+<h2 id="1-9-2-9">1.9.2.9. ol</h2>
+<p>Helper for <code>&lt;ol&gt;</code> tags with <code>&lt;li&gt;</code> items.</p>
+<pre><code class="language-qiq">{{= ol (
+    [                       // (array) list items
+        'foo',
+        'bar',
+        'baz'
+    ],
+    attr: [],               // (array) optional key-value attributes
+    id: 'foo-list'          // (...mixed) optional named parameter attributes
+) }}
+</code></pre>
+<pre><code class="language-html">&lt;ol id="foo-list"&gt;
+    &lt;li&gt;foo&lt;/li&gt;
+    &lt;li&gt;bar&lt;/li&gt;
+    &lt;li&gt;baz&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+<h2 id="1-9-2-10">1.9.2.10. script</h2>
+<p>Helper for a <code>&lt;script&gt;</code> tag.</p>
+<pre><code class="language-qiq">{{= script (
+    '/js/functions.js',     // (string) src attribute
+    attr: [],               // (array) optional key-value attributes
+    async: true             // (...mixed) optional named parameter attributes
+) }}
+</code></pre>
+<pre><code class="language-html">&lt;!-- if type is not specified, uses "text/javascript" --&gt;
+&lt;script src="/js/functions.js" type="text/javascript" async&gt;&lt;/script&gt;
+</code></pre>
+<h2 id="1-9-2-11">1.9.2.11. ul</h2>
+<p>Helper for <code>&lt;ul&gt;</code> tags with <code>&lt;li&gt;</code> items.</p>
+<pre><code class="language-qiq">{{= ul (
+    [                       // (array) list items
+        'foo',
+        'bar',
+        'baz'
+    ],
+    attr: [],               // (array) optional key-value attributes
+    id: 'foo-list'          // (...mixed) optional named parameter attributes
+) }}
+</code></pre>
+<pre><code class="language-html">&lt;ul id="foo-list"&gt;
     &lt;li&gt;foo&lt;/li&gt;
     &lt;li&gt;bar&lt;/li&gt;
     &lt;li&gt;baz&lt;/li&gt;
@@ -339,9 +539,9 @@ always be available regardless.)</p>
         <div class="container">
             <div class="row">
                 <div class="prev col-xs-6">
-                                            <a href="/1.x/locator.html">Previous</a>                                    </div>
+                                            <a href="/3.x/helpers/overview.html">Previous</a>                                    </div>
                 <div class="next col-xs-6">
-                                            <a href="/1.x/layouts.html">Next</a>                                    </div>
+                                            <a href="/3.x/helpers/forms.html">Next</a>                                    </div>
             </div>
         </div>
     </div>

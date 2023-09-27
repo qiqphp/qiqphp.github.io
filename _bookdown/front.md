@@ -3,10 +3,10 @@
 After you install _Qiq_ via [Composer](https://getcomposer.org) ...
 
 ```
-composer require qiq/qiq ^2.0
+composer require qiq/qiq ^3.0
 ```
 
-.. you can get started [here](/2.x/intro.html).
+.. you can get started [here](/3.x/intro.html).
 
 The Github repository is at [qiqphp/qiq](https://github.com/qiqphp/qiq).
 
@@ -17,10 +17,10 @@ It offers:
 
 - Native `<?php ?>` **and** `{{ qiq }}` syntax
 - Concise, explicit, context-specific escaping
-- Views, [layouts](./2.x/layouts.html), and [partials](./2.x/partials.html)
-- [Blocks](./2.x/blocks.html) and [inheritance](./2.x/inheritance.html)
-- Rich and extensible [HTML helpers](./2.x/helpers/overview.html)
-- Easy-to-implement [static analysis](./2.x/static-analysis.html)
+- Views, [layouts](./3.x/layouts.html), and [partials](./3.x/partials.html)
+- [Blocks](./3.x/blocks.html) and [inheritance](./3.x/inheritance.html)
+- Rich and extensible [HTML helpers](./3.x/helpers/overview.html)
+- Easy-to-implement [static analysis](./3.x/static-analysis.html)
 - Full documentation and unit-testing
 
 Qiq is *not* for systems where the templates must be "secured" in some way
@@ -79,7 +79,7 @@ Qiq code ...
 ```
 
 This makes it easy to use Qiq with existing PHP templates, and allows for a
-smooth transition from PHP syntax to [Qiq syntax](/2.x/syntax.html) as desired.
+smooth transition from PHP syntax to [Qiq syntax](/3.x/syntax.html) as desired.
 
 ## What Are Qiq Helpers?
 
@@ -119,9 +119,9 @@ Qiq ...
 ) ?>
 ```
 
-Read more about the [general HTML helpers](./2.x/helpers/general.html), the
-[form helpers](./2.x/helpers/forms.html), or learn how to create your own
-[custom helpers](./2.x/helpers/custom.html).
+Read more about the [general HTML helpers](./3.x/helpers/general.html), the
+[form helpers](./3.x/helpers/forms.html), or learn how to create your own
+[custom helpers](./3.x/helpers/custom.html).
 
 ## Why Explicit Escaping?
 
@@ -143,4 +143,4 @@ security, that's a good thing.
 
 * * *
 
-Want to know more? Get started [here](/2.x/intro.html)!
+Want to know more? Get started [here](/3.x/intro.html)!
