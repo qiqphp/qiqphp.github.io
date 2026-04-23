@@ -303,7 +303,7 @@
 <p>After you install <em>Qiq</em> via <a href="https://getcomposer.org">Composer</a> ...</p>
 <pre><code>composer require qiq/qiq ^3.0
 </code></pre>
-<p>.. you can get started <a href="/3.x/intro.html">here</a>.</p>
+<p>.. you can get started <a href="/3.x/intro.html" data-auto-locale-href-en="/3.x/intro.html" data-auto-locale-href-ja="https://qiqphp-ja.github.io/1.x/intro.html">here</a>.</p>
 <p>The Github repository is at <a href="https://github.com/qiqphp/qiq">qiqphp/qiq</a>.</p>
 <h2>Why Use Qiq?</h2>
 <p>Qiq is for developers who prefer native PHP templates, but with less verbosity.
@@ -414,12 +414,31 @@ forget what context you should be escaping for. Explicitly marking the context
 means you always have to think about what you are doing; when it comes to
 security, that's a good thing.</p>
 <hr />
-<p>Want to know more? Get started <a href="/3.x/intro.html">here</a>!</p>
+<p>Want to know more? Get started <a href="/3.x/intro.html" data-auto-locale-href-en="/3.x/intro.html" data-auto-locale-href-ja="https://qiqphp-ja.github.io/1.x/intro.html">here</a>!</p>
 
         </div>
         <div class="col-md-2"></div>
-    </div>
 </div>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const navigatorLanguages = window.navigator.languages;
+        const locales = (navigatorLanguages && navigatorLanguages.length)
+            ? navigatorLanguages
+            : [window.navigator.language ?? ''];
+        const prefersJapanese = locales.some((locale) => locale.toLowerCase().startsWith('ja'));
+
+        for (const link of document.querySelectorAll('[data-auto-locale-href-en][data-auto-locale-href-ja]')) {
+            const href = prefersJapanese
+                ? link.getAttribute('data-auto-locale-href-ja')
+                : link.getAttribute('data-auto-locale-href-en');
+            if (href) {
+                link.setAttribute('href', href);
+            }
+        }
+    });
+</script>
 
 <footer>
     <div id="copyright">
