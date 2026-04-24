@@ -19,6 +19,25 @@
     </div>
 </div>
 
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const navigatorLanguages = window.navigator.languages;
+        const locales = (navigatorLanguages && navigatorLanguages.length)
+            ? navigatorLanguages
+            : [window.navigator.language ?? ''];
+        const prefersJapanese = locales.some((locale) => locale.toLowerCase().startsWith('ja'));
+
+        for (const link of document.querySelectorAll('[data-auto-locale-href-en][data-auto-locale-href-ja]')) {
+            const href = prefersJapanese
+                ? link.getAttribute('data-auto-locale-href-ja')
+                : link.getAttribute('data-auto-locale-href-en');
+            if (href) {
+                link.setAttribute('href', href);
+            }
+        }
+    });
+</script>
+
 <footer>
     <div id="copyright">
         <div class="container">

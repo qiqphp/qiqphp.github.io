@@ -6,7 +6,7 @@ After you install _Qiq_ via [Composer](https://getcomposer.org) ...
 composer require qiq/qiq ^3.0
 ```
 
-.. you can get started [here](/3.x/intro.html).
+.. you can get started <a href="/3.x/intro.html" data-auto-locale-href-en="/3.x/intro.html" data-auto-locale-href-ja="https://qiqphp-ja.github.io/1.x/intro.html">here</a>.
 
 The Github repository is at [qiqphp/qiq](https://github.com/qiqphp/qiq).
 
@@ -143,4 +143,4 @@ security, that's a good thing.
 
 * * *
 
-Want to know more? Get started [here](/3.x/intro.html)!
+Want to know more? Get started <a href="/3.x/intro.html" data-auto-locale-href-en="/3.x/intro.html" data-auto-locale-href-ja="https://qiqphp-ja.github.io/1.x/intro.html">here</a>!
